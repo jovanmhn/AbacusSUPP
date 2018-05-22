@@ -20,6 +20,14 @@ namespace AbacusSUPP
             Baza = new AbacusSUPEntities();
             task = _task;
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            labelControl1.Text = task.id_task.ToString();
+            memoEdit2.Text = task.opis;
+            labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
+            labelControl3.Text = "Task otvorio: " + task.Login.username;
+            labelControl4.Text = "Datum:" + task.datum.ToString();
+            
+
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
