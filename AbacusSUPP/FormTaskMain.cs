@@ -25,7 +25,7 @@ namespace AbacusSUPP
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
             labelControl3.Text = "Task otvorio: " + task.Login.username;
             labelControl4.Text = "Datum:" + task.datum.ToString();
-            
+            this.Text = task.naslov;
 
 
         }
@@ -43,6 +43,7 @@ namespace AbacusSUPP
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
+            memoEdit1.Text = null;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -51,6 +52,14 @@ namespace AbacusSUPP
             Baza.SaveChanges();
             this.Close();
             
+        }
+    }
+    public static class StringExt
+    {
+        public static string Truncate(this string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
     }
 }

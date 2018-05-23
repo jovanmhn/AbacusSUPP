@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
@@ -43,6 +44,7 @@
             // 
             // textEdit2
             // 
+            this.textEdit2.EditValue = "bencom331860";
             this.textEdit2.Location = new System.Drawing.Point(21, 145);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Properties.NullValuePrompt = "Lozinka";
@@ -75,6 +77,7 @@
             // 
             // textEdit1
             // 
+            this.textEdit1.EditValue = "root";
             this.textEdit1.Location = new System.Drawing.Point(21, 107);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.NullValuePrompt = "Korisnicko ime";

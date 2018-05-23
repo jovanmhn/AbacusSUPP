@@ -58,6 +58,7 @@
           <Property Name="status_id" Type="int" Nullable="false" />
           <Property Name="prioritet_id" Type="int" Nullable="false" />
           <Property Name="login_id" Type="int" Nullable="false" />
+          <Property Name="naslov" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Komentar_Login">
           <End Role="Login" Type="Self.Login" Multiplicity="1" />
@@ -239,6 +240,7 @@
           <NavigationProperty Name="Status" Relationship="AbacusSUPModel.FK_Task_Status" FromRole="Task" ToRole="Status" />
           <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Task" ToRole="Login" />
           <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Task" FromRole="Task" ToRole="Komentar" />
+          <Property Name="naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Task_Partneri">
           <End Type="AbacusSUPModel.Partneri" Role="Partneri" Multiplicity="1" />
@@ -370,6 +372,7 @@
           <EntitySetMapping Name="Task">
             <EntityTypeMapping TypeName="AbacusSUPModel.Task">
               <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="naslov" ColumnName="naslov" />
                 <ScalarProperty Name="login_id" ColumnName="login_id" />
                 <ScalarProperty Name="prioritet_id" ColumnName="prioritet_id" />
                 <ScalarProperty Name="status_id" ColumnName="status_id" />

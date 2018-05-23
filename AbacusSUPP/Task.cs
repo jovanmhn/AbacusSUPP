@@ -27,6 +27,7 @@ namespace AbacusSUPP
         public int status_id { get; set; }
         public int prioritet_id { get; set; }
         public int login_id { get; set; }
+        public string naslov { get; set; }
     
         public virtual Partneri Partneri { get; set; }
         public virtual Prioritet Prioritet { get; set; }
