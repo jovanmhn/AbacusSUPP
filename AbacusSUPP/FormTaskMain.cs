@@ -44,5 +44,13 @@ namespace AbacusSUPP
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
+            Baza.SaveChanges();
+            this.Close();
+            
+        }
     }
 }

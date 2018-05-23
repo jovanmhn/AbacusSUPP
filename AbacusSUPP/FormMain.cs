@@ -60,7 +60,7 @@ namespace AbacusSUPP
 
             //Baza.Entry(task).Reload();
             Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList();
+            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=> qq.datum);
 
 
         }
@@ -72,6 +72,9 @@ namespace AbacusSUPP
             {
                 FormTaskMain frmtm = new FormTaskMain(task);
                 frmtm.ShowDialog();
+                gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq => qq.datum);
+                gridView1.RefreshData();
+
             }
             /*************EDIT TASK*************************************
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
