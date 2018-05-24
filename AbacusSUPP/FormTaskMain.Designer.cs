@@ -110,12 +110,14 @@
             this.layoutView1.Appearance.CardCaption.Options.UseFont = true;
             this.layoutView1.Appearance.FieldValue.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Italic);
             this.layoutView1.Appearance.FieldValue.Options.UseFont = true;
+            this.layoutView1.Appearance.SeparatorLine.BackColor = System.Drawing.Color.White;
+            this.layoutView1.Appearance.SeparatorLine.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.layoutView1.Appearance.ViewCaption.BackColor = System.Drawing.Color.Transparent;
             this.layoutView1.Appearance.ViewCaption.Options.UseBackColor = true;
             this.layoutView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.layoutView1.CardCaptionFormat = "Komentar {0}/{1}";
             this.layoutView1.CardHorzInterval = 0;
-            this.layoutView1.CardMinSize = new System.Drawing.Size(192, 68);
+            this.layoutView1.CardMinSize = new System.Drawing.Size(182, 84);
             this.layoutView1.CardVertInterval = 1;
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.coldatum,
@@ -150,7 +152,6 @@
             this.layoutView1.OptionsView.ShowFieldHints = false;
             this.layoutView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.layoutView1.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
-            this.layoutView1.PaintStyleName = "Office2003";
             this.layoutView1.TemplateCard = this.layoutViewCard1;
             // 
             // coldatum
@@ -158,6 +159,7 @@
             this.coldatum.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.coldatum.AppearanceHeader.Options.UseFont = true;
             this.coldatum.Caption = "Datum";
+            this.coldatum.CustomizationCaption = "Datum ";
             this.coldatum.DisplayFormat.FormatString = "g";
             this.coldatum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.coldatum.FieldName = "datum";
@@ -168,11 +170,11 @@
             // 
             // layoutViewField_coldatum
             // 
-            this.layoutViewField_coldatum.EditorPreferredWidth = 175;
+            this.layoutViewField_coldatum.EditorPreferredWidth = 183;
             this.layoutViewField_coldatum.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_coldatum.ImageOptions.Image")));
-            this.layoutViewField_coldatum.Location = new System.Drawing.Point(239, 0);
+            this.layoutViewField_coldatum.Location = new System.Drawing.Point(245, 0);
             this.layoutViewField_coldatum.Name = "layoutViewField_coldatum";
-            this.layoutViewField_coldatum.Size = new System.Drawing.Size(243, 24);
+            this.layoutViewField_coldatum.Size = new System.Drawing.Size(249, 24);
             this.layoutViewField_coldatum.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutViewField_coldatum.TextSize = new System.Drawing.Size(61, 16);
             // 
@@ -195,11 +197,11 @@
             // 
             // layoutViewField_colsadrzaj
             // 
-            this.layoutViewField_colsadrzaj.EditorPreferredWidth = 417;
+            this.layoutViewField_colsadrzaj.EditorPreferredWidth = 427;
             this.layoutViewField_colsadrzaj.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_colsadrzaj.ImageOptions.Image")));
-            this.layoutViewField_colsadrzaj.Location = new System.Drawing.Point(0, 30);
+            this.layoutViewField_colsadrzaj.Location = new System.Drawing.Point(0, 25);
             this.layoutViewField_colsadrzaj.Name = "layoutViewField_colsadrzaj";
-            this.layoutViewField_colsadrzaj.Size = new System.Drawing.Size(482, 21);
+            this.layoutViewField_colsadrzaj.Size = new System.Drawing.Size(494, 37);
             this.layoutViewField_colsadrzaj.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutViewField_colsadrzaj.TextSize = new System.Drawing.Size(61, 16);
             // 
@@ -208,6 +210,7 @@
             this.colLogin.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colLogin.AppearanceHeader.Options.UseFont = true;
             this.colLogin.Caption = "Korisnik";
+            this.colLogin.CustomizationCaption = "Korisnik ";
             this.colLogin.FieldName = "Login.username";
             this.colLogin.LayoutViewField = this.layoutViewField_colLogin;
             this.colLogin.Name = "colLogin";
@@ -216,11 +219,11 @@
             // 
             // layoutViewField_colLogin
             // 
-            this.layoutViewField_colLogin.EditorPreferredWidth = 171;
+            this.layoutViewField_colLogin.EditorPreferredWidth = 179;
             this.layoutViewField_colLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_colLogin.ImageOptions.Image")));
             this.layoutViewField_colLogin.Location = new System.Drawing.Point(0, 0);
             this.layoutViewField_colLogin.Name = "layoutViewField_colLogin";
-            this.layoutViewField_colLogin.Size = new System.Drawing.Size(239, 24);
+            this.layoutViewField_colLogin.Size = new System.Drawing.Size(245, 24);
             this.layoutViewField_colLogin.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutViewField_colLogin.TextSize = new System.Drawing.Size(61, 16);
             // 
@@ -233,7 +236,7 @@
             this.layoutViewField_colsadrzaj,
             this.layoutViewField_colLogin,
             this.item2});
-            this.layoutViewCard1.Name = "layoutViewTemplateCard";
+            this.layoutViewCard1.Name = "layoutViewCard1";
             this.layoutViewCard1.OptionsItemText.TextToControlDistance = 0;
             this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutViewCard1.Text = "TemplateCard";
@@ -245,7 +248,7 @@
             this.item2.CustomizationFormText = "item2";
             this.item2.Location = new System.Drawing.Point(0, 24);
             this.item2.Name = "item2";
-            this.item2.Size = new System.Drawing.Size(482, 6);
+            this.item2.Size = new System.Drawing.Size(494, 1);
             // 
             // repositoryItemMemoEdit1
             // 
@@ -383,8 +386,7 @@
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.panelControl1);
-            this.LookAndFeel.SkinName = "Office 2016 Colorful";
-            this.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.LookAndFeel.SkinName = "The Bezier";
             this.Name = "FormTaskMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Task";

@@ -27,7 +27,9 @@ namespace AbacusSUPP
                 //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                 
             }
-            
+
+            gridView1.Appearance.FocusedRow.BackColor = gridView1.Appearance.FocusedCell.BackColor =
+                 gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -94,7 +96,7 @@ namespace AbacusSUPP
         private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle) return;
+            //if (e.RowHandle == view.FocusedRowHandle) return;
             if (e.Column.FieldName == "Prioritet.opis")
             {
                 if (e.RowHandle >= 0)
@@ -243,6 +245,12 @@ namespace AbacusSUPP
             Baza = new AbacusSUPEntities();
             gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=>qq.datum);
             gridView1.RefreshData();
+        }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormTest testforma = new FormTest();
+            testforma.Show();
         }
     }
 }
