@@ -25,6 +25,7 @@
           <Property Name="isAdmin" Type="bit" Nullable="false" />
           <Property Name="ime" Type="nvarchar" MaxLength="20" />
           <Property Name="prezime" Type="nvarchar" MaxLength="20" />
+          <Property Name="sektor" Type="int" />
         </EntityType>
         <EntityType Name="Partneri">
           <Key>
@@ -54,11 +55,11 @@
           <Property Name="id_task" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_partner" Type="int" Nullable="false" />
           <Property Name="datum" Type="datetime" />
-          <Property Name="opis" Type="nvarchar" MaxLength="500" />
+          <Property Name="opis" Type="text" />
           <Property Name="status_id" Type="int" Nullable="false" />
           <Property Name="prioritet_id" Type="int" Nullable="false" />
           <Property Name="login_id" Type="int" Nullable="false" />
-          <Property Name="naslov" Type="nvarchar" MaxLength="50" />
+          <Property Name="naslov" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Komentar_Login">
           <End Role="Login" Type="Self.Login" Multiplicity="1" />
@@ -231,7 +232,7 @@
           <Property Name="id_task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_partner" Type="Int32" Nullable="false" />
           <Property Name="datum" Type="DateTime" Precision="3" />
-          <Property Name="opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status_id" Type="Int32" Nullable="false" />
           <Property Name="prioritet_id" Type="Int32" Nullable="false" />
           <Property Name="login_id" Type="Int32" Nullable="false" />
@@ -240,7 +241,7 @@
           <NavigationProperty Name="Status" Relationship="AbacusSUPModel.FK_Task_Status" FromRole="Task" ToRole="Status" />
           <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Task" ToRole="Login" />
           <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Task" FromRole="Task" ToRole="Komentar" />
-          <Property Name="naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="naslov" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Task_Partneri">
           <End Type="AbacusSUPModel.Partneri" Role="Partneri" Multiplicity="1" />
@@ -290,6 +291,7 @@
           <Property Name="prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Login" ToRole="Task" />
           <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Login" FromRole="Login" ToRole="Komentar" />
+          <Property Name="sektor" Type="Int32" />
         </EntityType>
         <Association Name="FK_Task_Login">
           <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="1" />
@@ -386,6 +388,7 @@
           <EntitySetMapping Name="Login">
             <EntityTypeMapping TypeName="AbacusSUPModel.Login">
               <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="sektor" ColumnName="sektor" />
                 <ScalarProperty Name="prezime" ColumnName="prezime" />
                 <ScalarProperty Name="ime" ColumnName="ime" />
                 <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />

@@ -38,7 +38,8 @@ namespace AbacusSUPP
             }
 
             taskbindingSource.Add(task);
-            
+
+            gridControl1.DataSource = Baza.Login.ToList();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

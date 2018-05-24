@@ -27,6 +27,7 @@ namespace AbacusSUPP
         public bool isAdmin { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
+        public Nullable<int> sektor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }

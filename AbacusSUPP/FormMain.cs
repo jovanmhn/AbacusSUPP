@@ -105,20 +105,20 @@ namespace AbacusSUPP
                     {
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("highpriority_16x16.png")];
 
-                        e.Cache.DrawImage(image, e.Bounds.Location);
+                        e.Cache.DrawImage(image, e.Bounds.Left+5, e.Bounds.Top + 15);
                     }
                     if (e.CellValue.ToString() == "Medium")
                     {
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("normalpriority_16x16.png")];
 
-                        e.Cache.DrawImage(image, e.Bounds.Location);
+                        e.Cache.DrawImage(image, e.Bounds.Left+5, e.Bounds.Top + 15);
                     }
                     if (e.CellValue.ToString() == "Low")
                     {
 
 
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("lowpriority_16x16.png")];
-                        e.Cache.DrawImage(image, e.Bounds.Location);
+                        e.Cache.DrawImage(image, e.Bounds.Left+5,e.Bounds.Top+15);
                     }
                 }
             }
@@ -129,7 +129,7 @@ namespace AbacusSUPP
                     
                    Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("comment_16x16.png")];
 
-                   e.Cache.DrawImage(image, e.Bounds.Location);
+                   e.Cache.DrawImage(image, e.Bounds.Left+5, e.Bounds.Top + 15);
                     
                 }
             }
@@ -228,6 +228,20 @@ namespace AbacusSUPP
             Baza.Task.Remove(taskzaDelete);
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Task.ToList();
+            gridView1.RefreshData();
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
+            if (task != null)
+            {
+                FormAddTask frmat = new FormAddTask(task.id_task);
+                frmat.ShowDialog();
+            }
+            //Baza.Entry(task).Reload();
+            Baza = new AbacusSUPEntities();
+            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=>qq.datum);
             gridView1.RefreshData();
         }
     }

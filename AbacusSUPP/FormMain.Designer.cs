@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -41,6 +42,7 @@
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -52,7 +54,6 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid_task = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colopis = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colstatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colprioritet = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,6 +74,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
+            // coldatum
+            // 
+            this.coldatum.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.coldatum.AppearanceCell.Options.UseFont = true;
+            this.coldatum.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.coldatum.AppearanceHeader.Options.UseFont = true;
+            this.coldatum.Caption = "Datum";
+            this.coldatum.FieldName = "datum";
+            this.coldatum.MinWidth = 23;
+            this.coldatum.Name = "coldatum";
+            this.coldatum.Visible = true;
+            this.coldatum.VisibleIndex = 2;
+            this.coldatum.Width = 154;
+            // 
             // ribbonControl1
             // 
             this.ribbonControl1.ApplicationButtonDropDownControl = this.applicationMenu2;
@@ -87,13 +102,14 @@
             this.barButtonItem8,
             this.barButtonItem9,
             this.barButtonItem10,
-            this.barButtonItem4});
+            this.barButtonItem4,
+            this.barButtonItem5});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 15;
+            this.ribbonControl1.MaxItemId = 16;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(947, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(955, 146);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // applicationMenu2
@@ -176,12 +192,21 @@
             // 
             // barButtonItem4
             // 
-            this.barButtonItem4.Caption = "Obriši ovaj task";
+            this.barButtonItem4.Caption = "Obriši task";
             this.barButtonItem4.Id = 14;
             this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
             this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "Izmjeni task";
+            this.barButtonItem5.Id = 15;
+            this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
+            this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -191,6 +216,7 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.AllowMinimize = false;
             this.ribbonPageGroup1.AllowTextClipping = false;
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem6);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem3);
@@ -199,10 +225,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 405);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 415);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(947, 31);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(955, 21);
             // 
             // ribbonPage2
             // 
@@ -217,7 +243,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 149);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.Aktivni;
-            this.xtraTabControl1.Size = new System.Drawing.Size(947, 260);
+            this.xtraTabControl1.Size = new System.Drawing.Size(955, 260);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Aktivni,
@@ -227,7 +253,7 @@
             // 
             this.Aktivni.Controls.Add(this.gridControl1);
             this.Aktivni.Name = "Aktivni";
-            this.Aktivni.Size = new System.Drawing.Size(941, 232);
+            this.Aktivni.Size = new System.Drawing.Size(953, 235);
             this.Aktivni.Text = "Aktivni";
             // 
             // gridControl1
@@ -242,7 +268,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbonControl1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(941, 232);
+            this.gridControl1.Size = new System.Drawing.Size(953, 235);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -262,6 +288,8 @@
             this.colprioritet,
             this.collogin,
             this.BrKomentara});
+            this.gridView1.DetailHeight = 431;
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -269,6 +297,7 @@
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowHeight = 50;
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
@@ -281,97 +310,109 @@
             this.colid_task.AppearanceHeader.Options.UseFont = true;
             this.colid_task.Caption = "Broj";
             this.colid_task.FieldName = "id_task";
+            this.colid_task.MinWidth = 23;
             this.colid_task.Name = "colid_task";
             this.colid_task.Visible = true;
             this.colid_task.VisibleIndex = 0;
-            this.colid_task.Width = 53;
+            this.colid_task.Width = 62;
             // 
             // colpartner
             // 
+            this.colpartner.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.colpartner.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.colpartner.AppearanceCell.Options.UseFont = true;
             this.colpartner.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colpartner.AppearanceHeader.Options.UseFont = true;
             this.colpartner.Caption = "Partner";
             this.colpartner.FieldName = "Partneri.naziv";
+            this.colpartner.MinWidth = 23;
             this.colpartner.Name = "colpartner";
             this.colpartner.Visible = true;
             this.colpartner.VisibleIndex = 1;
-            this.colpartner.Width = 132;
-            // 
-            // coldatum
-            // 
-            this.coldatum.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.coldatum.AppearanceHeader.Options.UseFont = true;
-            this.coldatum.Caption = "Datum";
-            this.coldatum.FieldName = "datum";
-            this.coldatum.Name = "coldatum";
-            this.coldatum.Visible = true;
-            this.coldatum.VisibleIndex = 2;
-            this.coldatum.Width = 132;
+            this.colpartner.Width = 154;
             // 
             // colopis
             // 
+            this.colopis.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.colopis.AppearanceCell.Options.UseFont = true;
             this.colopis.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colopis.AppearanceHeader.Options.UseFont = true;
             this.colopis.Caption = "Opis";
             this.colopis.FieldName = "opis";
+            this.colopis.MinWidth = 23;
             this.colopis.Name = "colopis";
             this.colopis.Visible = true;
             this.colopis.VisibleIndex = 3;
-            this.colopis.Width = 229;
+            this.colopis.Width = 267;
             // 
             // colstatus
             // 
+            this.colstatus.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.colstatus.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.colstatus.AppearanceCell.Options.UseFont = true;
             this.colstatus.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colstatus.AppearanceHeader.Options.UseFont = true;
             this.colstatus.Caption = "Status";
             this.colstatus.FieldName = "Status.opis";
+            this.colstatus.MinWidth = 23;
             this.colstatus.Name = "colstatus";
             this.colstatus.Visible = true;
             this.colstatus.VisibleIndex = 4;
-            this.colstatus.Width = 133;
+            this.colstatus.Width = 155;
             // 
             // colprioritet
             // 
+            this.colprioritet.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.colprioritet.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.colprioritet.AppearanceCell.Options.UseFont = true;
             this.colprioritet.AppearanceCell.Options.UseTextOptions = true;
             this.colprioritet.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colprioritet.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colprioritet.AppearanceHeader.Options.UseFont = true;
             this.colprioritet.Caption = "Prioritet";
             this.colprioritet.FieldName = "Prioritet.opis";
+            this.colprioritet.MinWidth = 23;
             this.colprioritet.Name = "colprioritet";
             this.colprioritet.Visible = true;
             this.colprioritet.VisibleIndex = 5;
-            this.colprioritet.Width = 81;
+            this.colprioritet.Width = 94;
             // 
             // collogin
             // 
+            this.collogin.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.collogin.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.collogin.AppearanceCell.Options.UseFont = true;
             this.collogin.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.collogin.AppearanceHeader.Options.UseFont = true;
             this.collogin.Caption = "Operater";
             this.collogin.FieldName = "Login.username";
+            this.collogin.MinWidth = 23;
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
             this.collogin.VisibleIndex = 6;
-            this.collogin.Width = 110;
+            this.collogin.Width = 128;
             // 
             // BrKomentara
             // 
+            this.BrKomentara.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.BrKomentara.AppearanceCell.Options.UseFont = true;
             this.BrKomentara.AppearanceCell.Options.UseTextOptions = true;
             this.BrKomentara.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.BrKomentara.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.BrKomentara.AppearanceHeader.Options.UseFont = true;
             this.BrKomentara.Caption = "Kom.";
             this.BrKomentara.FieldName = "BrKomentara";
+            this.BrKomentara.MinWidth = 23;
             this.BrKomentara.Name = "BrKomentara";
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
             this.BrKomentara.VisibleIndex = 7;
-            this.BrKomentara.Width = 53;
+            this.BrKomentara.Width = 62;
             // 
             // Zavrseni
             // 
             this.Zavrseni.Name = "Zavrseni";
-            this.Zavrseni.Size = new System.Drawing.Size(941, 232);
+            this.Zavrseni.Size = new System.Drawing.Size(953, 235);
             this.Zavrseni.Text = "Zavrseni";
             // 
             // imageCollection1
@@ -386,6 +427,7 @@
             // 
             this.popupMenu1.ItemLinks.Add(this.barSubItem1);
             this.popupMenu1.ItemLinks.Add(this.barButtonItem4);
+            this.popupMenu1.ItemLinks.Add(this.barButtonItem5);
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbonControl1;
             // 
@@ -393,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 436);
+            this.ClientSize = new System.Drawing.Size(955, 436);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
@@ -452,5 +494,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraGrid.Columns.GridColumn BrKomentara;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
     }
 }

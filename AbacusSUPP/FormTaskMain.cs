@@ -26,6 +26,8 @@ namespace AbacusSUPP
             labelControl3.Text = "Task otvorio: " + task.Login.username;
             labelControl4.Text = "Datum:" + task.datum.ToString();
             this.Text = task.naslov;
+            labelControl5.Text = task.naslov;
+            layoutView1.PanModeSwitch();
 
 
         }
@@ -53,6 +55,12 @@ namespace AbacusSUPP
             this.Close();
             
         }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
     public static class StringExt
     {

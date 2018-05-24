@@ -31,29 +31,37 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddTask));
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.taskbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.partneriBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
+            this.statusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.prioritetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.taskbindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.prioritetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.statusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.partneriBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colsektor = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // memoEdit1
@@ -63,6 +71,10 @@
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(455, 246);
             this.memoEdit1.TabIndex = 3;
+            // 
+            // taskbindingSource
+            // 
+            this.taskbindingSource.DataSource = typeof(AbacusSUPP.Task);
             // 
             // lookUpEdit1
             // 
@@ -83,6 +95,10 @@
             this.lookUpEdit1.Size = new System.Drawing.Size(167, 20);
             this.lookUpEdit1.TabIndex = 0;
             // 
+            // partneriBindingSource
+            // 
+            this.partneriBindingSource.DataSource = typeof(AbacusSUPP.Partneri);
+            // 
             // lookUpEdit2
             // 
             this.lookUpEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "status_id", true));
@@ -101,6 +117,10 @@
             this.lookUpEdit2.Properties.ValueMember = "id_status";
             this.lookUpEdit2.Size = new System.Drawing.Size(186, 20);
             this.lookUpEdit2.TabIndex = 1;
+            // 
+            // statusBindingSource
+            // 
+            this.statusBindingSource.DataSource = typeof(AbacusSUPP.Status);
             // 
             // lookUpEdit3
             // 
@@ -121,6 +141,10 @@
             this.lookUpEdit3.Size = new System.Drawing.Size(186, 20);
             this.lookUpEdit3.TabIndex = 2;
             // 
+            // prioritetBindingSource
+            // 
+            this.prioritetBindingSource.DataSource = typeof(AbacusSUPP.Prioritet);
+            // 
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
@@ -128,24 +152,24 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(95, 50);
             this.simpleButton1.TabIndex = 4;
-            this.simpleButton1.Text = "Dodaj";
+            this.simpleButton1.Text = "Sačuvaj";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(473, 101);
+            this.simpleButton2.Location = new System.Drawing.Point(579, 296);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(95, 50);
             this.simpleButton2.TabIndex = 5;
-            this.simpleButton2.Text = "Otkazi";
+            this.simpleButton2.Text = "Otkaži";
             // 
             // textEdit1
             // 
             this.textEdit1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.taskbindingSource, "naslov", true));
             this.textEdit1.Location = new System.Drawing.Point(59, 70);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(290, 20);
+            this.textEdit1.Size = new System.Drawing.Size(408, 20);
             this.textEdit1.TabIndex = 6;
             // 
             // labelControl1
@@ -157,22 +181,6 @@
             this.labelControl1.Size = new System.Drawing.Size(40, 13);
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Naslov:";
-            // 
-            // taskbindingSource
-            // 
-            this.taskbindingSource.DataSource = typeof(AbacusSUPP.Task);
-            // 
-            // prioritetBindingSource
-            // 
-            this.prioritetBindingSource.DataSource = typeof(AbacusSUPP.Prioritet);
-            // 
-            // statusBindingSource
-            // 
-            this.statusBindingSource.DataSource = typeof(AbacusSUPP.Status);
-            // 
-            // partneriBindingSource
-            // 
-            this.partneriBindingSource.DataSource = typeof(AbacusSUPP.Partneri);
             // 
             // labelControl2
             // 
@@ -204,11 +212,57 @@
             this.labelControl4.TabIndex = 10;
             this.labelControl4.Text = "Prioritet:";
             // 
+            // gridControl1
+            // 
+            this.gridControl1.DataSource = this.loginBindingSource;
+            this.gridControl1.Location = new System.Drawing.Point(473, 101);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(201, 189);
+            this.gridControl1.TabIndex = 11;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // loginBindingSource
+            // 
+            this.loginBindingSource.DataSource = typeof(AbacusSUPP.Login);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colusername,
+            this.colsektor});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GroupCount = 1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsSelection.ShowCheckBoxSelectorInGroupRow = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colsektor, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // colusername
+            // 
+            this.colusername.FieldName = "username";
+            this.colusername.Name = "colusername";
+            this.colusername.Visible = true;
+            this.colusername.VisibleIndex = 1;
+            // 
+            // colsektor
+            // 
+            this.colsektor.FieldName = "sektor";
+            this.colsektor.Name = "colsektor";
+            this.colsektor.Visible = true;
+            this.colsektor.VisibleIndex = 1;
+            // 
             // FormAddTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 358);
+            this.ClientSize = new System.Drawing.Size(684, 358);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
@@ -221,17 +275,21 @@
             this.Controls.Add(this.lookUpEdit1);
             this.Controls.Add(this.memoEdit1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.LookAndFeel.SkinName = "Office 2016 Colorful";
             this.Name = "FormAddTask";
             this.Text = "Dodaj novi task";
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,5 +312,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.BindingSource loginBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colusername;
+        private DevExpress.XtraGrid.Columns.GridColumn colsektor;
     }
 }
