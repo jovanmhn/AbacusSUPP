@@ -311,13 +311,19 @@
             this.gridView1.DetailHeight = 431;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.Hidden;
             this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
             this.gridView1.RowHeight = 50;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colstatus, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
@@ -394,7 +400,7 @@
             this.colprioritet.MinWidth = 23;
             this.colprioritet.Name = "colprioritet";
             this.colprioritet.Visible = true;
-            this.colprioritet.VisibleIndex = 5;
+            this.colprioritet.VisibleIndex = 4;
             this.colprioritet.Width = 94;
             // 
             // collogin
@@ -409,7 +415,7 @@
             this.collogin.MinWidth = 23;
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
-            this.collogin.VisibleIndex = 6;
+            this.collogin.VisibleIndex = 5;
             this.collogin.Width = 128;
             // 
             // BrKomentara
@@ -426,7 +432,7 @@
             this.BrKomentara.Name = "BrKomentara";
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
-            this.BrKomentara.VisibleIndex = 7;
+            this.BrKomentara.VisibleIndex = 6;
             this.BrKomentara.Width = 62;
             // 
             // Zavrseni
