@@ -50,5 +50,10 @@ namespace AbacusSUPP
 
             
         }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

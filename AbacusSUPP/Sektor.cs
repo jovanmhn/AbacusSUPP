@@ -12,27 +12,18 @@ namespace AbacusSUPP
     using System;
     using System.Collections.Generic;
     
-    public partial class Login
+    public partial class Sektor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Login()
+        public Sektor()
         {
-            this.Komentar = new HashSet<Komentar>();
-            this.Task = new HashSet<Task>();
+            this.Login = new HashSet<Login>();
         }
     
-        public int id { get; set; }
-        public string username { get; set; }
-        public string pass { get; set; }
-        public bool isAdmin { get; set; }
-        public string ime { get; set; }
-        public string prezime { get; set; }
-        public Nullable<int> id_sektor { get; set; }
+        public int id_sektor { get; set; }
+        public string naziv { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Komentar> Komentar { get; set; }
-        public virtual Sektor Sektor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Task { get; set; }
+        public virtual ICollection<Login> Login { get; set; }
     }
 }

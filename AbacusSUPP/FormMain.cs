@@ -252,5 +252,12 @@ namespace AbacusSUPP
             FormTest testforma = new FormTest();
             testforma.Show();
         }
+
+        private void barButtonItem2_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+            FormOperater fdo = new FormOperater();
+            fdo.Show();
+        }
     }
 }

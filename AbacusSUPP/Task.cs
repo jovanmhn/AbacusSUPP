@@ -32,8 +32,8 @@ namespace AbacusSUPP
         public virtual Partneri Partneri { get; set; }
         public virtual Prioritet Prioritet { get; set; }
         public virtual Status Status { get; set; }
-        public virtual Login Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Komentar> Komentar { get; set; }
+        public virtual Login Login { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DevExpress.Office.Utils;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraGrid.Views.Layout;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,24 +38,10 @@ namespace AbacusSUPP
             labelControl5.Text = task.naslov;
             layoutView1.PanModeSwitch();
 
-
+            
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            Komentar kom = new Komentar
-            {
-                datum = DateTime.Now,
-                sadrzaj = memoEdit1.Text,
-                id_login = OperaterLogin.operater.id,
-                id_task = task.id_task
-            };
-            Baza.Komentar.Add(kom);
-            Baza.SaveChanges();
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
-            layoutView1.RefreshData();
-            memoEdit1.Text = null;
-        }
+        
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -157,6 +146,30 @@ namespace AbacusSUPP
         private void labelControl2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void layoutView1_DoubleClick(object sender, EventArgs e)
+        {
+            Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
+
+            FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
+            fkdetalj.ShowDialog();
+        }
+
+        private void layoutView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+            layoutView1.PanModeSwitch();
+            }
+        }
+
+        private void layoutView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                layoutView1.PanModeSwitch();
+            }
         }
     }
     public static class StringExt

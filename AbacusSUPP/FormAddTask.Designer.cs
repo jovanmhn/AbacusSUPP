@@ -163,6 +163,7 @@
             this.simpleButton2.Size = new System.Drawing.Size(95, 50);
             this.simpleButton2.TabIndex = 5;
             this.simpleButton2.Text = "Otkaži";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // textEdit1
             // 
