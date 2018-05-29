@@ -30,6 +30,11 @@ namespace AbacusSUPP
 
             gridView1.Appearance.FocusedRow.BackColor = gridView1.Appearance.FocusedCell.BackColor =
                  gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
+
+            //timer1.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
+            timer1.Interval = (1000) * (5);             // Timer will tick evert 10 seconds
+            timer1.Enabled = true;                       // Enable the timer
+            timer1.Start();                              // Start the timer
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -259,6 +264,11 @@ namespace AbacusSUPP
             
             FormOperater fdo = new FormOperater();
             fdo.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
         }
     }
 }
