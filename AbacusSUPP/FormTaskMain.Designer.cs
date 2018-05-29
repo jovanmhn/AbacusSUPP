@@ -35,9 +35,14 @@
             this.komentarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.coldatum = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_coldatum = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.colLogin = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
+            this.layoutViewField_colLogin = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.UnboundKomentar = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
+            this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
+            this.item2 = new DevExpress.XtraLayout.SimpleSeparator();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
@@ -48,25 +53,28 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
-            this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.layoutViewField_coldatum = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.layoutViewField_colLogin = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            this.item2 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSektor = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_coldatum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_coldatum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colLogin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -75,9 +83,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl1.Controls.Add(this.gridControl1);
-            this.panelControl1.Location = new System.Drawing.Point(0, 163);
+            this.panelControl1.Location = new System.Drawing.Point(0, 145);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(933, 393);
+            this.panelControl1.Size = new System.Drawing.Size(933, 411);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl1
@@ -90,7 +98,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(929, 389);
+            this.gridControl1.Size = new System.Drawing.Size(929, 407);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutView1});
@@ -156,6 +164,8 @@
             // 
             // coldatum
             // 
+            this.coldatum.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.coldatum.AppearanceCell.Options.UseFont = true;
             this.coldatum.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.coldatum.AppearanceHeader.Options.UseFont = true;
             this.coldatum.Caption = "Datum";
@@ -169,8 +179,20 @@
             this.coldatum.OptionsColumn.ReadOnly = true;
             this.coldatum.OptionsFilter.AllowFilter = false;
             // 
+            // layoutViewField_coldatum
+            // 
+            this.layoutViewField_coldatum.EditorPreferredWidth = 151;
+            this.layoutViewField_coldatum.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_coldatum.ImageOptions.Image")));
+            this.layoutViewField_coldatum.Location = new System.Drawing.Point(238, 0);
+            this.layoutViewField_coldatum.Name = "layoutViewField_coldatum";
+            this.layoutViewField_coldatum.Size = new System.Drawing.Size(242, 24);
+            this.layoutViewField_coldatum.TextLocation = DevExpress.Utils.Locations.Left;
+            this.layoutViewField_coldatum.TextSize = new System.Drawing.Size(87, 16);
+            // 
             // colLogin
             // 
+            this.colLogin.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.colLogin.AppearanceCell.Options.UseFont = true;
             this.colLogin.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colLogin.AppearanceHeader.Options.UseFont = true;
             this.colLogin.Caption = "Korisnik";
@@ -181,6 +203,16 @@
             this.colLogin.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colLogin.OptionsColumn.ReadOnly = true;
             this.colLogin.OptionsFilter.AllowFilter = false;
+            // 
+            // layoutViewField_colLogin
+            // 
+            this.layoutViewField_colLogin.EditorPreferredWidth = 147;
+            this.layoutViewField_colLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_colLogin.ImageOptions.Image")));
+            this.layoutViewField_colLogin.Location = new System.Drawing.Point(0, 0);
+            this.layoutViewField_colLogin.Name = "layoutViewField_colLogin";
+            this.layoutViewField_colLogin.Size = new System.Drawing.Size(238, 24);
+            this.layoutViewField_colLogin.TextLocation = DevExpress.Utils.Locations.Left;
+            this.layoutViewField_colLogin.TextSize = new System.Drawing.Size(87, 16);
             // 
             // UnboundKomentar
             // 
@@ -201,6 +233,39 @@
             this.repositoryItemRichTextEdit1.OptionsHorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Auto;
             this.repositoryItemRichTextEdit1.ReadOnly = true;
             this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
+            // 
+            // layoutViewField_layoutViewColumn1
+            // 
+            this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = 389;
+            this.layoutViewField_layoutViewColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_layoutViewColumn1.ImageOptions.Image")));
+            this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 25);
+            this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
+            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(480, 36);
+            this.layoutViewField_layoutViewColumn1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.SupportHorzAlignment;
+            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(87, 32);
+            // 
+            // layoutViewCard1
+            // 
+            this.layoutViewCard1.CustomizationFormText = "TemplateCard";
+            this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+            this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutViewField_coldatum,
+            this.layoutViewField_colLogin,
+            this.item2,
+            this.layoutViewField_layoutViewColumn1});
+            this.layoutViewCard1.Name = "layoutViewCard1";
+            this.layoutViewCard1.OptionsItemText.TextToControlDistance = 0;
+            this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutViewCard1.Text = "TemplateCard";
+            this.layoutViewCard1.TextLocation = DevExpress.Utils.Locations.Default;
+            // 
+            // item2
+            // 
+            this.item2.AllowHotTrack = false;
+            this.item2.CustomizationFormText = "item2";
+            this.item2.Location = new System.Drawing.Point(0, 24);
+            this.item2.Name = "item2";
+            this.item2.Size = new System.Drawing.Size(480, 1);
             // 
             // labelControl1
             // 
@@ -227,19 +292,19 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(124, 100);
+            this.groupControl1.Size = new System.Drawing.Size(123, 82);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "TASK ID";
             // 
             // memoEdit2
             // 
-            this.memoEdit2.Enabled = false;
             this.memoEdit2.Location = new System.Drawing.Point(141, 42);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.memoEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEdit2.Properties.ReadOnly = true;
             this.memoEdit2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.memoEdit2.Size = new System.Drawing.Size(520, 115);
+            this.memoEdit2.Size = new System.Drawing.Size(437, 97);
             this.memoEdit2.TabIndex = 5;
             // 
             // labelControl2
@@ -251,7 +316,7 @@
             this.labelControl2.Appearance.Options.UseImage = true;
             this.labelControl2.Appearance.Options.UseImageAlign = true;
             this.labelControl2.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl2.Location = new System.Drawing.Point(667, 43);
+            this.labelControl2.Location = new System.Drawing.Point(584, 43);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(106, 20);
             this.labelControl2.TabIndex = 6;
@@ -265,7 +330,7 @@
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseImage = true;
             this.labelControl3.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl3.Location = new System.Drawing.Point(667, 85);
+            this.labelControl3.Location = new System.Drawing.Point(584, 81);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(106, 20);
             this.labelControl3.TabIndex = 7;
@@ -278,7 +343,7 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseImage = true;
             this.labelControl4.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl4.Location = new System.Drawing.Point(667, 133);
+            this.labelControl4.Location = new System.Drawing.Point(584, 119);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(106, 20);
             this.labelControl4.TabIndex = 8;
@@ -287,9 +352,9 @@
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(12, 118);
+            this.simpleButton2.Location = new System.Drawing.Point(12, 100);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(124, 39);
+            this.simpleButton2.Size = new System.Drawing.Size(123, 39);
             this.simpleButton2.TabIndex = 9;
             this.simpleButton2.Text = "Zatvori task";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -324,64 +389,58 @@
             this.richEditControl1.Size = new System.Drawing.Size(525, 111);
             this.richEditControl1.TabIndex = 13;
             // 
-            // layoutViewCard1
+            // gridControl2
             // 
-            this.layoutViewCard1.CustomizationFormText = "TemplateCard";
-            this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutViewField_coldatum,
-            this.layoutViewField_colLogin,
-            this.item2,
-            this.layoutViewField_layoutViewColumn1});
-            this.layoutViewCard1.Name = "layoutViewCard1";
-            this.layoutViewCard1.OptionsItemText.TextToControlDistance = 0;
-            this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
-            this.layoutViewCard1.Text = "TemplateCard";
-            this.layoutViewCard1.TextLocation = DevExpress.Utils.Locations.Default;
+            this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl2.DataSource = this.loginBindingSource;
+            this.gridControl2.Location = new System.Drawing.Point(637, 560);
+            this.gridControl2.MainView = this.gridView1;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(294, 113);
+            this.gridControl2.TabIndex = 14;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // layoutViewField_coldatum
+            // loginBindingSource
             // 
-            this.layoutViewField_coldatum.EditorPreferredWidth = 151;
-            this.layoutViewField_coldatum.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField1.ImageOptions.Image")));
-            this.layoutViewField_coldatum.Location = new System.Drawing.Point(239, 0);
-            this.layoutViewField_coldatum.Name = "layoutViewField_coldatum";
-            this.layoutViewField_coldatum.Size = new System.Drawing.Size(243, 24);
-            this.layoutViewField_coldatum.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutViewField_coldatum.TextSize = new System.Drawing.Size(87, 16);
+            this.loginBindingSource.DataSource = typeof(AbacusSUPP.Login);
             // 
-            // layoutViewField_colLogin
+            // gridView1
             // 
-            this.layoutViewField_colLogin.EditorPreferredWidth = 147;
-            this.layoutViewField_colLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField1.ImageOptions.Image1")));
-            this.layoutViewField_colLogin.Location = new System.Drawing.Point(0, 0);
-            this.layoutViewField_colLogin.Name = "layoutViewField_colLogin";
-            this.layoutViewField_colLogin.Size = new System.Drawing.Size(239, 24);
-            this.layoutViewField_colLogin.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutViewField_colLogin.TextSize = new System.Drawing.Size(87, 16);
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colusername,
+            this.colSektor});
+            this.gridView1.GridControl = this.gridControl2;
+            this.gridView1.GroupCount = 1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colSektor, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
-            // item2
+            // colusername
             // 
-            this.item2.AllowHotTrack = false;
-            this.item2.CustomizationFormText = "item2";
-            this.item2.Location = new System.Drawing.Point(0, 24);
-            this.item2.Name = "item2";
-            this.item2.Size = new System.Drawing.Size(482, 1);
+            this.colusername.Caption = "Operater";
+            this.colusername.FieldName = "username";
+            this.colusername.Name = "colusername";
+            this.colusername.Visible = true;
+            this.colusername.VisibleIndex = 0;
             // 
-            // layoutViewField_layoutViewColumn1
+            // colSektor
             // 
-            this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = 389;
-            this.layoutViewField_layoutViewColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField1.ImageOptions.Image2")));
-            this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 25);
-            this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
-            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(482, 40);
-            this.layoutViewField_layoutViewColumn1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.SupportHorzAlignment;
-            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(87, 32);
+            this.colSektor.Caption = "Sektor";
+            this.colSektor.FieldName = "Sektor.naziv";
+            this.colSektor.Name = "colSektor";
+            this.colSektor.Visible = true;
+            this.colSektor.VisibleIndex = 1;
             // 
             // FormTaskMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 674);
+            this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.richEditControl1);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.labelControl5);
@@ -402,16 +461,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_coldatum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.item2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_coldatum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_colLogin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.item2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,5 +504,10 @@
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.SimpleSeparator item2;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private System.Windows.Forms.BindingSource loginBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colusername;
+        private DevExpress.XtraGrid.Columns.GridColumn colSektor;
     }
 }

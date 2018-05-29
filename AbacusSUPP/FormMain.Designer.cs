@@ -367,7 +367,7 @@
             this.colopis.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colopis.AppearanceHeader.Options.UseFont = true;
             this.colopis.Caption = "Opis";
-            this.colopis.FieldName = "opis";
+            this.colopis.FieldName = "naslov";
             this.colopis.MinWidth = 23;
             this.colopis.Name = "colopis";
             this.colopis.Visible = true;

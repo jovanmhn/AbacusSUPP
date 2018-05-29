@@ -48,5 +48,12 @@ namespace AbacusSUPP
             gridControl1.DataSource = Baza.Login.ToList();
             gridView1.RefreshData();
         }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            Login login = (Login)gridView1.GetRow(gridView1.FocusedRowHandle);
+            FormPregledTaskova fpt = new FormPregledTaskova(login);
+            fpt.ShowDialog();
+        }
     }
 }

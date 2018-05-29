@@ -19,6 +19,9 @@
         <AssociationConnector Association="AbacusSUPModel.FK_Komentar_Login" />
         <AssociationConnector Association="AbacusSUPModel.FK_Login_Sektor" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Login" />
+        <EntityTypeShape EntityType="AbacusSUPModel.VezaLT" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Login" />
+        <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Task" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,5 +32,6 @@ namespace AbacusSUPP
         public virtual DbSet<Komentar> Komentar { get; set; }
         public virtual DbSet<Sektor> Sektor { get; set; }
         public virtual DbSet<Login> Login { get; set; }
+        public virtual DbSet<VezaLT> VezaLT { get; set; }
     }
 }

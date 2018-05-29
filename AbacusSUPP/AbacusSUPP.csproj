@@ -109,6 +109,12 @@
     <Compile Include="FormOperater.Designer.cs">
       <DependentUpon>FormOperater.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPregledTaskova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPregledTaskova.Designer.cs">
+      <DependentUpon>FormPregledTaskova.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTaskMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     <Compile Include="Task.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="VezaLT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormDodajOperatera.resx">
       <DependentUpon>FormDodajOperatera.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOperater.resx">
       <DependentUpon>FormOperater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPregledTaskova.resx">
+      <DependentUpon>FormPregledTaskova.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTaskMain.resx">
       <DependentUpon>FormTaskMain.cs</DependentUpon>

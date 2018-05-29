@@ -49,7 +49,7 @@
             this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colsektor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSektor = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -70,7 +70,7 @@
             this.memoEdit1.Location = new System.Drawing.Point(12, 100);
             this.memoEdit1.Name = "memoEdit1";
             this.memoEdit1.Size = new System.Drawing.Size(455, 246);
-            this.memoEdit1.TabIndex = 3;
+            this.memoEdit1.TabIndex = 4;
             // 
             // taskbindingSource
             // 
@@ -151,7 +151,7 @@
             this.simpleButton1.Location = new System.Drawing.Point(473, 296);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(95, 50);
-            this.simpleButton1.TabIndex = 4;
+            this.simpleButton1.TabIndex = 5;
             this.simpleButton1.Text = "Sačuvaj";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
@@ -171,7 +171,7 @@
             this.textEdit1.Location = new System.Drawing.Point(59, 70);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(408, 20);
-            this.textEdit1.TabIndex = 6;
+            this.textEdit1.TabIndex = 3;
             // 
             // labelControl1
             // 
@@ -216,10 +216,10 @@
             // gridControl1
             // 
             this.gridControl1.DataSource = this.loginBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(473, 101);
+            this.gridControl1.Location = new System.Drawing.Point(473, 73);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(201, 189);
+            this.gridControl1.Size = new System.Drawing.Size(201, 217);
             this.gridControl1.TabIndex = 11;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -232,7 +232,7 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colusername,
-            this.colsektor});
+            this.colSektor});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
@@ -242,21 +242,23 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colsektor, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colSektor, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // colusername
             // 
+            this.colusername.Caption = "Operater";
             this.colusername.FieldName = "username";
             this.colusername.Name = "colusername";
             this.colusername.Visible = true;
             this.colusername.VisibleIndex = 1;
             // 
-            // colsektor
+            // colSektor
             // 
-            this.colsektor.FieldName = "sektor";
-            this.colsektor.Name = "colsektor";
-            this.colsektor.Visible = true;
-            this.colsektor.VisibleIndex = 1;
+            this.colSektor.Caption = "Sektor";
+            this.colSektor.FieldName = "Sektor.naziv";
+            this.colSektor.Name = "colSektor";
+            this.colSektor.Visible = true;
+            this.colSektor.VisibleIndex = 2;
             // 
             // FormAddTask
             // 
@@ -275,9 +277,11 @@
             this.Controls.Add(this.lookUpEdit2);
             this.Controls.Add(this.lookUpEdit1);
             this.Controls.Add(this.memoEdit1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Office 2016 Colorful";
             this.Name = "FormAddTask";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dodaj novi task";
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).EndInit();
@@ -317,6 +321,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource loginBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colusername;
-        private DevExpress.XtraGrid.Columns.GridColumn colsektor;
+        private DevExpress.XtraGrid.Columns.GridColumn colSektor;
     }
 }

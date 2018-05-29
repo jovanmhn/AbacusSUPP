@@ -203,6 +203,7 @@ namespace AbacusSUPP
 
         private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Baza = new AbacusSUPEntities();
             gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq => qq.datum);
             gridView1.RefreshData();
         }

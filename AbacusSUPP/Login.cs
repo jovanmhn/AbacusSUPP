@@ -19,6 +19,7 @@ namespace AbacusSUPP
         {
             this.Komentar = new HashSet<Komentar>();
             this.Task = new HashSet<Task>();
+            this.VezaLT = new HashSet<VezaLT>();
         }
     
         public int id { get; set; }
@@ -34,5 +35,7 @@ namespace AbacusSUPP
         public virtual Sektor Sektor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VezaLT> VezaLT { get; set; }
     }
 }
