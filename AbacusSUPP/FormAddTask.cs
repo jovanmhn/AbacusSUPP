@@ -53,9 +53,12 @@ namespace AbacusSUPP
                 foreach(int id in idoperatera)
                 {
 
-                    int handle = datasource.IndexOf(datasource.First(qq => qq.id == id));
-                    if(gridView1.IsDataRow(handle))
-                    gridView1.SelectRow(handle);
+                    //int handle = datasource.IndexOf(datasource.First(qq => qq.id == id));
+                    //if(gridView1.IsDataRow(handle))
+                    //gridView1.SelectRow(handle);
+                    var row = datasource.FirstOrDefault(qq => qq.id == id);
+                    var r = gridView1.LocateByValue("username", row.username);
+                    gridView1.SelectRow(r);
                 }
             }
 
@@ -80,6 +83,7 @@ namespace AbacusSUPP
                     Login login = (Login)gridView1.GetRow(handle);
                     veza.id_task = task.id_task;
                     veza.id_login = login.id;
+                    veza.isActive = true;
                     Baza.VezaLT.Add(veza); 
                 }
             }
@@ -92,6 +96,29 @@ namespace AbacusSUPP
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormAddTask_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (task.id_task!=0)
+            {
+                int[] handlelista = gridView1.GetSelectedRows();
+                foreach (int handle in handlelista)
+                {
+
+                    if (gridView1.IsDataRow(handle))
+                    {
+                        VezaLT veza = new VezaLT();
+                        Login login = (Login)gridView1.GetRow(handle);
+                        veza.id_task = task.id_task;
+                        veza.id_login = login.id;
+                        veza.isActive = true;
+                        Baza.VezaLT.Add(veza);
+                    }
+                } 
+
+                Baza.SaveChanges();
+            }
         }
     }
 }
