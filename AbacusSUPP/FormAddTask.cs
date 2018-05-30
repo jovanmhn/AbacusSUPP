@@ -14,6 +14,10 @@ namespace AbacusSUPP
     {
         public Task task { get; set; }
         AbacusSUPEntities Baza { get; set; }
+        bool sacuvano = false;
+        List<int> idoperatera = new List<int>();
+        List<VezaLT> listaveza_old = new List<VezaLT>();
+
         public FormAddTask(int? id_task /*= null*/ )
         {
             InitializeComponent();
@@ -37,15 +41,17 @@ namespace AbacusSUPP
             {
                 task = Baza.Task.First(it => it.id_task == id_task);
 
-                List<VezaLT> listaveza = new List<VezaLT>();
-                listaveza = Baza.VezaLT.Where(qq => qq.id_task == id_task).ToList();
-                List<int> idoperatera=new List<int>();
+                
+                listaveza_old = Baza.VezaLT.Where(qq => qq.id_task == id_task).ToList();
+                
                 List<Login> datasource = Baza.Login.OrderBy(qq => qq.id).ToList();
                 
 
-                Baza.VezaLT.RemoveRange(listaveza);
+                Baza.VezaLT.RemoveRange(listaveza_old);
                 Baza.SaveChanges();
 
+                List<VezaLT> listaveza = new List<VezaLT>();
+                listaveza.AddRange(listaveza_old);
                 foreach (VezaLT veza in listaveza)
                 {
                     idoperatera.Add(veza.id_login);
@@ -70,7 +76,7 @@ namespace AbacusSUPP
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Baza.SaveChanges();
-            
+            sacuvano = true;
             this.DialogResult = DialogResult.OK;
 
             int[] handlelista = gridView1.GetSelectedRows();
@@ -100,8 +106,19 @@ namespace AbacusSUPP
 
         private void FormAddTask_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (task.id_task!=0)
+            /*if (task.id_task!=0 && !sacuvano)
             {
+                List<Login> datasource = Baza.Login.OrderBy(qq => qq.id).ToList();
+                foreach (int id in idoperatera)
+                {
+
+                    //int handle = datasource.IndexOf(datasource.First(qq => qq.id == id));
+                    //if(gridView1.IsDataRow(handle))
+                    //gridView1.SelectRow(handle);
+                    var row = datasource.FirstOrDefault(qq => qq.id == id);
+                    var r = gridView1.LocateByValue("username", row.username);
+                    gridView1.SelectRow(r);
+                }
                 int[] handlelista = gridView1.GetSelectedRows();
                 foreach (int handle in handlelista)
                 {
@@ -118,6 +135,19 @@ namespace AbacusSUPP
                 } 
 
                 Baza.SaveChanges();
+            }*/
+            if (!sacuvano)
+            {
+                try
+                {
+                    Baza.VezaLT.AddRange(listaveza_old);
+                    Baza.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

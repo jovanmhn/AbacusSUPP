@@ -21,6 +21,7 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=> qq.datum);
+            barStaticItem1.Caption = "Ulogovan kao: " + OperaterLogin.operater.username;
             //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             if (operater.isAdmin == true)
             {
@@ -32,7 +33,7 @@ namespace AbacusSUPP
                  gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
 
             //timer1.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
-            timer1.Interval = (1000) * (5);             // Timer will tick evert 10 seconds
+            timer1.Interval = (1000) * (15);             // Timer will tick evert 10 seconds
             timer1.Enabled = true;                       // Enable the timer
             timer1.Start();                              // Start the timer
         }
@@ -229,10 +230,10 @@ namespace AbacusSUPP
         }
         public void deleteTask(Task taskzaDelete)
         {
-            int id = taskzaDelete.id_task;
-            List<Komentar> listakom = Baza.Komentar.Where(qq => qq.id_task == id).ToList();           
-            Baza.Komentar.RemoveRange(listakom);
-            Baza.SaveChanges();
+            //int id = taskzaDelete.id_task;
+            //List<Komentar> listakom = Baza.Komentar.Where(qq => qq.id_task == id).ToList();           
+            //Baza.Komentar.RemoveRange(listakom);
+            //Baza.SaveChanges();
             Baza.Task.Remove(taskzaDelete);
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Task.ToList();
@@ -268,7 +269,26 @@ namespace AbacusSUPP
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+            List<Task> stara_lista = (gridControl1.DataSource as IEnumerable<Task>).OrderBy(it=> it.datum).ToList();
+            List<Task> nova_lista = Baza.Task.OrderBy(qq => qq.datum).ToList();
+            //var razlika = nova_lista.Except(stara_lista).ToList();
+            var razlika = nova_lista.Where(qq => qq.datum > stara_lista.Max(ww => ww.datum)).ToList();
+            if (razlika.Count>0)
+            {
+                Baza = new AbacusSUPEntities();
+                gridControl1.DataSource = nova_lista.OrderBy(qw=>qw.datum);
+                gridView1.RefreshData();
+                List<VezaLT> listaveza = Baza.VezaLT.ToList();
+                
+                foreach(Task novi in razlika)
+                {
+                    toastNotificationsManager1.CreateApplicationShortcut = DevExpress.Utils.DefaultBoolean.True;
+                    if(listaveza.Where(qq=>qq.id_task==novi.id_task && qq.id_login==OperaterLogin.operater.id)!=null)
+                        toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                }
+
+                
+            }
         }
     }
 }
