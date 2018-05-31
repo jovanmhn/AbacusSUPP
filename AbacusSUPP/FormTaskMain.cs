@@ -29,12 +29,17 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             task = _task;
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderByDescending(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
             memoEdit2.Text = task.opis;
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
             labelControl3.Text = "Task otvorio: " + task.Login.username;
             labelControl4.Text = "Datum:" + task.datum.ToString();
+            if (task.status_id == 2)
+            {
+                labelControl6.Visible = true;
+                labelControl6.Text = "Datum zatvaranja"+task.datum_zatv.ToString();
+            }
             this.Text = task.naslov;
             labelControl5.Text = task.naslov;
             layoutView1.PanModeSwitch();
@@ -65,6 +70,9 @@ namespace AbacusSUPP
             if (task.status_id==1)
             {
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
+                Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
+                labelControl6.Text = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
+                
                 List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                 foreach (VezaLT veza in listaveza)
                 {
@@ -72,6 +80,7 @@ namespace AbacusSUPP
                 }
 
                 Baza.SaveChanges();
+                
                 this.Close(); 
             }
             if (task.status_id == 2)
@@ -88,6 +97,7 @@ namespace AbacusSUPP
 
                     Baza.SaveChanges();
                     simpleButton3.Enabled = true;
+                    
                     this.Close(); 
                 }
             }
@@ -116,7 +126,7 @@ namespace AbacusSUPP
             };
             Baza.Komentar.Add(kom);
             Baza.SaveChanges();
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderByDescending(ww => ww.datum).ToList();
             layoutView1.RefreshData();
             richEditControl1.Document.Delete(richEditControl1.Document.Range);
         }

@@ -28,10 +28,10 @@ namespace AbacusSUPP
         public virtual DbSet<Partneri> Partneri { get; set; }
         public virtual DbSet<Prioritet> Prioritet { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<Komentar> Komentar { get; set; }
         public virtual DbSet<Sektor> Sektor { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<VezaLT> VezaLT { get; set; }
+        public virtual DbSet<Task> Task { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +21,7 @@ namespace AbacusSUPP
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=> qq.datum);
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
             barStaticItem1.Caption = "Ulogovan kao: " + OperaterLogin.operater.username;
             //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             if (operater.isAdmin == true)
@@ -69,7 +70,7 @@ namespace AbacusSUPP
 
             //Baza.Entry(task).Reload();
             Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=> qq.datum);
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
 
 
         }
@@ -81,7 +82,7 @@ namespace AbacusSUPP
             {
                 FormTaskMain frmtm = new FormTaskMain(task);
                 frmtm.ShowDialog();
-                gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq => qq.datum);
+                gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
                 gridView1.RefreshData();
 
             }
@@ -191,26 +192,26 @@ namespace AbacusSUPP
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq => qq.datum);
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
         }
 
         private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gridControl1.DataSource = Baza.Task.Where(ww=>ww.Status.opis=="U toku").ToList().OrderBy(qq => qq.datum);
+            gridControl1.DataSource = Baza.Task.Where(ww=>ww.Status.opis=="U toku").ToList().OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
         }
 
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gridControl1.DataSource = Baza.Task.Where(ww => ww.Status.opis == "Zavrseno").ToList().OrderBy(qq => qq.datum);
+            gridControl1.DataSource = Baza.Task.Where(ww => ww.Status.opis == "Zavrseno").ToList().OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
         }
 
         private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq => qq.datum);
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
         }
 
@@ -250,7 +251,7 @@ namespace AbacusSUPP
             }
             //Baza.Entry(task).Reload();
             Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderBy(qq=>qq.datum);
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
             gridView1.RefreshData();
         }
 
@@ -269,26 +270,65 @@ namespace AbacusSUPP
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            List<Task> stara_lista = (gridControl1.DataSource as IEnumerable<Task>).OrderBy(it=> it.datum).ToList();
-            List<Task> nova_lista = Baza.Task.OrderBy(qq => qq.datum).ToList();
+            List<Task> stara_lista = (gridControl1.DataSource as IEnumerable<Task>).OrderByDescending(it=> it.datum).ToList();
+            List<Task> nova_lista = Baza.Task.OrderByDescending(qq => qq.datum).ToList();
             //var razlika = nova_lista.Except(stara_lista).ToList();
             var razlika = nova_lista.Where(qq => qq.datum > stara_lista.Max(ww => ww.datum)).ToList();
             if (razlika.Count>0)
             {
                 Baza = new AbacusSUPEntities();
-                gridControl1.DataSource = nova_lista.OrderBy(qw=>qw.datum);
+                gridControl1.DataSource = nova_lista.OrderByDescending(qw=>qw.datum);
                 gridView1.RefreshData();
                 List<VezaLT> listaveza = Baza.VezaLT.ToList();
                 
                 foreach(Task novi in razlika)
                 {
-                    toastNotificationsManager1.CreateApplicationShortcut = DevExpress.Utils.DefaultBoolean.True;
-                    if(listaveza.Where(qq=>qq.id_task==novi.id_task && qq.id_login==OperaterLogin.operater.id)!=null)
-                        toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+
+                    if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                        //toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                        FlashWindowEx(this);
+                        
+
                 }
 
                 
             }
+        }
+        // To support flashing.
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
+
+        //Flash both the window caption and taskbar button.
+        //This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags. 
+        public const UInt32 FLASHW_ALL = 3;
+
+        // Flash continuously until the window comes to the foreground. 
+        public const UInt32 FLASHW_TIMERNOFG = 12;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct FLASHWINFO
+        {
+            public UInt32 cbSize;
+            public IntPtr hwnd;
+            public UInt32 dwFlags;
+            public UInt32 uCount;
+            public UInt32 dwTimeout;
+        }
+
+        // Do the flashing - this does not involve a raincoat.
+        public static bool FlashWindowEx(Form form)
+        {
+            IntPtr hWnd = form.Handle;
+            FLASHWINFO fInfo = new FLASHWINFO();
+
+            fInfo.cbSize = Convert.ToUInt32(Marshal.SizeOf(fInfo));
+            fInfo.hwnd = hWnd;
+            fInfo.dwFlags = FLASHW_ALL | FLASHW_TIMERNOFG;
+            fInfo.uCount = UInt32.MaxValue;
+            fInfo.dwTimeout = 0;
+
+            return FlashWindowEx(ref fInfo);
         }
     }
 }

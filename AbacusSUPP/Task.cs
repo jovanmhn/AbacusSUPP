@@ -29,13 +29,14 @@ namespace AbacusSUPP
         public int prioritet_id { get; set; }
         public int login_id { get; set; }
         public string naslov { get; set; }
+        public Nullable<System.DateTime> datum_zatv { get; set; }
     
-        public virtual Partneri Partneri { get; set; }
-        public virtual Prioritet Prioritet { get; set; }
-        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Komentar> Komentar { get; set; }
         public virtual Login Login { get; set; }
+        public virtual Partneri Partneri { get; set; }
+        public virtual Prioritet Prioritet { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VezaLT> VezaLT { get; set; }
     }

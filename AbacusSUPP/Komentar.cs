@@ -20,7 +20,7 @@ namespace AbacusSUPP
         public int id_task { get; set; }
         public int id_login { get; set; }
     
-        public virtual Task Task { get; set; }
         public virtual Login Login { get; set; }
+        public virtual Task Task { get; set; }
     }
 }
