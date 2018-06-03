@@ -285,7 +285,7 @@
             <End Role="Task" EntitySet="Task" />
             <End Role="VezaLT" EntitySet="VezaLT" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Partneri">
           <Key>
             <PropertyRef Name="id" />
@@ -489,7 +489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

@@ -37,6 +37,14 @@ namespace AbacusSUPP
             timer1.Interval = (1000) * (15);             // Timer will tick evert 10 seconds
             timer1.Enabled = true;                       // Enable the timer
             timer1.Start();                              // Start the timer
+
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info; //Shows the info icon so the user doesn't thing there is an error.
+            this.notifyIcon1.BalloonTipText = "Minimizovan u tray!";
+            this.notifyIcon1.BalloonTipTitle = "AbacusSupport";
+            //this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon"))); //The tray icon to use
+            this.notifyIcon1.Text = "Dupli klik za restore";
+
+            DevExpress.Data.ShellHelper.TryCreateShortcut("c65ba894-3c54-4851-85e5-cdb49d097c02", "AbacusSupport");
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -285,8 +293,11 @@ namespace AbacusSUPP
                 {
 
                     if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                    {
+                        toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
                         //toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
                         FlashWindowEx(this);
+                    }
                         
 
                 }
@@ -329,6 +340,23 @@ namespace AbacusSUPP
             fInfo.dwTimeout = 0;
 
             return FlashWindowEx(ref fInfo);
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                notifyIcon1.Visible = true;
+                notifyIcon1.ShowBalloonTip(3000);
+                this.ShowInTaskbar = false;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
         }
     }
 }

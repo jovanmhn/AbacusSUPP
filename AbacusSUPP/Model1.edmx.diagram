@@ -15,7 +15,7 @@
         <AssociationConnector Association="AbacusSUPModel.FK_Login_Sektor" />
         <EntityTypeShape EntityType="AbacusSUPModel.VezaLT" Width="1.5" PointX="1.25" PointY="5.875" />
         <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Login" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Task" Width="1.5" PointX="3.125" PointY="2.375" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Task" Width="1.5" PointX="3.125" PointY="2.25" />
         <AssociationConnector Association="AbacusSUPModel.FK_Komentar_Task" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Login" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Partneri" />
