@@ -76,7 +76,7 @@
             // textEdit1
             // 
             this.textEdit1.EditValue = "root";
-            this.textEdit1.Location = new System.Drawing.Point(21, 107);
+            this.textEdit1.Location = new System.Drawing.Point(21, 115);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.NullValuePrompt = "Korisnicko ime";
             this.textEdit1.Properties.ShowNullValuePromptWhenFocused = true;

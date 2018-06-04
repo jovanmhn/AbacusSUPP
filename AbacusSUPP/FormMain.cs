@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace AbacusSUPP
 {
@@ -29,6 +30,8 @@ namespace AbacusSUPP
                 //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                 
             }
+            notifyIcon1.Visible = false;
+            notifyIconNotifikacija.Visible = false;
 
             gridView1.Appearance.FocusedRow.BackColor = gridView1.Appearance.FocusedCell.BackColor =
                  gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
@@ -45,6 +48,11 @@ namespace AbacusSUPP
             this.notifyIcon1.Text = "Dupli klik za restore";
 
             DevExpress.Data.ShellHelper.TryCreateShortcut("c65ba894-3c54-4851-85e5-cdb49d097c02", "AbacusSupport");
+
+            OperaterLogin.seen_tasks = Baza.Task.Select(qq => qq.id_task).ToList();
+
+            load_settings();
+            
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -88,6 +96,7 @@ namespace AbacusSUPP
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)
             {
+                OperaterLogin.seen_tasks.Add(task.id_task);
                 FormTaskMain frmtm = new FormTaskMain(task);
                 frmtm.ShowDialog();
                 gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
@@ -148,6 +157,19 @@ namespace AbacusSUPP
 
                    e.Cache.DrawImage(image, e.Bounds.Left+5, e.Bounds.Top + 15);
                     
+                }
+            }
+            if (e.Column.FieldName == "id_task")
+            {
+                if (e.RowHandle >= 0)
+                {
+                    var row = (Task)gridView1.GetRow(e.RowHandle);
+                    if (!OperaterLogin.seen_tasks.Contains(row.id_task))
+                    {
+                        Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
+                        e.Cache.DrawImage(image, e.Bounds.Left + 25, e.Bounds.Top + 15);
+                    }
+
                 }
             }
         }
@@ -245,7 +267,7 @@ namespace AbacusSUPP
             //Baza.SaveChanges();
             Baza.Task.Remove(taskzaDelete);
             Baza.SaveChanges();
-            gridControl1.DataSource = Baza.Task.ToList();
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
             gridView1.RefreshData();
         }
 
@@ -285,7 +307,7 @@ namespace AbacusSUPP
             if (razlika.Count>0)
             {
                 Baza = new AbacusSUPEntities();
-                gridControl1.DataSource = nova_lista.OrderByDescending(qw=>qw.datum);
+                gridControl1.DataSource = Baza.Task.OrderByDescending(qq => qq.datum).ToList();
                 gridView1.RefreshData();
                 List<VezaLT> listaveza = Baza.VezaLT.ToList();
                 
@@ -295,6 +317,9 @@ namespace AbacusSUPP
                     if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                     {
                         toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                        this.notifyIcon1.Visible = false;
+                        this.notifyIconNotifikacija.Visible = true;
+                        
                         //toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
                         FlashWindowEx(this);
                     }
@@ -344,7 +369,7 @@ namespace AbacusSUPP
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (this.WindowState == FormWindowState.Minimized && OperaterLogin.podesavanja.tray==true)
             {
                 notifyIcon1.Visible = true;
                 notifyIcon1.ShowBalloonTip(3000);
@@ -357,6 +382,46 @@ namespace AbacusSUPP
             this.WindowState = FormWindowState.Maximized;
             this.ShowInTaskbar = true;
             notifyIcon1.Visible = false;
+        }
+
+        private void notifyIconNotifikacija_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.ShowInTaskbar = true;
+            notifyIconNotifikacija.Visible = false;
+        }
+
+        private void load_settings()
+        {
+            string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
+            //XmlDocument dok = new XmlDocument();
+            XmlReader reader = XmlReader.Create(putanja);
+            //dok.Load(putanja);
+            
+
+            while (reader.Read())
+            {
+                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Setting"))
+                {
+                    if (reader.HasAttributes)
+                    {
+                        if (Convert.ToInt32(reader.GetAttribute("Name")) == OperaterLogin.operater.id)
+                        {
+                            OperaterLogin.podesavanja.tray = true;
+                            var test = reader.GetAttribute("Tray");
+                            OperaterLogin.podesavanja.tray = Convert.ToBoolean(reader.GetAttribute("Tray"));
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
+
+        private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormSettings frmsett = new FormSettings();
+            frmsett.ShowDialog();
         }
     }
 }

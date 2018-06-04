@@ -43,6 +43,7 @@ namespace AbacusSUPP
             
             
             OperaterLogin.operater = Baza.Login.FirstOrDefault(qq => qq.username == textEdit1.Text && qq.pass == textEdit2.Text);
+            OperaterLogin.podesavanja = new Settings();
             if (OperaterLogin.operater != null)
             {
                 
