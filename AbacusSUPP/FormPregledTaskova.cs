@@ -28,9 +28,18 @@ namespace AbacusSUPP
                 Task task = Baza.Task.First(qq => qq.id_task == veza.id_task);
                 listataskova.Add(task);
 
-                gridControl1.DataSource = listataskova;
-                gridView1.RefreshData();
             }
+            gridControl1.DataSource = listataskova.Where(qq=>qq.Status.opis=="U toku");
+            gridView1.RefreshData();
+            gridControl2.DataSource = listataskova.Where(qq=> qq.Status.opis=="Zavrseno");
+            gridView2.RefreshData();
+            gridControl3.DataSource = listataskova.Where(qq => qq.Status.opis == "Zavrseno" && qq.login_id_zatv==OperaterLogin.operater.id);
+            gridView3.RefreshData();
+
+            Zatvoreni_od.Text += _login.username;
+
         }
+
+        
     }
 }

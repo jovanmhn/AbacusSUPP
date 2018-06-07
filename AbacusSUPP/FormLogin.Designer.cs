@@ -35,9 +35,12 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), true, true, true);
+            this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // textEdit2
@@ -76,7 +79,7 @@
             // textEdit1
             // 
             this.textEdit1.EditValue = "root";
-            this.textEdit1.Location = new System.Drawing.Point(21, 115);
+            this.textEdit1.Location = new System.Drawing.Point(21, 117);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.NullValuePrompt = "Korisnicko ime";
             this.textEdit1.Properties.ShowNullValuePromptWhenFocused = true;
@@ -93,11 +96,23 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
+            // progressBarControl1
+            // 
+            this.progressBarControl1.Location = new System.Drawing.Point(0, 255);
+            this.progressBarControl1.Name = "progressBarControl1";
+            this.progressBarControl1.Size = new System.Drawing.Size(200, 18);
+            this.progressBarControl1.TabIndex = 5;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(201, 271);
+            this.Controls.Add(this.progressBarControl1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.simpleButton2);
@@ -113,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -124,6 +140,8 @@
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraBars.FormAssistant formAssistant1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
     }
 }
 

@@ -29,7 +29,7 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             task = _task;
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderByDescending(ww => ww.datum).ToList();
+            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
             memoEdit2.Text = task.opis;
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
@@ -58,8 +58,7 @@ namespace AbacusSUPP
                 listaoperatera.Add(operater);
 
             }
-            gridControl2.DataSource = listaoperatera;
-            gridView1.RefreshData();
+            
             
         }
 
@@ -71,6 +70,7 @@ namespace AbacusSUPP
             {
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
+                Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
                 labelControl6.Text = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
                 
                 List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
@@ -126,7 +126,7 @@ namespace AbacusSUPP
             };
             Baza.Komentar.Add(kom);
             Baza.SaveChanges();
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderByDescending(ww => ww.datum).ToList();
+            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
             richEditControl1.Document.Delete(richEditControl1.Document.Range);
         }
@@ -223,6 +223,14 @@ namespace AbacusSUPP
             {
                 layoutView1.PanModeSwitch();
             }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            FormDodajKomentar frmdkom = new FormDodajKomentar(task);
+            frmdkom.ShowDialog();
+            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            layoutView1.RefreshData();
         }
     }
     public static class StringExt

@@ -1,37 +1,46 @@
-﻿using DevExpress.XtraRichEdit.API.Native;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.IO;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace AbacusSUPP
 {
-    public partial class FormKomentarDetalj : Form
+    public static class Helper
     {
-        string sadrzaj;
-        int count;
-        public FormKomentarDetalj(string _sadrzaj)
+        public static void load_settings()
         {
-            InitializeComponent();
-            sadrzaj = _sadrzaj;
-            //richEditControl1.Document.Unit = DevExpress.Office.DocumentUnit.Centimeter;
-            //richEditControl1.Document.Sections[0].Page.Width = 100;
-            byte[] zipovan = Convert.FromBase64String(sadrzaj);
-            string rtfraw = Unzip(zipovan);
-            richEditControl1.Document.RtfText = rtfraw;
-            richEditControl1.Refresh();
+            string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
+            //XmlDocument dok = new XmlDocument();
+            XmlReader reader = XmlReader.Create(putanja);
+            //dok.Load(putanja);
 
-            
+
+            while (reader.Read())
+            {
+                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Setting"))
+                {
+                    if (reader.HasAttributes)
+                    {
+
+                        //OperaterLogin.podesavanja.tray = true;
+                        var tray = reader.GetAttribute("Tray");
+                        OperaterLogin.podesavanja.tray = Convert.ToBoolean(reader.GetAttribute("Tray"));
+
+                        //OperaterLogin.podesavanja.tray = true;
+                        var minnotif = reader.GetAttribute("MinimizeNotif");
+                        OperaterLogin.podesavanja.minimizeNotification = Convert.ToBoolean(reader.GetAttribute("MinimizeNotif"));
+
+
+                    }
+                }
+            }
+
         }
-
-
         public static void CopyTo(Stream src, Stream dest)
         {
             byte[] bytes = new byte[4096];
@@ -73,16 +82,6 @@ namespace AbacusSUPP
                 }
 
                 return Encoding.UTF8.GetString(mso.ToArray());
-            }
-        }
-
-        private void richEditControl1_ContentChanged(object sender, EventArgs e)
-        {
-            DocumentImageCollection collection = richEditControl1.Document.GetImages(richEditControl1.Document.Range);
-            if (collection.Count > 0)
-            {
-                DocumentImage image = collection[collection.Count - 1];
-                richEditControl1.Document.Sections[0].Page.Width = image.Size.Width + richEditControl1.Document.Sections[0].Margins.Left + richEditControl1.Document.Sections[0].Margins.Right;
             }
         }
     }

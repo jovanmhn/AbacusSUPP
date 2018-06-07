@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormDodajKomentar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDodajKomentar.Designer.cs">
+      <DependentUpon>FormDodajKomentar.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDodajOperatera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,7 @@
     <Compile Include="FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Komentar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -176,6 +183,15 @@
     <Compile Include="VezaLT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormDodajKomentar.resx">
+      <DependentUpon>FormDodajKomentar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDodajOperatera.resx">
       <DependentUpon>FormDodajOperatera.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +232,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>

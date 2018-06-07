@@ -18,23 +18,31 @@ namespace AbacusSUPP
     public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         AbacusSUPEntities Baza { get; set; }
-        public FormMain(Login operater)
+        public FormMain(Login operater, ProgressBarControl progressBar)
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
+            progressBar.PerformStep();
+            progressBar.Update();
             gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
             barStaticItem1.Caption = "Ulogovan kao: " + OperaterLogin.operater.username;
+            progressBar.PerformStep();
+            progressBar.Update();
             //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             if (operater.isAdmin == true)
             {
                 //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                 
             }
+            progressBar.PerformStep();
+            progressBar.Update();
             notifyIcon1.Visible = false;
             notifyIconNotifikacija.Visible = false;
 
             gridView1.Appearance.FocusedRow.BackColor = gridView1.Appearance.FocusedCell.BackColor =
                  gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
+            progressBar.PerformStep();
+            progressBar.Update();
 
             //timer1.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
             timer1.Interval = (1000) * (15);             // Timer will tick evert 10 seconds
@@ -44,14 +52,22 @@ namespace AbacusSUPP
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info; //Shows the info icon so the user doesn't thing there is an error.
             this.notifyIcon1.BalloonTipText = "Minimizovan u tray!";
             this.notifyIcon1.BalloonTipTitle = "AbacusSupport";
+            progressBar.PerformStep();
+            progressBar.Update();
             //this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon"))); //The tray icon to use
             this.notifyIcon1.Text = "Dupli klik za restore";
 
             DevExpress.Data.ShellHelper.TryCreateShortcut("c65ba894-3c54-4851-85e5-cdb49d097c02", "AbacusSupport");
-
+            progressBar.PerformStep();
+            progressBar.Update();
             OperaterLogin.seen_tasks = Baza.Task.Select(qq => qq.id_task).ToList();
 
-            load_settings();
+            AbacusSUPP.Helper.load_settings(); //UCITAVANJE SETTINGS.XML
+
+            progressBar.Position=0;
+            progressBar.Update();
+
+
             
         }
 
@@ -167,7 +183,12 @@ namespace AbacusSUPP
                     if (!OperaterLogin.seen_tasks.Contains(row.id_task))
                     {
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
-                        e.Cache.DrawImage(image, e.Bounds.Left + 25, e.Bounds.Top + 15);
+                        e.Cache.DrawImage(image, e.Bounds.Left + 15, e.Bounds.Top + 15);
+                    }
+                    if(Baza.VezaLT.ToList().FirstOrDefault(qq=>qq.id_task==row.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                    {
+                        Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("feature_16x16.png")];
+                        e.Cache.DrawImage(image, e.Bounds.Left + 45, e.Bounds.Top + 15);
                     }
 
                 }
@@ -369,10 +390,10 @@ namespace AbacusSUPP
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized && OperaterLogin.podesavanja.tray==true)
+            if (this.WindowState == FormWindowState.Minimized && OperaterLogin.podesavanja.tray)
             {
                 notifyIcon1.Visible = true;
-                notifyIcon1.ShowBalloonTip(3000);
+                if(OperaterLogin.podesavanja.minimizeNotification) notifyIcon1.ShowBalloonTip(3000);
                 this.ShowInTaskbar = false;
             }
         }
@@ -391,32 +412,7 @@ namespace AbacusSUPP
             notifyIconNotifikacija.Visible = false;
         }
 
-        private void load_settings()
-        {
-            string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
-            //XmlDocument dok = new XmlDocument();
-            XmlReader reader = XmlReader.Create(putanja);
-            //dok.Load(putanja);
-            
-
-            while (reader.Read())
-            {
-                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Setting"))
-                {
-                    if (reader.HasAttributes)
-                    {
-                        if (Convert.ToInt32(reader.GetAttribute("Name")) == OperaterLogin.operater.id)
-                        {
-                            OperaterLogin.podesavanja.tray = true;
-                            var test = reader.GetAttribute("Tray");
-                            OperaterLogin.podesavanja.tray = Convert.ToBoolean(reader.GetAttribute("Tray"));
-                        }
-                        
-                    }
-                }
-            }
-            
-        }
+        
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -424,4 +420,5 @@ namespace AbacusSUPP
             frmsett.ShowDialog();
         }
     }
+     
 }

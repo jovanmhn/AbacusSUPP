@@ -33,9 +33,11 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // checkEdit1
@@ -45,9 +47,11 @@
             this.checkEdit1.Properties.Caption = "Minimizuj u tray";
             this.checkEdit1.Size = new System.Drawing.Size(103, 20);
             this.checkEdit1.TabIndex = 0;
+            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.checkEdit2);
             this.groupControl1.Controls.Add(this.checkEdit1);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
@@ -74,6 +78,14 @@
             this.simpleButton2.TabIndex = 3;
             this.simpleButton2.Text = "Otkazi";
             // 
+            // checkEdit2
+            // 
+            this.checkEdit2.Location = new System.Drawing.Point(21, 56);
+            this.checkEdit2.Name = "checkEdit2";
+            this.checkEdit2.Properties.Caption = "Minimize Notifikacija";
+            this.checkEdit2.Size = new System.Drawing.Size(122, 20);
+            this.checkEdit2.TabIndex = 1;
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -89,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,5 +112,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.CheckEdit checkEdit2;
     }
 }

@@ -51,14 +51,11 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSektor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -73,9 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -86,7 +81,7 @@
             this.panelControl1.Controls.Add(this.gridControl1);
             this.panelControl1.Location = new System.Drawing.Point(0, 145);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(933, 411);
+            this.panelControl1.Size = new System.Drawing.Size(1273, 530);
             this.panelControl1.TabIndex = 0;
             // 
             // gridControl1
@@ -99,7 +94,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(929, 407);
+            this.gridControl1.Size = new System.Drawing.Size(1269, 526);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutView1});
@@ -261,7 +256,7 @@
             this.layoutViewField_colLogin,
             this.item2,
             this.layoutViewField_layoutViewColumn1});
-            this.layoutViewCard1.Name = "layoutViewCard1";
+            this.layoutViewCard1.Name = "layoutViewTemplateCard";
             this.layoutViewCard1.OptionsItemText.TextToControlDistance = 0;
             this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutViewCard1.Text = "TemplateCard";
@@ -312,7 +307,7 @@
             this.memoEdit2.Properties.Appearance.Options.UseBackColor = true;
             this.memoEdit2.Properties.ReadOnly = true;
             this.memoEdit2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.memoEdit2.Size = new System.Drawing.Size(437, 97);
+            this.memoEdit2.Size = new System.Drawing.Size(337, 97);
             this.memoEdit2.TabIndex = 5;
             // 
             // labelControl2
@@ -324,7 +319,7 @@
             this.labelControl2.Appearance.Options.UseImage = true;
             this.labelControl2.Appearance.Options.UseImageAlign = true;
             this.labelControl2.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl2.Location = new System.Drawing.Point(584, 48);
+            this.labelControl2.Location = new System.Drawing.Point(484, 49);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(106, 20);
             this.labelControl2.TabIndex = 6;
@@ -338,7 +333,7 @@
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseImage = true;
             this.labelControl3.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl3.Location = new System.Drawing.Point(584, 70);
+            this.labelControl3.Location = new System.Drawing.Point(484, 71);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(106, 20);
             this.labelControl3.TabIndex = 7;
@@ -351,7 +346,7 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseImage = true;
             this.labelControl4.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl4.Location = new System.Drawing.Point(584, 92);
+            this.labelControl4.Location = new System.Drawing.Point(484, 93);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(106, 20);
             this.labelControl4.TabIndex = 8;
@@ -377,71 +372,9 @@
             this.labelControl5.TabIndex = 10;
             this.labelControl5.Text = "labelControl5";
             // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.simpleButton3.Location = new System.Drawing.Point(533, 629);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(98, 42);
-            this.simpleButton3.TabIndex = 12;
-            this.simpleButton3.Text = "Dodaj komentar";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
-            // 
-            // richEditControl1
-            // 
-            this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
-            this.richEditControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.richEditControl1.Location = new System.Drawing.Point(2, 560);
-            this.richEditControl1.Name = "richEditControl1";
-            this.richEditControl1.Size = new System.Drawing.Size(525, 111);
-            this.richEditControl1.TabIndex = 13;
-            // 
-            // gridControl2
-            // 
-            this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl2.DataSource = this.loginBindingSource;
-            this.gridControl2.Location = new System.Drawing.Point(637, 560);
-            this.gridControl2.MainView = this.gridView1;
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(294, 113);
-            this.gridControl2.TabIndex = 14;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
             // loginBindingSource
             // 
             this.loginBindingSource.DataSource = typeof(AbacusSUPP.Login);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colusername,
-            this.colSektor});
-            this.gridView1.GridControl = this.gridControl2;
-            this.gridView1.GroupCount = 1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colSektor, DevExpress.Data.ColumnSortOrder.Ascending)});
-            // 
-            // colusername
-            // 
-            this.colusername.Caption = "Operater";
-            this.colusername.FieldName = "username";
-            this.colusername.Name = "colusername";
-            this.colusername.Visible = true;
-            this.colusername.VisibleIndex = 0;
-            // 
-            // colSektor
-            // 
-            this.colSektor.Caption = "Sektor";
-            this.colSektor.FieldName = "Sektor.naziv";
-            this.colSektor.Name = "colSektor";
-            this.colSektor.Visible = true;
-            this.colSektor.VisibleIndex = 1;
             // 
             // labelControl6
             // 
@@ -450,22 +383,53 @@
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseImage = true;
             this.labelControl6.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl6.Location = new System.Drawing.Point(584, 114);
+            this.labelControl6.Location = new System.Drawing.Point(484, 115);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(106, 20);
             this.labelControl6.TabIndex = 15;
             this.labelControl6.Text = "labelControl6";
             this.labelControl6.Visible = false;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(1131, 59);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(130, 41);
+            this.simpleButton1.TabIndex = 16;
+            this.simpleButton1.Text = "Novi komentar + ";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // richEditControl1
+            // 
+            this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.richEditControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
+            this.richEditControl1.Location = new System.Drawing.Point(596, 12);
+            this.richEditControl1.Name = "richEditControl1";
+            this.richEditControl1.Size = new System.Drawing.Size(529, 129);
+            this.richEditControl1.TabIndex = 17;
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton3.Location = new System.Drawing.Point(1131, 12);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(130, 41);
+            this.simpleButton3.TabIndex = 12;
+            this.simpleButton3.Text = "Dodaj komentar";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
             // FormTaskMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 674);
-            this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.gridControl2);
-            this.Controls.Add(this.richEditControl1);
+            this.ClientSize = new System.Drawing.Size(1273, 674);
             this.Controls.Add(this.simpleButton3);
+            this.Controls.Add(this.richEditControl1);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.labelControl4);
@@ -494,9 +458,7 @@
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,19 +481,16 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn UnboundKomentar;
-        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
-        private DevExpress.XtraGrid.GridControl gridControl2;
         private System.Windows.Forms.BindingSource loginBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colusername;
-        private DevExpress.XtraGrid.Columns.GridColumn colSektor;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_coldatum;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colLogin;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.SimpleSeparator item2;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
     }
 }

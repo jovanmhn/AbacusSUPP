@@ -28,10 +28,10 @@ namespace AbacusSUPP
                 {
                     if (reader.HasAttributes)
                     {
-                        if (Convert.ToInt32(reader.GetAttribute("Name")) == OperaterLogin.operater.id)
-                        {
-                            checkEdit1.Checked = Convert.ToBoolean(reader.GetAttribute("Tray"));
-                        }
+                        
+                        checkEdit1.Checked = Convert.ToBoolean(reader.GetAttribute("Tray"));
+                        checkEdit2.Checked = Convert.ToBoolean(reader.GetAttribute("MinimizeNotif"));
+
 
                     }
                 }
@@ -47,8 +47,8 @@ namespace AbacusSUPP
 
             XDocument doc = XDocument.Load(putanja);
             var q = from node in doc.Descendants("Setting")
-                    let attr = node.Attribute("Name")
-                    where attr != null && attr.Value == OperaterLogin.operater.id.ToString()
+                    let attr = node.Attribute("Tray")
+                    where attr != null 
                     select node;
             q.ToList().ForEach(x => x.Remove());
             doc.Save(putanja);
@@ -62,42 +62,26 @@ namespace AbacusSUPP
             tray.InnerText = checkEdit1.Checked.ToString();
             setting.Attributes.SetNamedItem(tray);
 
-            XmlAttribute name = dok.CreateAttribute("Name");
-            name.InnerText = OperaterLogin.operater.id.ToString();
-            setting.Attributes.SetNamedItem(name);
+            XmlAttribute minimizeNotif = dok.CreateAttribute("MinimizeNotif");
+            minimizeNotif.InnerText = checkEdit2.Checked.ToString();
+            setting.Attributes.SetNamedItem(minimizeNotif);
+
+
 
             XmlElement elem = (XmlElement)dok.SelectSingleNode("/Configuration/" + "Settings");
             elem.AppendChild(setting);
             dok.Save(putanja);
 
-            load_settings();
+            AbacusSUPP.Helper.load_settings();
+            
             this.Close();
         }
-        private void load_settings()
+        
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
         {
-            string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
-            //XmlDocument dok = new XmlDocument();
-            XmlReader reader = XmlReader.Create(putanja);
-            //dok.Load(putanja);
-
-
-            while (reader.Read())
-            {
-                if ((reader.NodeType == XmlNodeType.Element) && (reader.Name == "Setting"))
-                {
-                    if (reader.HasAttributes)
-                    {
-                        if (Convert.ToInt32(reader.GetAttribute("Name")) == OperaterLogin.operater.id)
-                        {
-                            OperaterLogin.podesavanja.tray = true;
-                            var test = reader.GetAttribute("Tray");
-                            OperaterLogin.podesavanja.tray = Convert.ToBoolean(reader.GetAttribute("Tray"));
-                        }
-
-                    }
-                }
-            }
-
+            if (checkEdit1.Checked == false) checkEdit2.Enabled = false;
+            if (checkEdit1.Checked == true) checkEdit2.Enabled = true;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace AbacusSUPP
             this.Komentar = new HashSet<Komentar>();
             this.VezaLT = new HashSet<VezaLT>();
             this.Task = new HashSet<Task>();
+            this.Task1 = new HashSet<Task>();
         }
     
         public int id { get; set; }
@@ -37,5 +38,7 @@ namespace AbacusSUPP
         public virtual ICollection<VezaLT> VezaLT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Task1 { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace AbacusSUPP
     public class Settings
     {
         public bool tray { get; set; }
+        public bool minimizeNotification { get; set; }
     }
 }

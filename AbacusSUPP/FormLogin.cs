@@ -19,7 +19,14 @@ namespace AbacusSUPP
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
-            
+             progressBarControl1.Properties.Step = 1;
+             progressBarControl1.Properties.PercentView = true;
+             progressBarControl1.Properties.Maximum = 6;
+             progressBarControl1.Properties.Minimum = 0;
+             progressBarControl1.Properties.EndColor = Color.Green;
+             progressBarControl1.Properties.StartColor = Color.Yellow;
+             progressBarControl1.ForeColor = Color.Red;
+
         }
 
         private void textEdit1_KeyDown(object sender, KeyEventArgs e)
@@ -47,9 +54,10 @@ namespace AbacusSUPP
             if (OperaterLogin.operater != null)
             {
                 
-                FormMain frmmain = new FormMain(OperaterLogin.operater);
+                FormMain frmmain = new FormMain(OperaterLogin.operater, progressBarControl1);
                 frmmain.Show();
                 this.Hide();
+                
                 
             }
             else

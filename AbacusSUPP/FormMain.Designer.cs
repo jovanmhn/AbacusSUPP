@@ -32,9 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
@@ -46,11 +45,14 @@
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.Aktivni = new DevExpress.XtraTab.XtraTabPage();
@@ -116,29 +118,16 @@
             this.barButtonItem5,
             this.barButtonItem7,
             this.barStaticItem1,
-            this.barButtonItem11});
+            this.barButtonItem11,
+            this.barStaticItem2,
+            this.barStaticItem3});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 19;
+            this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.Size = new System.Drawing.Size(957, 162);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
-            // 
-            // applicationMenu2
-            // 
-            this.applicationMenu2.ItemLinks.Add(this.barButtonItem2);
-            this.applicationMenu2.Name = "applicationMenu2";
-            this.applicationMenu2.Ribbon = this.ribbonControl1;
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Operateri";
-            this.barButtonItem2.Id = 3;
-            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick_1);
             // 
             // barButtonItem1
             // 
@@ -149,6 +138,15 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Operateri";
+            this.barButtonItem2.Id = 3;
+            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick_1);
             // 
             // barButtonItem3
             // 
@@ -250,6 +248,24 @@
             this.barButtonItem11.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
             // 
+            // barStaticItem2
+            // 
+            this.barStaticItem2.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItem2.Caption = "Task na kome radi operater";
+            this.barStaticItem2.Id = 19;
+            this.barStaticItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barStaticItem2.ImageOptions.Image")));
+            this.barStaticItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barStaticItem2.ImageOptions.LargeImage")));
+            this.barStaticItem2.Name = "barStaticItem2";
+            // 
+            // barStaticItem3
+            // 
+            this.barStaticItem3.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItem3.Caption = "Novi task";
+            this.barStaticItem3.Id = 20;
+            this.barStaticItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barStaticItem3.ImageOptions.Image")));
+            this.barStaticItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barStaticItem3.ImageOptions.LargeImage")));
+            this.barStaticItem3.Name = "barStaticItem3";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -285,10 +301,18 @@
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem1);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem3);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 411);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(957, 26);
+            // 
+            // applicationMenu2
+            // 
+            this.applicationMenu2.ItemLinks.Add(this.barButtonItem2);
+            this.applicationMenu2.Name = "applicationMenu2";
+            this.applicationMenu2.Ribbon = this.ribbonControl1;
             // 
             // ribbonPage2
             // 
@@ -492,6 +516,7 @@
             this.imageCollection1.Images.SetKeyName(3, "comment_16x16.png");
             this.imageCollection1.Images.SetKeyName(4, "newtask_16x16.png");
             this.imageCollection1.Images.SetKeyName(5, "zubcanik_notif_Ld7_icon.ico");
+            this.imageCollection1.Images.SetKeyName(6, "feature_16x16.png");
             // 
             // popupMenu1
             // 
@@ -535,6 +560,7 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Ribbon = this.ribbonControl1;
@@ -602,5 +628,7 @@
         private System.Windows.Forms.NotifyIcon notifyIconNotifikacija;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem2;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem3;
     }
 }
