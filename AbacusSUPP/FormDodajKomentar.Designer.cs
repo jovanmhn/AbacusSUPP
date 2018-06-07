@@ -29,19 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDodajKomentar));
-            this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
             this.SuspendLayout();
-            // 
-            // richEditControl1
-            // 
-            this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
-            this.richEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.richEditControl1.Location = new System.Drawing.Point(0, 0);
-            this.richEditControl1.Name = "richEditControl1";
-            this.richEditControl1.Size = new System.Drawing.Size(843, 359);
-            this.richEditControl1.TabIndex = 0;
             // 
             // simpleButton1
             // 
@@ -53,6 +43,17 @@
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "Dodaj komentar";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // richEditControl1
+            // 
+            this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
+            this.richEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
+            this.richEditControl1.Location = new System.Drawing.Point(0, 0);
+            this.richEditControl1.Name = "richEditControl1";
+            this.richEditControl1.Options.HorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Visible;
+            this.richEditControl1.Size = new System.Drawing.Size(843, 359);
+            this.richEditControl1.TabIndex = 0;
             // 
             // FormDodajKomentar
             // 
@@ -71,8 +72,7 @@
         }
 
         #endregion
-
-        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
     }
 }

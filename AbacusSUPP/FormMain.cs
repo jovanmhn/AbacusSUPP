@@ -73,6 +73,8 @@ namespace AbacusSUPP
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            notifyIcon1.Visible = false;
+            notifyIconNotifikacija.Visible = false;
             Application.Exit();
         }
 
@@ -109,16 +111,23 @@ namespace AbacusSUPP
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Minimized;
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)
             {
                 OperaterLogin.seen_tasks.Add(task.id_task);
                 FormTaskMain frmtm = new FormTaskMain(task);
-                frmtm.ShowDialog();
-                gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
-                gridView1.RefreshData();
+                var res = frmtm.ShowDialog();
+
+                if (res==DialogResult.OK)
+                {
+                    Baza = new AbacusSUPEntities();
+                    gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                    gridView1.RefreshData(); 
+                }
 
             }
+            this.WindowState = FormWindowState.Maximized;
             /*************EDIT TASK*************************************
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)
@@ -298,12 +307,16 @@ namespace AbacusSUPP
             if (task != null)
             {
                 FormAddTask frmat = new FormAddTask(task.id_task);
-                frmat.ShowDialog();
+                var res = frmat.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+
+                Baza = new AbacusSUPEntities();
+                gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
+                gridView1.RefreshData();
+                }
             }
             //Baza.Entry(task).Reload();
-            Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
-            gridView1.RefreshData();
         }
 
         private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -418,6 +431,40 @@ namespace AbacusSUPP
         {
             FormSettings frmsett = new FormSettings();
             frmsett.ShowDialog();
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                popupMenu2.ShowPopup(MousePosition);
+            }
+        }
+
+        private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+        private void notifyIconNotifikacija_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                popupMenu2.ShowPopup(MousePosition);
+            }
+        }
+
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FormPartneri fpart = new FormPartneri();
+            fpart.Show();
         }
     }
      

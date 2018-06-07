@@ -21,6 +21,7 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             task = _task;
+            //richEditControl1.Document
             
         }
 

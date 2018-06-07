@@ -14,82 +14,76 @@ namespace AbacusSUPP
 {
     public partial class FormTest : DevExpress.XtraEditors.XtraForm
     {
+        AbacusSUPEntities Baza { get; set; }
+        System.Drawing.Image img;
         public FormTest()
         {
             InitializeComponent();
-
-            /*System.IO.Stream stream = new System.IO.MemoryStream();
-            richEditControl1.SaveDocument(stream, DevExpress.XtraRichEdit.DocumentFormat.WordML);
-            stream.Seek(0, System.IO.SeekOrigin.Begin);
-
-            //zip
-            */
-
-            
+            Baza = new AbacusSUPEntities();
+            repositoryItemRichTextEdit1.OptionsBehavior.OfficeScrolling = DevExpress.XtraRichEdit.DocumentCapability.Enabled;
+            repositoryItemRichTextEdit1.BestFitWidth = -1;
+             img = imageCollection1.Images[0];
+            richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, img);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            memoEdit1.Text=richEditControl1.Document.RtfText;
-            MessageBox.Show(memoEdit1.Text.Length.ToString());
-        }
-        public static void CopyTo(Stream src, Stream dest)
-        {
-            byte[] bytes = new byte[4096];
-
-            int cnt;
-
-            while ((cnt = src.Read(bytes, 0, bytes.Length)) != 0)
-            {
-                dest.Write(bytes, 0, cnt);
-            }
+            List<Komentar> list= Baza.Komentar.Where(qq => qq.id_task == 73).ToList();
+            gridControl1.DataSource = list;
+            layoutView1.RefreshData();
         }
 
-        public static byte[] Zip(string str)
+        private void repositoryItemRichTextEdit1_EditValueChanged(object sender, EventArgs e)
         {
-            var bytes = Encoding.UTF8.GetBytes(str);
+           
+        }
 
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
+        private void layoutView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        {
+            if(e.Column == UnboundKomentar)
             {
-                using (var gs = new GZipStream(mso, CompressionMode.Compress))
+                var row = (Komentar)e.Row;
+
+
+                if (row != null)
                 {
-                    //msi.CopyTo(gs);
-                    CopyTo(msi, gs);
+                    byte[] zipovan = Convert.FromBase64String(row.sadrzaj);
+                    string rtfraw = AbacusSUPP.Helper.Unzip(zipovan);
+
+                    //rtfpostunzip = rtfraw;
+                    
+                    repositoryItemRichTextEdit1.DocumentFormat = DevExpress.XtraRichEdit.DocumentFormat.Rtf;
+                    e.Value = rtfraw;
                 }
 
-                return mso.ToArray();
+
             }
         }
 
-        public static string Unzip(byte[] bytes)
-        {
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
-            {
-                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
-                {
-                    //gs.CopyTo(mso);
-                    CopyTo(gs, mso);
-                }
+     
 
-                return Encoding.UTF8.GetString(mso.ToArray());
+        private void richEditControl1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        }
+
+        private void richEditControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+
+                var a = Clipboard.GetText();
+                var b = Clipboard.GetData(DataFormats.FileDrop);
+                var c = Clipboard.GetImage();
+                e.SuppressKeyPress = false;
+                
             }
+            //else e.SuppressKeyPress = true;
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            byte[] r1 = Zip(memoEdit1.Text);
-            memoEdit2.Text = Convert.ToBase64String(r1);
-            MessageBox.Show(memoEdit2.Text.Length.ToString());
-        }
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            byte[] array = Convert.FromBase64String(memoEdit2.Text);
-            string rtf = Unzip(array);
-            richEditControl1.Document.RtfText = rtf;
-            richEditControl1.Refresh();
+            richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, img);
         }
     }
 }

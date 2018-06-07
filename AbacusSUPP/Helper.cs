@@ -27,11 +27,11 @@ namespace AbacusSUPP
                     if (reader.HasAttributes)
                     {
 
-                        //OperaterLogin.podesavanja.tray = true;
+                        
                         var tray = reader.GetAttribute("Tray");
                         OperaterLogin.podesavanja.tray = Convert.ToBoolean(reader.GetAttribute("Tray"));
 
-                        //OperaterLogin.podesavanja.tray = true;
+                        
                         var minnotif = reader.GetAttribute("MinimizeNotif");
                         OperaterLogin.podesavanja.minimizeNotification = Convert.ToBoolean(reader.GetAttribute("MinimizeNotif"));
 

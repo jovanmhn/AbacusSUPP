@@ -80,7 +80,7 @@ namespace AbacusSUPP
                 }
 
                 Baza.SaveChanges();
-                
+                this.DialogResult = DialogResult.OK;
                 this.Close(); 
             }
             if (task.status_id == 2)
@@ -97,7 +97,7 @@ namespace AbacusSUPP
 
                     Baza.SaveChanges();
                     simpleButton3.Enabled = true;
-                    
+                    this.DialogResult = DialogResult.OK;
                     this.Close(); 
                 }
             }

@@ -301,10 +301,13 @@
             // 
             // memoEdit2
             // 
+            this.memoEdit2.EditValue = "";
             this.memoEdit2.Location = new System.Drawing.Point(141, 42);
             this.memoEdit2.Name = "memoEdit2";
             this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.memoEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.memoEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.memoEdit2.Properties.Appearance.Options.UseFont = true;
             this.memoEdit2.Properties.ReadOnly = true;
             this.memoEdit2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.memoEdit2.Size = new System.Drawing.Size(337, 97);
