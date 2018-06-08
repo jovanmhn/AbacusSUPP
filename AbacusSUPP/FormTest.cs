@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraRichEdit.API.Native;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,25 +66,81 @@ namespace AbacusSUPP
         private void richEditControl1_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-        }
+            DocumentImageCollection collection = richEditControl1.Document.GetImages(richEditControl1.Document.Range);
+            //collection.Get(richEditControl1.Document.Range);
+            DocumentRange range = collection[collection.Count - 1].Range;
+            richEditControl1.Document.Delete(range);
+            int h, w;
+            System.Drawing.Image slika = Image.FromFile(files[0]);
+            w = 200;
+            h = (int)(slika.Height*w/slika.Width);
+            System.Drawing.Bitmap mala_slika = AbacusSUPP.Helper.ResizeImage(slika, w, h);
+            //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
+            collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
 
-        private void richEditControl1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.V)
+            if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike" + "\\1"))
             {
-
-                var a = Clipboard.GetText();
-                var b = Clipboard.GetData(DataFormats.FileDrop);
-                var c = Clipboard.GetImage();
-                e.SuppressKeyPress = false;
-                
+                System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike" + "\\1");
             }
-            //else e.SuppressKeyPress = true;
+            slika.Save(Application.StartupPath + "\\Slike" + "\\1"+"\\imeslike.bmp");
+            
         }
+
+        
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, img);
+        }
+
+        private void richEditControl1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+
+
+                
+                DocumentImageCollection collection = richEditControl1.Document.GetImages(richEditControl1.Document.Range);
+                var a = Clipboard.GetText();
+
+
+                string[] b = (string[])Clipboard.GetData(DataFormats.FileDrop);
+
+                
+                var c = Clipboard.GetImage();
+                    if (c != null)
+                    {
+                        //collection.Get(richEditControl1.Document.Range);
+                        
+                        int h, w;
+
+                        w = 200;
+                        h = (int)(c.Height * w / c.Width);
+                        System.Drawing.Bitmap mala_slika = AbacusSUPP.Helper.ResizeImage(c, w, h);
+                        //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
+                        
+                        DocumentRange range = collection[collection.Count - 1].Range;
+                        richEditControl1.Document.Delete(range);
+                        collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
+                    }
+                    if (b != null)
+                    {
+                        collection = richEditControl1.Document.GetImages(richEditControl1.Document.Range);
+                        //collection.Get(richEditControl1.Document.Range);
+                        DocumentRange range = collection[collection.Count - 1].Range;
+                        richEditControl1.Document.Delete(range);
+                        int h, w;
+                        System.Drawing.Image slika = Image.FromFile(b[0]);
+                        w = 200;
+                        h = (int)(slika.Height * w / slika.Width);
+                        System.Drawing.Bitmap mala_slika = AbacusSUPP.Helper.ResizeImage(slika, w, h);
+                        //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
+                        collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
+                    }
+                
+                
+            }
+            //else e.SuppressKeyPress = true;
         }
     }
 }

@@ -413,6 +413,8 @@
             this.richEditControl1.Name = "richEditControl1";
             this.richEditControl1.Size = new System.Drawing.Size(529, 129);
             this.richEditControl1.TabIndex = 17;
+            this.richEditControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.richEditControl1_DragDrop);
+            this.richEditControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.richEditControl1_KeyUp);
             // 
             // simpleButton3
             // 

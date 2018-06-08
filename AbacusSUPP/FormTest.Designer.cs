@@ -256,7 +256,7 @@
             this.richEditControl1.TabIndex = 3;
             this.richEditControl1.Text = "richEditControl1";
             this.richEditControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.richEditControl1_DragDrop);
-            this.richEditControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richEditControl1_KeyDown);
+            this.richEditControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.richEditControl1_KeyUp);
             // 
             // imageCollection1
             // 
