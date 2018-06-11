@@ -21,6 +21,8 @@ namespace AbacusSUPP
         public FormMain(Login operater, ProgressBarControl progressBar)
         {
             InitializeComponent();
+            progressBar.PerformStep();
+            progressBar.Update();
             Baza = new AbacusSUPEntities();
             progressBar.PerformStep();
             progressBar.Update();
@@ -41,8 +43,7 @@ namespace AbacusSUPP
 
             gridView1.Appearance.FocusedRow.BackColor = gridView1.Appearance.FocusedCell.BackColor =
                  gridView1.Appearance.SelectedRow.BackColor = Color.Transparent;
-            progressBar.PerformStep();
-            progressBar.Update();
+            
 
             //timer1.Tick += new EventHandler(timer1_Tick); // Everytime timer ticks, timer_Tick will be called
             timer1.Interval = (1000) * (15);             // Timer will tick evert 10 seconds
@@ -111,13 +112,19 @@ namespace AbacusSUPP
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            splashScreenManager1.ShowWaitForm();
+
+            
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)
             {
                 OperaterLogin.seen_tasks.Add(task.id_task);
-                FormTaskMain frmtm = new FormTaskMain(task);
+                FormTaskMain frmtm = new FormTaskMain(task, splashScreenManager1);
+
+                
+                this.WindowState = FormWindowState.Minimized;
                 var res = frmtm.ShowDialog();
+                
 
                 if (res==DialogResult.OK)
                 {
@@ -128,6 +135,8 @@ namespace AbacusSUPP
 
             }
             this.WindowState = FormWindowState.Maximized;
+            notifyIcon1.Visible = false;
+            notifyIconNotifikacija.Visible = false;
             /*************EDIT TASK*************************************
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)

@@ -9,9 +9,9 @@ using DevExpress.XtraWaitForm;
 
 namespace AbacusSUPP
 {
-    public partial class WaitForm1 : WaitForm
+    public partial class WaitForm2 : WaitForm
     {
-        public WaitForm1()
+        public WaitForm2()
         {
             InitializeComponent();
             this.progressPanel1.AutoHeight = true;

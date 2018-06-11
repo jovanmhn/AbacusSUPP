@@ -21,11 +21,12 @@ namespace AbacusSUPP
     {
         AbacusSUPEntities Baza { get; set; }
         Task task { get; set; }
+        int broj_slike = 0;
 
         public string rtfprezip;
         public string rtfpostunzip;
 
-        public FormTaskMain(Task _task)
+        public FormTaskMain(Task _task, DevExpress.XtraSplashScreen.SplashScreenManager splashscreenmanager)
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
@@ -59,6 +60,25 @@ namespace AbacusSUPP
                 listaoperatera.Add(operater);
 
             }
+
+            string[] fajlovi = null;
+            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            {
+                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                if (fajlovi.Count() > 0)
+                {
+                    foreach(string file in fajlovi)
+                    {
+                        File.Delete(file); //ako postoje fajlovi od cancelovanih komentara
+                    }
+                }
+            }
+
+            splashscreenmanager.CloseWaitForm();
+            this.WindowState = FormWindowState.Maximized;
+            this.Focus();
+            this.BringToFront();
+            
             
             
         }
@@ -125,11 +145,33 @@ namespace AbacusSUPP
                 id_login = OperaterLogin.operater.id,
                 id_task = task.id_task
             };
+            int id=0;
             Baza.Komentar.Add(kom);
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
             richEditControl1.Document.Delete(richEditControl1.Document.Range);
+            string[] fajlovi = null;
+            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            {
+                fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                id = Baza.Komentar.OrderByDescending(qq=>qq.datum).ToList()[0].id;
+                if (id != 0)
+                {
+                    Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString());
+                }
+                else
+                {
+                    XtraMessageBox.Show("Komentar_id vratio 0! (folder ime)"); goto kraj;
+                }
+            }
+            else { XtraMessageBox.Show("Nema task foldera!"); goto kraj; }
+            foreach(string fajl in fajlovi)
+            {
+                System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()+"\\"+Path.GetFileName(fajl));
+            }
+            broj_slike = 0;
+            kraj:;
         }
         public static void CopyTo(Stream src, Stream dest)
         {
@@ -204,10 +246,23 @@ namespace AbacusSUPP
 
         private void layoutView1_DoubleClick(object sender, EventArgs e)
         {
+            //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
             Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
+            string[] fajlovi=null;
+            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+            {
+                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+            }
 
-            FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
-            fkdetalj.ShowDialog();
+
+            if (fajlovi.Count()>0)
+            {
+                FormSlike frmslike = new FormSlike(fajlovi);
+                frmslike.Show(); 
+            }
+
+           /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
+            fkdetalj.ShowDialog();*/
         }
 
         private void layoutView1_MouseDown(object sender, MouseEventArgs e)
@@ -263,6 +318,13 @@ namespace AbacusSUPP
                     DocumentRange range = collection[collection.Count - 1].Range;
                     richEditControl1.Document.Delete(range);
                     collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
+
+                    if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+                    {
+                        System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                    }
+                    c.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString()+".bmp");
+                    broj_slike++;
                 }
                 if (b != null)
                 {
@@ -277,6 +339,12 @@ namespace AbacusSUPP
                     System.Drawing.Bitmap mala_slika = AbacusSUPP.Helper.ResizeImage(slika, w, h);
                     //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
                     collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
+                    if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+                    {
+                        System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                    }
+                    slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString()+".bmp");
+                    broj_slike++;
                 }
 
 
@@ -303,7 +371,8 @@ namespace AbacusSUPP
             {
                 System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
             }
-            slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() +"\\imeslike.bmp");
+            slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() +"\\"+broj_slike.ToString()+".bmp");
+            broj_slike++;
         }
     }
     public static class StringExt

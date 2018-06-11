@@ -139,6 +139,12 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSlike.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSlike.Designer.cs">
+      <DependentUpon>FormSlike.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTaskMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,11 +201,11 @@
     <Compile Include="VezaLT.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="WaitForm1.cs">
+    <Compile Include="WaitForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitForm1.Designer.cs">
-      <DependentUpon>WaitForm1.cs</DependentUpon>
+    <Compile Include="WaitForm2.Designer.cs">
+      <DependentUpon>WaitForm2.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormDodajKomentar.resx">
       <DependentUpon>FormDodajKomentar.cs</DependentUpon>
@@ -234,6 +240,9 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSlike.resx">
+      <DependentUpon>FormSlike.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTaskMain.resx">
       <DependentUpon>FormTaskMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,8 +259,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="WaitForm1.resx">
-      <DependentUpon>WaitForm1.cs</DependentUpon>
+    <EmbeddedResource Include="WaitForm2.resx">
+      <DependentUpon>WaitForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
