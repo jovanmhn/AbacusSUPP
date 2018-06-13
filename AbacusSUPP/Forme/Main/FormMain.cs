@@ -113,17 +113,30 @@ namespace AbacusSUPP
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
             splashScreenManager1.ShowWaitForm();
-
+            
             
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (task != null)
             {
                 OperaterLogin.seen_tasks.Add(task.id_task);
                 FormTaskMain frmtm = new FormTaskMain(task, splashScreenManager1);
+                frmtm.Show();
+                frmtm.FormClosed += (ss, ee) =>         //NOVO**
+                {
+                    if (frmtm.DialogResult == DialogResult.OK)
+                    {
+                        Baza = new AbacusSUPEntities();
+                        gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                        gridView1.RefreshData();
+                    }
+                };
 
                 
-                this.WindowState = FormWindowState.Minimized;
+                /**************************STARO**************************
+                //this.WindowState = FormWindowState.Minimized;
                 var res = frmtm.ShowDialog();
+                frmtm.Focus();
+                frmtm.BringToFront();
                 
 
                 if (res==DialogResult.OK)
@@ -132,7 +145,7 @@ namespace AbacusSUPP
                     gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
                     gridView1.RefreshData(); 
                 }
-
+                *****************************************************/
             }
             this.WindowState = FormWindowState.Maximized;
             notifyIcon1.Visible = false;
@@ -202,6 +215,14 @@ namespace AbacusSUPP
                     {
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
                         e.Cache.DrawImage(image, e.Bounds.Left + 15, e.Bounds.Top + 15);
+                        using (Pen p = new Pen(Color.Salmon, 1))
+                        {
+                            Rectangle rect = e.Bounds;
+                            rect.Width -= 1;
+                            rect.Height -= 1;
+                            e.Graphics.DrawRectangle(p, rect);
+                        }
+                        e.Handled = true;
                     }
                     if(Baza.VezaLT.ToList().FirstOrDefault(qq=>qq.id_task==row.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                     {
@@ -292,6 +313,7 @@ namespace AbacusSUPP
                 e.Value = Baza.Komentar.Where(qq => qq.id_task == row.id_task).Count();
             }
         }
+        
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -475,6 +497,7 @@ namespace AbacusSUPP
             FormPartneri fpart = new FormPartneri();
             fpart.Show();
         }
+        
     }
      
 }

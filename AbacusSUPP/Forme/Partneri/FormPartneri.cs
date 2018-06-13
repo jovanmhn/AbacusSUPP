@@ -50,5 +50,12 @@ namespace AbacusSUPP
                 } 
             }
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            Partneri partner = (Partneri)gridView1.GetRow(gridView1.FocusedRowHandle);
+            FormPregledTaskova frmpregled = new FormPregledTaskova(partner);
+            frmpregled.ShowDialog();
+        }
     }
 }

@@ -85,10 +85,14 @@
             this.colid_task,
             this.colnaslov,
             this.coldatum});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colid_task
             // 
@@ -162,10 +166,14 @@
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3});
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridView2.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
             // gridColumn1
             // 
@@ -219,10 +227,14 @@
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6});
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView3.GridControl = this.gridControl3;
             this.gridView3.Name = "gridView3";
             this.gridView3.OptionsBehavior.Editable = false;
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridView3.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
             // 
             // gridColumn4
             // 

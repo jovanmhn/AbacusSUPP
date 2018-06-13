@@ -1,6 +1,6 @@
 ﻿namespace AbacusSUPP
 {
-    partial class WaitForm2
+    partial class WaitForm1
     {
         /// <summary>
         /// Required designer variable.

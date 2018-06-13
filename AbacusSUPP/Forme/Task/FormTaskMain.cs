@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,17 +23,20 @@ namespace AbacusSUPP
         AbacusSUPEntities Baza { get; set; }
         Task task { get; set; }
         int broj_slike = 0;
+        Size org_size = new Size();
 
         public string rtfprezip;
         public string rtfpostunzip;
 
-        public FormTaskMain(Task _task, DevExpress.XtraSplashScreen.SplashScreenManager splashscreenmanager)
+        public FormTaskMain(Task _task, [Optional] DevExpress.XtraSplashScreen.SplashScreenManager splashscreenmanager)
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             task = _task;
+            this.Text += " - " + task.naslov.ToString();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
+            
             memoEdit2.Text = task.opis;
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
             labelControl3.Text = "Task otvorio: " + task.Login.username;
@@ -45,6 +49,7 @@ namespace AbacusSUPP
             this.Text = task.naslov;
             labelControl5.Text = task.naslov;
             layoutView1.PanModeSwitch();
+            org_size = richEditControl1.Size;
 
             if (task.status_id == 2)
             {
@@ -74,7 +79,11 @@ namespace AbacusSUPP
                 }
             }
 
-            splashscreenmanager.CloseWaitForm();
+            if (splashscreenmanager != null)
+            {
+                splashscreenmanager.CloseWaitForm();
+            }
+
             this.WindowState = FormWindowState.Maximized;
             this.Focus();
             this.BringToFront();
@@ -253,6 +262,7 @@ namespace AbacusSUPP
             {
                 fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
             }
+            else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
 
 
             if (fajlovi.Count()>0)
@@ -260,7 +270,7 @@ namespace AbacusSUPP
                 FormSlike frmslike = new FormSlike(fajlovi);
                 frmslike.Show(); 
             }
-
+            kraj:;
            /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
             fkdetalj.ShowDialog();*/
         }
@@ -373,6 +383,32 @@ namespace AbacusSUPP
             }
             slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() +"\\"+broj_slike.ToString()+".bmp");
             broj_slike++;
+        }
+
+        private void FormTaskMain_Shown(object sender, EventArgs e)
+        {
+            Program.MainForm.WindowState = FormWindowState.Minimized;
+        }
+
+        private void FormTaskMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            Program.MainForm.WindowState = FormWindowState.Maximized;
+        }
+
+        private void richEditControl1_Enter(object sender, EventArgs e)
+        {
+            richEditControl1.Bounds = new Rectangle(richEditControl1.Location, new Size(richEditControl1.Size.Width, 2 * richEditControl1.Size.Height));
+        }
+
+        private void richEditControl1_Leave(object sender, EventArgs e)
+        {
+            richEditControl1.Size = org_size;
+        }
+
+        private void FormTaskMain_Click(object sender, EventArgs e)
+        {
+            labelControl1.Focus();
         }
     }
     public static class StringExt

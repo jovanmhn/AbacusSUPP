@@ -118,7 +118,7 @@
             this.layoutView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.layoutView1.CardCaptionFormat = "Komentar {0}/{1}";
             this.layoutView1.CardHorzInterval = 0;
-            this.layoutView1.CardMinSize = new System.Drawing.Size(455, 104);
+            this.layoutView1.CardMinSize = new System.Drawing.Size(202, 101);
             this.layoutView1.CardVertInterval = 1;
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.coldatum,
@@ -177,13 +177,13 @@
             // 
             // layoutViewField_coldatum
             // 
-            this.layoutViewField_coldatum.EditorPreferredWidth = 148;
+            this.layoutViewField_coldatum.EditorPreferredWidth = 158;
             this.layoutViewField_coldatum.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_coldatum.ImageOptions.Image")));
-            this.layoutViewField_coldatum.Location = new System.Drawing.Point(220, 0);
+            this.layoutViewField_coldatum.Location = new System.Drawing.Point(221, 0);
             this.layoutViewField_coldatum.Name = "layoutViewField_coldatum";
-            this.layoutViewField_coldatum.Size = new System.Drawing.Size(223, 24);
+            this.layoutViewField_coldatum.Size = new System.Drawing.Size(224, 24);
             this.layoutViewField_coldatum.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutViewField_coldatum.TextSize = new System.Drawing.Size(71, 16);
+            this.layoutViewField_coldatum.TextSize = new System.Drawing.Size(61, 16);
             // 
             // colLogin
             // 
@@ -202,13 +202,13 @@
             // 
             // layoutViewField_colLogin
             // 
-            this.layoutViewField_colLogin.EditorPreferredWidth = 145;
+            this.layoutViewField_colLogin.EditorPreferredWidth = 155;
             this.layoutViewField_colLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_colLogin.ImageOptions.Image")));
             this.layoutViewField_colLogin.Location = new System.Drawing.Point(0, 0);
             this.layoutViewField_colLogin.Name = "layoutViewField_colLogin";
-            this.layoutViewField_colLogin.Size = new System.Drawing.Size(220, 24);
+            this.layoutViewField_colLogin.Size = new System.Drawing.Size(221, 24);
             this.layoutViewField_colLogin.TextLocation = DevExpress.Utils.Locations.Left;
-            this.layoutViewField_colLogin.TextSize = new System.Drawing.Size(71, 16);
+            this.layoutViewField_colLogin.TextSize = new System.Drawing.Size(61, 16);
             // 
             // UnboundKomentar
             // 
@@ -218,6 +218,7 @@
             this.UnboundKomentar.AppearanceHeader.Options.UseFont = true;
             this.UnboundKomentar.Caption = "Komentar";
             this.UnboundKomentar.ColumnEdit = this.repositoryItemRichTextEdit1;
+            this.UnboundKomentar.CustomizationCaption = "Komentar";
             this.UnboundKomentar.FieldName = "UnboundKomentar";
             this.UnboundKomentar.LayoutViewField = this.layoutViewField_layoutViewColumn1;
             this.UnboundKomentar.Name = "UnboundKomentar";
@@ -242,10 +243,11 @@
             this.layoutViewField_layoutViewColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_layoutViewColumn1.ImageOptions.Image")));
             this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 25);
             this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
-            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(443, 39);
+            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(445, 46);
             this.layoutViewField_layoutViewColumn1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.SupportHorzAlignment;
             this.layoutViewField_layoutViewColumn1.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(71, 16);
+            this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutViewField_layoutViewColumn1.TextVisible = false;
             // 
             // layoutViewCard1
             // 
@@ -256,7 +258,7 @@
             this.layoutViewField_colLogin,
             this.item2,
             this.layoutViewField_layoutViewColumn1});
-            this.layoutViewCard1.Name = "layoutViewTemplateCard";
+            this.layoutViewCard1.Name = "layoutViewCard1";
             this.layoutViewCard1.OptionsItemText.TextToControlDistance = 0;
             this.layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.layoutViewCard1.Text = "TemplateCard";
@@ -268,7 +270,7 @@
             this.item2.CustomizationFormText = "item2";
             this.item2.Location = new System.Drawing.Point(0, 24);
             this.item2.Name = "item2";
-            this.item2.Size = new System.Drawing.Size(443, 1);
+            this.item2.Size = new System.Drawing.Size(445, 1);
             // 
             // labelControl1
             // 
@@ -304,7 +306,7 @@
             this.memoEdit2.EditValue = "";
             this.memoEdit2.Location = new System.Drawing.Point(141, 42);
             this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.memoEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.memoEdit2.Properties.Appearance.Options.UseBackColor = true;
             this.memoEdit2.Properties.Appearance.Options.UseFont = true;
@@ -396,25 +398,30 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Enabled = false;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.Location = new System.Drawing.Point(1131, 59);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(130, 41);
             this.simpleButton1.TabIndex = 16;
-            this.simpleButton1.Text = "Novi komentar + ";
+            this.simpleButton1.Text = "TEST";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // richEditControl1
             // 
             this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
             this.richEditControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.richEditControl1.Appearance.Text.Image = ((System.Drawing.Image)(resources.GetObject("richEditControl1.Appearance.Text.Image")));
+            this.richEditControl1.Appearance.Text.Options.UseImage = true;
             this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
             this.richEditControl1.Location = new System.Drawing.Point(596, 12);
             this.richEditControl1.Name = "richEditControl1";
             this.richEditControl1.Size = new System.Drawing.Size(529, 129);
             this.richEditControl1.TabIndex = 17;
             this.richEditControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.richEditControl1_DragDrop);
+            this.richEditControl1.Enter += new System.EventHandler(this.richEditControl1_Enter);
             this.richEditControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.richEditControl1_KeyUp);
+            this.richEditControl1.Leave += new System.EventHandler(this.richEditControl1_Leave);
             // 
             // simpleButton3
             // 
@@ -443,11 +450,15 @@
             this.Controls.Add(this.memoEdit2);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.panelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "The Bezier";
             this.Name = "FormTaskMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Task";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTaskMain_FormClosing);
+            this.Shown += new System.EventHandler(this.FormTaskMain_Shown);
+            this.Click += new System.EventHandler(this.FormTaskMain_Click);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -488,14 +499,14 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn UnboundKomentar;
         private System.Windows.Forms.BindingSource loginBindingSource;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_coldatum;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colLogin;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraLayout.SimpleSeparator item2;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
     }
 }

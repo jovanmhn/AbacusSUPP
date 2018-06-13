@@ -41,7 +41,7 @@ namespace AbacusSUPP
         {
             if (e.KeyCode == Keys.Enter)
             {
-                simpleButton1.Focus();
+                simpleButton1.PerformClick();
             }
         }
 
@@ -54,7 +54,7 @@ namespace AbacusSUPP
             if (OperaterLogin.operater != null)
             {
                 
-                FormMain frmmain = new FormMain(OperaterLogin.operater, progressBarControl1);
+                FormMain frmmain = Program.MainForm = new FormMain(OperaterLogin.operater, progressBarControl1);
                 frmmain.Show();
                 this.Hide();
                 
@@ -65,6 +65,11 @@ namespace AbacusSUPP
                 MessageBox.Show("Neispravan korisnik ili lozinka!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
+        }
+
+        private void textEdit1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) textEdit2.Focus();
         }
     }
     

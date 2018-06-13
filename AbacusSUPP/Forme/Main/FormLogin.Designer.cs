@@ -35,7 +35,7 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm2), true, true, true);
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), true, true, true);
             this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -85,6 +85,7 @@
             this.textEdit1.Properties.ShowNullValuePromptWhenFocused = true;
             this.textEdit1.Size = new System.Drawing.Size(157, 20);
             this.textEdit1.TabIndex = 0;
+            this.textEdit1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textEdit1_KeyDown_1);
             // 
             // pictureBox1
             // 

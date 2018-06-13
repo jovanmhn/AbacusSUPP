@@ -10,6 +10,8 @@ namespace AbacusSUPP
 {
     static class Program
     {
+        internal static FormMain MainForm { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -24,8 +26,8 @@ namespace AbacusSUPP
             Application.Run(new FormLogin());
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier);
-            UserLookAndFeel.Default.SetSkinStyle(SkinSvgPalette.Bezier.OfficeColorful);
+            //UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier);
+            //UserLookAndFeel.Default.SetSkinStyle(SkinSvgPalette.Bezier.OfficeColorful);
         }
     }
 }
