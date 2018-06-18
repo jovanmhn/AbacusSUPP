@@ -26,6 +26,7 @@
           <Property Name="ime" Type="nvarchar" MaxLength="20" />
           <Property Name="prezime" Type="nvarchar" MaxLength="20" />
           <Property Name="id_sektor" Type="int" />
+          <Property Name="outline_kom" Type="bit" />
         </EntityType>
         <EntityType Name="Partneri">
           <Key>
@@ -367,6 +368,7 @@
           <NavigationProperty Name="VezaLT" Relationship="AbacusSUPModel.FK_VezaLT_Login" FromRole="Login" ToRole="VezaLT" />
           <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Login" ToRole="Task" />
           <NavigationProperty Name="Task1" Relationship="AbacusSUPModel.FK_Task_Login1" FromRole="Login" ToRole="Task" />
+          <Property Name="outline_kom" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Komentar_Login">
           <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="1" />
@@ -577,6 +579,7 @@
           <EntitySetMapping Name="Login">
             <EntityTypeMapping TypeName="AbacusSUPModel.Login">
               <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="outline_kom" ColumnName="outline_kom" />
                 <ScalarProperty Name="id_sektor" ColumnName="id_sektor" />
                 <ScalarProperty Name="prezime" ColumnName="prezime" />
                 <ScalarProperty Name="ime" ColumnName="ime" />

@@ -2,12 +2,14 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Layout;
+using DevExpress.XtraGrid.Views.Layout.ViewInfo;
 using DevExpress.XtraRichEdit.API.Native;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -409,6 +411,46 @@ namespace AbacusSUPP
         private void FormTaskMain_Click(object sender, EventArgs e)
         {
             labelControl1.Focus();
+        }
+ 
+
+        private void layoutView1_CustomDrawCardBackground(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventArgs e)
+        {
+
+            if (e.RowHandle >= 0)
+            {
+                Komentar kom = (Komentar)layoutView1.GetRow(e.RowHandle);
+                if (kom != null && kom.Login.outline_kom == true)
+                {
+                    using (var highlight = new SolidBrush(Color.FromArgb(25, Color.Green)))
+                    {
+                        // Fill card with semi-transparent color 
+                        e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
+                        e.Handled = true;
+                    }
+
+
+                    /*
+                    using (var highlight = new SolidBrush(Color.FromArgb(25, Color.Green)))
+                    {
+                        // Fill card with semi-transparent color 
+                        e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
+
+                    }
+                    using (var backBrush = e.Cache.GetGradientBrush(Rectangle.Inflate(e.Bounds, -1, -1), Color.FromArgb(25, Color.Green), Color.FromArgb(25, Color.Red), LinearGradientMode.Horizontal))
+                    {
+                        // Fill card with semi-transparent color 
+                        e.Cache.FillRectangle(backBrush, Rectangle.Inflate(e.Bounds, -1, -1));
+                        e.Handled = true;
+                    }*/
+                }
+            }     
+            
+        }
+
+        private void layoutView1_CustomDrawCardFieldCaption(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            //CAPTION ODJE
         }
     }
     public static class StringExt

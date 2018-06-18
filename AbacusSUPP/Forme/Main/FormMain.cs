@@ -242,6 +242,7 @@ namespace AbacusSUPP
                 string status = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status.opis"]);
                 if (status == "Zavrseno")
                 {
+                    
                     e.Appearance.BackColor = Color.LightGray;
                     goto kraj;
                 }
@@ -262,6 +263,7 @@ namespace AbacusSUPP
                     e.Appearance.BackColor = Color.LightYellow;
                     e.Appearance.BackColor2 = Color.LightGoldenrodYellow;
                 }
+                
                 kraj:;
             }
         }
@@ -360,7 +362,14 @@ namespace AbacusSUPP
         {
             
             FormOperater fdo = new FormOperater();
+            fdo.MdiParent = this;
             fdo.Show();
+            xtraTabControl1.Visible = false;
+            fdo.FormClosed += (ss, ee) =>         //NOVO**
+            {              
+                xtraTabControl1.Visible = true;           
+            };
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -497,7 +506,17 @@ namespace AbacusSUPP
             FormPartneri fpart = new FormPartneri();
             fpart.Show();
         }
-        
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            this.IsMdiContainer = true;
+        }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (xtraTabControl1.Visible == true) xtraTabControl1.Visible = false;
+            else xtraTabControl1.Visible = true;
+        }
     }
      
 }

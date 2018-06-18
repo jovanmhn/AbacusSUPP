@@ -22,8 +22,8 @@ namespace AbacusSUPP
             simpleButton1.Enabled = false;
             if (slike.Count() == 1) simpleButton2.Enabled = false;
 
-            pictureEdit1.Focus();
-            
+            this.Focus();
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace AbacusSUPP
         {
             indikator++;
             pictureEdit1.LoadAsync(slike[indikator]);
-            if (indikator == slike.Count()-1) simpleButton2.Enabled = false;
+            if (indikator == slike.Count() - 1) simpleButton2.Enabled = false;
             simpleButton1.Enabled = true;
         }
 
@@ -50,33 +50,37 @@ namespace AbacusSUPP
                 pictureEdit1.LoadAsync(slike[indikator]);
                 if (indikator == 0) simpleButton1.Enabled = false;
                 simpleButton2.Enabled = true;
+                //simpleButton1.PerformClick();
             }
-            if (e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.Right)
             {
                 indikator++;
                 pictureEdit1.LoadAsync(slike[indikator]);
                 if (indikator == slike.Count() - 1) simpleButton2.Enabled = false;
                 simpleButton1.Enabled = true;
+                //simpleButton2.PerformClick();
             }
-            if (e.KeyCode == Keys.Escape) { this.DialogResult = DialogResult.OK; this.Close(); }
+            else if (e.KeyCode == Keys.Escape) { this.DialogResult = DialogResult.OK; this.Close(); }
         }
 
         private void FormSlike_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) { this.DialogResult = DialogResult.OK; this.Close(); }
-            if (e.KeyCode == Keys.Left)
+            else if (e.KeyCode == Keys.Left && simpleButton1.Enabled==true)
             {
                 indikator--;
                 pictureEdit1.LoadAsync(slike[indikator]);
                 if (indikator == 0) simpleButton1.Enabled = false;
                 simpleButton2.Enabled = true;
+                //simpleButton1.PerformClick();
             }
-            if (e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.Right && simpleButton2.Enabled==true)
             {
                 indikator++;
                 pictureEdit1.LoadAsync(slike[indikator]);
                 if (indikator == slike.Count() - 1) simpleButton2.Enabled = false;
                 simpleButton1.Enabled = true;
+                //simpleButton2.PerformClick();
             }
         }
 
@@ -89,5 +93,29 @@ namespace AbacusSUPP
         {
             if (e.KeyCode == Keys.Escape) this.Close();
         }
+
+        private void FormSlike_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                    e.IsInputKey = true;
+                    break;
+            }
+        }
+
+
+        private void pictureEdit1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                    e.IsInputKey = true;
+                    break;
+            }
+        }
     }
+
 }

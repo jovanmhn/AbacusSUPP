@@ -18,6 +18,7 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             gridControl1.DataSource = Baza.Login.ToList();
+            
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

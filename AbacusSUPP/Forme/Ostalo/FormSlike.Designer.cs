@@ -40,6 +40,7 @@
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
             this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.AllowFocused = false;
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.LightGray;
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -48,9 +49,11 @@
             this.pictureEdit1.Size = new System.Drawing.Size(529, 358);
             this.pictureEdit1.TabIndex = 0;
             this.pictureEdit1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pictureEdit1_KeyDown);
+            this.pictureEdit1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.pictureEdit1_PreviewKeyDown);
             // 
             // simpleButton1
             // 
+            this.simpleButton1.AllowFocus = false;
             this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
@@ -63,6 +66,7 @@
             // 
             // simpleButton2
             // 
+            this.simpleButton2.AllowFocus = false;
             this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
             this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
@@ -89,6 +93,7 @@
             this.Text = "FormSlike";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSlike_KeyDown);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.FormSlike_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
