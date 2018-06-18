@@ -422,11 +422,12 @@ namespace AbacusSUPP
                 Komentar kom = (Komentar)layoutView1.GetRow(e.RowHandle);
                 if (kom != null && kom.Login.outline_kom == true)
                 {
+                    e.DefaultDraw();
                     using (var highlight = new SolidBrush(Color.FromArgb(25, Color.Green)))
                     {
                         // Fill card with semi-transparent color 
                         e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
-                        e.Handled = true;
+                        
                     }
 
 
