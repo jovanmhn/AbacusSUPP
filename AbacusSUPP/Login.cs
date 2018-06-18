@@ -31,6 +31,7 @@ namespace AbacusSUPP
         public string prezime { get; set; }
         public Nullable<int> id_sektor { get; set; }
         public Nullable<bool> outline_kom { get; set; }
+        public byte[] avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Komentar> Komentar { get; set; }

@@ -111,5 +111,26 @@ namespace AbacusSUPP
 
             return destImage;
         }
+        public static Bitmap GetImageFromByteArray(byte[] byteArray)
+        {
+            if (byteArray != null)
+            {
+                ImageConverter _imageConverter = new ImageConverter();
+                Bitmap bm = (Bitmap)_imageConverter.ConvertFrom(byteArray);
+
+                if (bm != null && (bm.HorizontalResolution != (int)bm.HorizontalResolution ||
+                                   bm.VerticalResolution != (int)bm.VerticalResolution))
+                {
+                    // Correct a strange glitch that has been observed in the test program when converting 
+                    //  from a PNG file image created by CopyImageToByteArray() - the dpi value "drifts" 
+                    //  slightly away from the nominal integer value
+                    bm.SetResolution((int)(bm.HorizontalResolution + 0.5f),
+                                     (int)(bm.VerticalResolution + 0.5f));
+                }
+
+                return bm;
+            }
+            return null;
+        }
     }
 }

@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraGrid.Views.Layout.ViewInfo;
+using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
 using System;
 using System.Collections.Generic;
@@ -89,9 +90,10 @@ namespace AbacusSUPP
             this.WindowState = FormWindowState.Maximized;
             this.Focus();
             this.BringToFront();
-            
-            
-            
+
+            repositoryItemPictureEdit1.ContextMenuStrip = new ContextMenuStrip(); //da nema right click meni
+            richEditControl1.Options.Behavior.ShowPopupMenu = DocumentCapability.Disabled;
+
         }
 
         
@@ -247,6 +249,18 @@ namespace AbacusSUPP
                 }
                 
                 
+            }
+            if (e.Column == UnboundSlika)
+            {
+                var row = (Komentar)e.Row;
+
+
+                if (row != null)
+                {                    
+                    e.Value = AbacusSUPP.Helper.GetImageFromByteArray(row.Login.avatar);
+                }
+
+
             }
         }
 
