@@ -14,9 +14,14 @@ namespace AbacusSUPP
 {
     public partial class FormSettings : DevExpress.XtraEditors.XtraForm
     {
-        public FormSettings()
+        AbacusSUPEntities Baza { get; set; }
+        Podesavanja podesavanja { get; set; }
+        public FormSettings(Podesavanja _podesavanja)
         {
             InitializeComponent();
+            #region staro xml
+            //STARO XML
+            /*
             string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
             XmlReader reader = XmlReader.Create(putanja);
             //dok.Load(putanja);
@@ -37,10 +42,24 @@ namespace AbacusSUPP
                 }
             }
             reader.Close();
+            */
+            #endregion
+            Baza = new AbacusSUPEntities();
+            podesavanja = Baza.Podesavanja.First(qq => qq.id_podesavanja == _podesavanja.id_podesavanja);
+            PodesavanjaBindingSource.Add(podesavanja);
+            checkEdit1.Checked = podesavanja.minimize_tray;
+            if (!checkEdit1.Checked) { checkEdit2.Checked = false; checkEdit2.Enabled = false; }
+            else { checkEdit2.Checked = podesavanja.minimize_notif; }
+            checkEdit3.Checked = podesavanja.novitask_notif;
+            checkEdit4.Checked = podesavanja.minimize_tray;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            foreach (Binding q in PodesavanjaBindingSource.CurrencyManager.Bindings) q.WriteValue();
+            Baza.SaveChanges();
+            #region staro xml
+            /*
             string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
             XmlDocument dok = new XmlDocument();
             //XmlReader reader = XmlReader.Create(putanja);
@@ -75,13 +94,22 @@ namespace AbacusSUPP
             AbacusSUPP.Helper.load_settings();
             
             this.Close();
+            */
+            #endregion
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
-        
+
 
         private void checkEdit1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkEdit1.Checked == false) checkEdit2.Enabled = false;
+            if (checkEdit1.Checked == false) {  checkEdit2.Checked = false; checkEdit2.Enabled = false; }
             if (checkEdit1.Checked == true) checkEdit2.Enabled = true;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

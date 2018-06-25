@@ -28,6 +28,7 @@ namespace AbacusSUPP
         int broj_slike = 0;
         Size org_size = new Size();
 
+        
         public string rtfprezip;
         public string rtfpostunzip;
 
@@ -39,10 +40,15 @@ namespace AbacusSUPP
             this.Text += " - " + task.naslov.ToString();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
+
             
             memoEdit2.Text = task.opis;
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
-            labelControl3.Text = "Task otvorio: " + task.Login.username;
+            if (task.Login != null)
+            {
+                labelControl3.Text = "Task otvorio: " + task.Login.username;
+            }
+            else labelControl3.Text = "Task otvorio: (OBRISAN)";
             labelControl4.Text = "Datum:" + task.datum.ToString();
             if (task.status_id == 2)
             {
@@ -184,6 +190,9 @@ namespace AbacusSUPP
                 System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()+"\\"+Path.GetFileName(fajl));
             }
             broj_slike = 0;
+
+            OperaterLogin.stara_kom_lista.Add(kom);
+
             kraj:;
         }
         public static void CopyTo(Stream src, Stream dest)
@@ -466,6 +475,25 @@ namespace AbacusSUPP
         private void layoutView1_CustomDrawCardFieldCaption(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             //CAPTION ODJE
+        }
+
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
+            string[] fajlovi = null;
+            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+            {
+                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+            }
+            else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
+
+
+            if (fajlovi.Count() > 0)
+            {
+                FormSlike frmslike = new FormSlike(fajlovi);
+                frmslike.Show();
+            }
+            kraj:;
         }
     }
     public static class StringExt

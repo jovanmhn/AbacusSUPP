@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,7 +18,9 @@ namespace AbacusSUPP
 {
     public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        
         AbacusSUPEntities Baza { get; set; }
+
         public FormMain(Login operater, ProgressBarControl progressBar)
         {
             InitializeComponent();
@@ -27,7 +30,7 @@ namespace AbacusSUPP
             progressBar.PerformStep();
             progressBar.Update();
             gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
-            barStaticItem1.Caption = "Ulogovan kao: " + OperaterLogin.operater.username;
+            barStaticItem1.Caption = "Operater: " + OperaterLogin.operater.username;
             progressBar.PerformStep();
             progressBar.Update();
             //barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -68,8 +71,9 @@ namespace AbacusSUPP
             progressBar.Position=0;
             progressBar.Update();
 
+            OperaterLogin.stara_kom_lista = Baza.Komentar.ToList();
 
-            
+
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -101,12 +105,17 @@ namespace AbacusSUPP
             Task task = new Task();
             FormAddTask frmat = new FormAddTask(task.id_task);
 
-            frmat.ShowDialog();
+            var res = frmat.ShowDialog();
 
-            //Baza.Entry(task).Reload();
-            Baza = new AbacusSUPEntities();
-            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
 
+            if (res == DialogResult.OK)
+            {
+                Baza = new AbacusSUPEntities();
+                gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                gridView1.RefreshData();
+
+            }
+            
 
         }
 
@@ -319,8 +328,15 @@ namespace AbacusSUPP
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
             Task zaDel = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
-            deleteTask(zaDel);
+            Baza.Task.Remove(Baza.Task.First(qq=>qq.id_task==zaDel.id_task));
+            Baza.SaveChanges();
+            Directory.Delete(Application.StartupPath + "\\Slike\\" + zaDel.id_task.ToString());
+            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+            gridView1.RefreshData();
+
+            
         }
         public void deleteTask(Task taskzaDelete)
         {
@@ -328,10 +344,12 @@ namespace AbacusSUPP
             //List<Komentar> listakom = Baza.Komentar.Where(qq => qq.id_task == id).ToList();           
             //Baza.Komentar.RemoveRange(listakom);
             //Baza.SaveChanges();
+            
             Baza.Task.Remove(taskzaDelete);
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
             gridView1.RefreshData();
+            Baza = new AbacusSUPEntities();
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -387,10 +405,28 @@ namespace AbacusSUPP
                 
                 foreach(Task novi in razlika)
                 {
-
-                    if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                    stara_lista.Add(novi); // dodaj u staru listu
+                    if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null )
                     {
-                        toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                         
+                        if (OperaterLogin.operater.Podesavanja.novitask_notif && novi.Login.id != OperaterLogin.operater.id)  // ako su podesavanja ispravna i operater razlicit od logovanog
+                        {
+                            toastNotificationsManager1.Notifications[0].Body = string.Format("{0} je otvorio novi task, {1}!", novi.Login.username, novi.opis);
+                            toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                            toastNotificationsManager1.Activated += (ss, ee) =>         //NOVO**
+                            {
+                                Baza = new AbacusSUPEntities();
+                                FormTaskMain frmtm = new FormTaskMain(novi);
+                                var res = frmtm.ShowDialog();
+                                if(res == DialogResult.OK)
+                                {
+                                    Baza = new AbacusSUPEntities();
+                                    gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                                    gridView1.RefreshData();
+                                }
+                                
+                            };
+                        }
                         this.notifyIcon1.Visible = false;
                         this.notifyIconNotifikacija.Visible = true;
                         
@@ -402,6 +438,54 @@ namespace AbacusSUPP
                 }
 
                 
+            }
+            Baza.SaveChanges();
+            Baza = new AbacusSUPEntities();
+            List<Komentar> nova_kom_lista = Baza.Komentar.ToList();
+            
+            var razlika_kom = nova_kom_lista.Where(qq => qq.datum > OperaterLogin.stara_kom_lista.Max(ww => ww.datum)).ToList();
+            if (razlika_kom.Count > 0)
+            {
+                
+                List<VezaLT> listaveza = Baza.VezaLT.ToList();
+
+                foreach (Komentar novi in razlika_kom)
+                {
+                    OperaterLogin.stara_kom_lista.Add(novi);
+                    if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                    {
+                         //dodaj aktuelni komentar u staru listu
+                        if (OperaterLogin.operater.Podesavanja.novikom_notif && OperaterLogin.operater.id!=novi.Login.id) // ako podesavanj dozvoljavaju i ako je komentar od operatera koji nije trenutno logovan
+                        {
+                            toastNotificationsManager1.Notifications[0].Body = string.Format("Novi komentar od {0}, na tasku {1}!", novi.Login.username, novi.Task.naslov);
+                            toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                            toastNotificationsManager1.Activated += (ss, ee) =>         //NOVO**
+                            {
+                                Baza = new AbacusSUPEntities();
+                                FormTaskMain frmtm = new FormTaskMain(novi.Task);
+                                var res  = frmtm.ShowDialog();
+                                if(res == DialogResult.OK)
+                                {
+                                    Baza = new AbacusSUPEntities();
+                                    gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                                    gridView1.RefreshData();
+                                }
+                                
+                            };
+                            OperaterLogin.stara_kom_lista.Add(novi);
+                        }
+                        this.notifyIcon1.Visible = false;
+                        this.notifyIconNotifikacija.Visible = true;
+
+
+                        //toastNotificationsManager1.ShowNotification(toastNotificationsManager1.Notifications[0]);
+                        FlashWindowEx(this);
+                    }
+
+
+                }
+
+
             }
         }
         // To support flashing.
@@ -443,12 +527,18 @@ namespace AbacusSUPP
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized && OperaterLogin.podesavanja.tray)
+            if (this.WindowState == FormWindowState.Minimized && OperaterLogin.operater.Podesavanja.minimize_tray)
             {
                 notifyIcon1.Visible = true;
-                if(OperaterLogin.podesavanja.minimizeNotification) notifyIcon1.ShowBalloonTip(3000);
+                if(OperaterLogin.operater.Podesavanja.minimize_notif) notifyIcon1.ShowBalloonTip(3000);
                 this.ShowInTaskbar = false;
             }
+            /*if (this.WindowState == FormWindowState.Minimized  && OperaterLogin.operater.Podesavanja.minimize_notif)
+            {
+                notifyIcon1.Visible = true;
+                if (OperaterLogin.operater.Podesavanja.minimize_notif) notifyIcon1.ShowBalloonTip(3000);
+                this.ShowInTaskbar = false;
+            }*/
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -469,8 +559,19 @@ namespace AbacusSUPP
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FormSettings frmsett = new FormSettings();
-            frmsett.ShowDialog();
+            FormSettings frmsett = new FormSettings(OperaterLogin.operater.Podesavanja);
+            var res = frmsett.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                Baza = new AbacusSUPEntities();
+                OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
+            }
+
+            /*frmsett.FormClosed += (ss, ee) =>         //NOVO**
+            {
+                Baza = new AbacusSUPEntities();
+                OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
+            };*/
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
@@ -505,6 +606,13 @@ namespace AbacusSUPP
         {
             FormPartneri fpart = new FormPartneri();
             fpart.Show();
+            fpart.MdiParent = this;
+            fpart.Show();
+            xtraTabControl1.Visible = false;
+            fpart.FormClosed += (ss, ee) =>         //NOVO**
+            {
+                xtraTabControl1.Visible = true;
+            };
         }
 
         private void FormMain_Load(object sender, EventArgs e)

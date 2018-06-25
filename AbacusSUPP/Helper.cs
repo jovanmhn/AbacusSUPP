@@ -17,6 +17,8 @@ namespace AbacusSUPP
     {
         public static void load_settings()
         {
+            //NE KORISTI SE VISE
+            /*
             string putanja = System.IO.Path.Combine(Application.StartupPath, "Settings.xml");
             //XmlDocument dok = new XmlDocument();
             XmlReader reader = XmlReader.Create(putanja);
@@ -42,6 +44,7 @@ namespace AbacusSUPP
                     }
                 }
             }
+            */
 
         }
         public static void CopyTo(Stream src, Stream dest)

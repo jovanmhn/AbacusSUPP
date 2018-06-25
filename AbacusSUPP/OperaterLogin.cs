@@ -10,7 +10,8 @@ namespace AbacusSUPP
     {
         public static Login operater { get; set; }
         public static List<int> seen_tasks { get; set; }
-        public static Settings podesavanja { get; set; }
+        public static Settings podesavanja { get; set; } // ovo se ne koristi vise
+        public static List<Komentar> stara_kom_lista { get; set; }
         
     }
     

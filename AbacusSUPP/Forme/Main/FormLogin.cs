@@ -50,10 +50,22 @@ namespace AbacusSUPP
             
             
             OperaterLogin.operater = Baza.Login.FirstOrDefault(qq => qq.username == textEdit1.Text && qq.pass == textEdit2.Text);
-            OperaterLogin.podesavanja = new Settings();
+            //OperaterLogin.podesavanja = new Settings();
             if (OperaterLogin.operater != null)
             {
-                
+                if (OperaterLogin.operater.Podesavanja == null)
+                {
+                    Podesavanja pod = new Podesavanja
+                    {
+                        minimize_notif = false,
+                        minimize_tray = true,
+                        novitask_notif = true,
+                    };
+                    Baza.Podesavanja.Add(pod);
+                    Baza.SaveChanges();
+                    Baza.Login.FirstOrDefault(qq => qq.username == textEdit1.Text && qq.pass == textEdit2.Text).id_podesavanja = pod.id_podesavanja;
+                    Baza.SaveChanges();
+                }
                 FormMain frmmain = Program.MainForm = new FormMain(OperaterLogin.operater, progressBarControl1);
                 frmmain.Show();
                 this.Hide();
@@ -70,6 +82,11 @@ namespace AbacusSUPP
         private void textEdit1_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) textEdit2.Focus();
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
     

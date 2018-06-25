@@ -18,9 +18,9 @@ namespace AbacusSUPP
         public Login()
         {
             this.Komentar = new HashSet<Komentar>();
-            this.VezaLT = new HashSet<VezaLT>();
             this.Task = new HashSet<Task>();
             this.Task1 = new HashSet<Task>();
+            this.VezaLT = new HashSet<VezaLT>();
         }
     
         public int id { get; set; }
@@ -32,15 +32,17 @@ namespace AbacusSUPP
         public Nullable<int> id_sektor { get; set; }
         public Nullable<bool> outline_kom { get; set; }
         public byte[] avatar { get; set; }
+        public Nullable<int> id_podesavanja { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Komentar> Komentar { get; set; }
+        public virtual Podesavanja Podesavanja { get; set; }
         public virtual Sektor Sektor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VezaLT> VezaLT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VezaLT> VezaLT { get; set; }
     }
 }

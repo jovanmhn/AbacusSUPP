@@ -189,6 +189,9 @@
     <Compile Include="Partneri.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Podesavanja.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Prioritet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -282,6 +285,7 @@
     <None Include="Properties\DataSources\Komentar.datasource" />
     <None Include="Properties\DataSources\Login.datasource" />
     <None Include="Properties\DataSources\Partneri.datasource" />
+    <None Include="Properties\DataSources\Podesavanja.datasource" />
     <None Include="Properties\DataSources\Prioritet.datasource" />
     <None Include="Properties\DataSources\Sektor.datasource" />
     <None Include="Properties\DataSources\Status.datasource" />

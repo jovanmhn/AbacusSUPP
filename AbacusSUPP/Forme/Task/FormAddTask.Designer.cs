@@ -79,7 +79,7 @@
             // lookUpEdit1
             // 
             this.lookUpEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "id_partner", true));
-            this.lookUpEdit1.Location = new System.Drawing.Point(13, 41);
+            this.lookUpEdit1.Location = new System.Drawing.Point(12, 41);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -92,7 +92,7 @@
             this.lookUpEdit1.Properties.NullValuePromptShowForEmptyValue = true;
             this.lookUpEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit1.Properties.ValueMember = "id";
-            this.lookUpEdit1.Size = new System.Drawing.Size(167, 20);
+            this.lookUpEdit1.Size = new System.Drawing.Size(191, 20);
             this.lookUpEdit1.TabIndex = 0;
             // 
             // partneriBindingSource
@@ -102,7 +102,7 @@
             // lookUpEdit2
             // 
             this.lookUpEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "status_id", true));
-            this.lookUpEdit2.Location = new System.Drawing.Point(186, 41);
+            this.lookUpEdit2.Location = new System.Drawing.Point(209, 41);
             this.lookUpEdit2.Name = "lookUpEdit2";
             this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -115,7 +115,7 @@
             this.lookUpEdit2.Properties.NullValuePromptShowForEmptyValue = true;
             this.lookUpEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit2.Properties.ValueMember = "id_status";
-            this.lookUpEdit2.Size = new System.Drawing.Size(186, 20);
+            this.lookUpEdit2.Size = new System.Drawing.Size(126, 20);
             this.lookUpEdit2.TabIndex = 1;
             // 
             // statusBindingSource
@@ -125,7 +125,7 @@
             // lookUpEdit3
             // 
             this.lookUpEdit3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "prioritet_id", true));
-            this.lookUpEdit3.Location = new System.Drawing.Point(378, 41);
+            this.lookUpEdit3.Location = new System.Drawing.Point(341, 41);
             this.lookUpEdit3.Name = "lookUpEdit3";
             this.lookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -138,7 +138,7 @@
             this.lookUpEdit3.Properties.NullValuePromptShowForEmptyValue = true;
             this.lookUpEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit3.Properties.ValueMember = "id_prioritet";
-            this.lookUpEdit3.Size = new System.Drawing.Size(186, 20);
+            this.lookUpEdit3.Size = new System.Drawing.Size(126, 20);
             this.lookUpEdit3.TabIndex = 2;
             // 
             // prioritetBindingSource
@@ -197,7 +197,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(186, 22);
+            this.labelControl3.Location = new System.Drawing.Point(209, 22);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(40, 13);
             this.labelControl3.TabIndex = 9;
@@ -207,7 +207,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(378, 22);
+            this.labelControl4.Location = new System.Drawing.Point(341, 22);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(50, 13);
             this.labelControl4.TabIndex = 10;

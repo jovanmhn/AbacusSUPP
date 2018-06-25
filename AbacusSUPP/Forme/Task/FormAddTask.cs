@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace AbacusSUPP
             statusBindingSource.DataSource = Baza.Status.ToList();
             prioritetBindingSource.DataSource = Baza.Prioritet.ToList();
             gridControl1.DataSource = Baza.Login.ToList().OrderBy(qq=>qq.id);
-
+            this.DialogResult = DialogResult.Cancel;
             if (id_task == 0)
             {
                 task = new Task
@@ -48,7 +49,7 @@ namespace AbacusSUPP
                 
 
                 Baza.VezaLT.RemoveRange(listaveza_old);
-                Baza.SaveChanges();
+                //Baza.SaveChanges();
 
                 List<VezaLT> listaveza = new List<VezaLT>();
                 listaveza.AddRange(listaveza_old);
@@ -75,9 +76,9 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Baza.SaveChanges();
-            sacuvano = true;
-            this.DialogResult = DialogResult.OK;
+
+            //Baza.SaveChanges();
+
 
             int[] handlelista = gridView1.GetSelectedRows();
             foreach (int handle in handlelista)
@@ -93,55 +94,57 @@ namespace AbacusSUPP
                     Baza.VezaLT.Add(veza); 
                 }
             }
-
             Baza.SaveChanges();
-
-            
+            sacuvano = true;
+            if(!Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            {
+                Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            /*try
+            {
+                Baza = new AbacusSUPEntities();
+                Baza.Task.Remove(Baza.Task.First(qq => qq.id_task == task.id_task));
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }*/
             this.Close();
         }
 
         private void FormAddTask_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*if (task.id_task!=0 && !sacuvano)
+            
+            if (this.DialogResult != DialogResult.OK)
             {
-                List<Login> datasource = Baza.Login.OrderBy(qq => qq.id).ToList();
-                foreach (int id in idoperatera)
+                /*
+                try
                 {
-
-                    //int handle = datasource.IndexOf(datasource.First(qq => qq.id == id));
-                    //if(gridView1.IsDataRow(handle))
-                    //gridView1.SelectRow(handle);
-                    var row = datasource.FirstOrDefault(qq => qq.id == id);
-                    var r = gridView1.LocateByValue("username", row.username);
-                    gridView1.SelectRow(r);
+                    Baza = new AbacusSUPEntities();
+                    Baza.Task.Remove(Baza.Task.First(qq => qq.id_task == task.id_task));
                 }
-                int[] handlelista = gridView1.GetSelectedRows();
-                foreach (int handle in handlelista)
+                catch (Exception ex)
                 {
 
-                    if (gridView1.IsDataRow(handle))
-                    {
-                        VezaLT veza = new VezaLT();
-                        Login login = (Login)gridView1.GetRow(handle);
-                        veza.id_task = task.id_task;
-                        veza.id_login = login.id;
-                        veza.isActive = true;
-                        Baza.VezaLT.Add(veza);
-                    }
-                } 
-
-                Baza.SaveChanges();
-            }*/
+                    MessageBox.Show(ex.Message);
+                }*/
+            }
             if (!sacuvano)
             {
                 try
                 {
-                    Baza.VezaLT.AddRange(listaveza_old);
-                    Baza.SaveChanges();
+                    if (listaveza_old.Count > 0)
+                    {
+                        Baza.VezaLT.AddRange(listaveza_old);
+                        Baza.SaveChanges();
+                    }
                 }
                 catch (Exception ex)
                 {

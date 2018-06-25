@@ -75,6 +75,7 @@
             this.simpleButton2.Size = new System.Drawing.Size(75, 66);
             this.simpleButton2.TabIndex = 3;
             this.simpleButton2.Text = "Otkazi";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // textEdit1
             // 
