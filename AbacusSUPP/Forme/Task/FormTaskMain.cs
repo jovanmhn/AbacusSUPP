@@ -21,6 +21,7 @@ using System.Windows.Forms;
 
 namespace AbacusSUPP
 {
+    
     public partial class FormTaskMain : DevExpress.XtraEditors.XtraForm
     {
         AbacusSUPEntities Baza { get; set; }
@@ -36,7 +37,8 @@ namespace AbacusSUPP
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
-            task = _task;
+            task = Baza.Task.First(qq=>qq.id_task==_task.id_task);
+            if (task == null) { MessageBox.Show("Neki problem sa taskom."); this.Close(); }
             this.Text += " - " + task.naslov.ToString();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
@@ -134,7 +136,7 @@ namespace AbacusSUPP
                     {
                         Baza.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = true;
                     }
-
+                    
                     Baza.SaveChanges();
                     simpleButton3.Enabled = true;
                     this.DialogResult = DialogResult.OK;
@@ -412,7 +414,7 @@ namespace AbacusSUPP
 
         private void FormTaskMain_Shown(object sender, EventArgs e)
         {
-            Program.MainForm.WindowState = FormWindowState.Minimized;
+            Program.MainForm.WindowState = FormWindowState.Minimized;           
         }
 
         private void FormTaskMain_FormClosing(object sender, FormClosingEventArgs e)

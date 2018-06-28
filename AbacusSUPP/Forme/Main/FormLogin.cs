@@ -13,12 +13,12 @@ namespace AbacusSUPP
     
     public partial class FormLogin : DevExpress.XtraEditors.XtraForm
     {
-        AbacusSUPEntities Baza { get; set; }
+        
 
         public FormLogin()
         {
             InitializeComponent();
-            Baza = new AbacusSUPEntities();
+           
              progressBarControl1.Properties.Step = 1;
              progressBarControl1.Properties.PercentView = true;
              progressBarControl1.Properties.Maximum = 6;
@@ -47,8 +47,8 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            
-            
+            var Baza = new AbacusSUPEntities();
+
             OperaterLogin.operater = Baza.Login.FirstOrDefault(qq => qq.username == textEdit1.Text && qq.pass == textEdit2.Text);
             //OperaterLogin.podesavanja = new Settings();
             if (OperaterLogin.operater != null)

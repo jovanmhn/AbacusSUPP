@@ -14,42 +14,39 @@ namespace AbacusSUPP
     public partial class FormAddTask : DevExpress.XtraEditors.XtraForm
     {
         public Task task { get; set; }
-        AbacusSUPEntities Baza { get; set; }
+        //AbacusSUPEntities Baza { get; set; }
         bool sacuvano = false;
         List<int> idoperatera = new List<int>();
         List<VezaLT> listaveza_old = new List<VezaLT>();
-
-        public FormAddTask(int? id_task /*= null*/ )
+        bool isEdit = false;
+        public FormAddTask(Task _task)
         {
             InitializeComponent();
-
-            Baza = new AbacusSUPEntities();
+            var Baza = new AbacusSUPEntities();
+             
             partneriBindingSource.DataSource = Baza.Partneri.ToList();
             statusBindingSource.DataSource = Baza.Status.ToList();
             prioritetBindingSource.DataSource = Baza.Prioritet.ToList();
             gridControl1.DataSource = Baza.Login.ToList().OrderBy(qq=>qq.id);
             this.DialogResult = DialogResult.Cancel;
-            if (id_task == 0)
+
+            if (_task.id_task == 0)
             {
-                task = new Task
-                {
-                    datum = DateTime.Now,
-                    login_id = OperaterLogin.operater.id,
-                };
-                Baza.Task.Add(task);
+                task = _task;    
             }
             else
             {
-                task = Baza.Task.First(it => it.id_task == id_task);
-
+                isEdit = true;
+                Baza = new AbacusSUPEntities();
+                task = Baza.Task.First(qq=> qq.id_task == _task.id_task);
                 
-                listaveza_old = Baza.VezaLT.Where(qq => qq.id_task == id_task).ToList();
+                listaveza_old = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                 
                 List<Login> datasource = Baza.Login.OrderBy(qq => qq.id).ToList();
                 
 
                 Baza.VezaLT.RemoveRange(listaveza_old);
-                //Baza.SaveChanges();
+                Baza.SaveChanges();
 
                 List<VezaLT> listaveza = new List<VezaLT>();
                 listaveza.AddRange(listaveza_old);
@@ -76,9 +73,11 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-
+            
             //Baza.SaveChanges();
-
+            var Baza = new AbacusSUPEntities();
+            if (!isEdit) Baza.Task.Add(task);
+            Baza.SaveChanges();
 
             int[] handlelista = gridView1.GetSelectedRows();
             foreach (int handle in handlelista)
@@ -90,7 +89,8 @@ namespace AbacusSUPP
                     Login login = (Login)gridView1.GetRow(handle);
                     veza.id_task = task.id_task;
                     veza.id_login = login.id;
-                    veza.isActive = true;
+                    if (task.status_id == 1) veza.isActive = true;
+                    else veza.isActive = false;
                     Baza.VezaLT.Add(veza); 
                 }
             }
@@ -142,6 +142,7 @@ namespace AbacusSUPP
                 {
                     if (listaveza_old.Count > 0)
                     {
+                        var Baza = new AbacusSUPEntities();
                         Baza.VezaLT.AddRange(listaveza_old);
                         Baza.SaveChanges();
                     }

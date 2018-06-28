@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
+            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -50,6 +51,7 @@
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -59,7 +61,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.Aktivni = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid_task = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -69,15 +71,16 @@
             this.collogin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BrKomentara = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Zavrseni = new DevExpress.XtraTab.XtraTabPage();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon();
-            this.toastNotificationsManager1 = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
-            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon();
-            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.toastNotificationsTask = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
+            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon(this.components);
+            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), false, false);
-            this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -88,8 +91,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsKomentar)).BeginInit();
             this.SuspendLayout();
             // 
             // coldatum
@@ -309,6 +313,15 @@
             this.barButtonItem14.Name = "barButtonItem14";
             this.barButtonItem14.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem14.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem14_ItemClick);
+            // 
+            // barButtonItem15
+            // 
+            this.barButtonItem15.Caption = "Taskovi";
+            this.barButtonItem15.Id = 1;
+            this.barButtonItem15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.Image")));
+            this.barButtonItem15.Name = "barButtonItem15";
+            this.barButtonItem15.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -579,12 +592,13 @@
             this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
-            // toastNotificationsManager1
+            // toastNotificationsTask
             // 
-            this.toastNotificationsManager1.ApplicationId = "c65ba894-3c54-4851-85e5-cdb49d097c02";
-            this.toastNotificationsManager1.ApplicationName = "AbacusSUPP";
-            this.toastNotificationsManager1.Notifications.AddRange(new DevExpress.XtraBars.ToastNotifications.IToastNotificationProperties[] {
-            new DevExpress.XtraBars.ToastNotifications.ToastNotification("041e1435-c832-4a12-948e-1b0ff6353038", ((System.Drawing.Image)(resources.GetObject("toastNotificationsManager1.Notifications"))), "", "Novi task!", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationSound.IM, DevExpress.XtraBars.ToastNotifications.ToastNotificationDuration.Default, DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.Text01)});
+            this.toastNotificationsTask.ApplicationId = "c65ba894-3c54-4851-85e5-cdb49d097c02";
+            this.toastNotificationsTask.ApplicationName = "AbacusSUPP";
+            this.toastNotificationsTask.Notifications.AddRange(new DevExpress.XtraBars.ToastNotifications.IToastNotificationProperties[] {
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("041e1435-c832-4a12-948e-1b0ff6353038", ((System.Drawing.Image)(resources.GetObject("toastNotificationsTask.Notifications"))), "", "Novi task!", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationSound.IM, DevExpress.XtraBars.ToastNotifications.ToastNotificationDuration.Default, DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.Text01)});
+            this.toastNotificationsTask.Activated += new System.EventHandler<DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs>(this.toastNotificationsTask_Activated);
             // 
             // notifyIconNotifikacija
             // 
@@ -605,20 +619,26 @@
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
-            // barButtonItem15
+            // simpleButton1
             // 
-            this.barButtonItem15.Caption = "Taskovi";
-            this.barButtonItem15.Id = 1;
-            this.barButtonItem15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.Image")));
-            this.barButtonItem15.Name = "barButtonItem15";
-            this.barButtonItem15.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
+            this.simpleButton1.Location = new System.Drawing.Point(854, 97);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(91, 23);
+            this.simpleButton1.TabIndex = 6;
+            this.simpleButton1.Text = "show in taskbar";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // toastNotificationsKomentar
+            // 
+            this.toastNotificationsKomentar.ApplicationId = "377853e6-0719-4ea9-89f3-f5db7e72b26c";
+            this.toastNotificationsKomentar.ApplicationName = "AbacusSUPP";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 437);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
@@ -643,8 +663,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsTask)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsKomentar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,7 +710,7 @@
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager toastNotificationsManager1;
+        private DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager toastNotificationsTask;
         private System.Windows.Forms.NotifyIcon notifyIconNotifikacija;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
@@ -701,5 +722,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem15;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager toastNotificationsKomentar;
     }
 }
