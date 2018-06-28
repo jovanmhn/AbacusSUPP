@@ -21,6 +21,7 @@ namespace AbacusSUPP
         
         //AbacusSUPEntities Baza { get; set; }
         List<Task> Main_lista = new List<Task>();
+        AbacusSUPEntities Baza { get; set; }
 
         public FormMain(Login operater, ProgressBarControl progressBar)
         {
@@ -28,8 +29,8 @@ namespace AbacusSUPP
             progressBar.PerformStep();
             progressBar.Update();
 
-            var Baza = new AbacusSUPEntities();
-            taskBindingSource.DataSource = Main_lista = Baza.Task.AsNoTracking().OrderByDescending(qq => qq.datum).ToList();
+             Baza = new AbacusSUPEntities();
+            taskBindingSource.DataSource = Main_lista = Baza.Task.ToList();
 
             progressBar.PerformStep();
             progressBar.Update();
@@ -121,11 +122,9 @@ namespace AbacusSUPP
 
             if (res == DialogResult.OK)
             {
-                var db = new AbacusSUPEntities();
-                
-                Main_lista.Add(db.Task.FirstOrDefault(qq=>qq.id_task==task.id_task));
-                int index = Main_lista.IndexOf(task);
-                gridView1.FocusedRowHandle = gridView1.GetRowHandle(index);
+                 Baza = new AbacusSUPEntities();
+                var new_task = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task);
+                Main_lista.Add(new_task);
                 gridView1.RefreshData();
             }
             
@@ -147,7 +146,7 @@ namespace AbacusSUPP
                 {
                     if (frmtm.DialogResult == DialogResult.OK)
                     {
-                        var Baza = new AbacusSUPEntities();
+                         Baza = new AbacusSUPEntities();
                         gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
                         gridView1.RefreshData();
                     }
@@ -232,7 +231,9 @@ namespace AbacusSUPP
             {
                 if (e.RowHandle >= 0)
                 {
+                    
                     var row = (Task)gridView1.GetRow(e.RowHandle);
+                    /*
                     if (!OperaterLogin.seen_tasks.Contains(row.id_task))
                     {
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
@@ -245,7 +246,7 @@ namespace AbacusSUPP
                             e.Graphics.DrawRectangle(p, rect);
                         }
                         e.Handled = true;
-                    }
+                    }*/
                     var Baza = new AbacusSUPEntities();
                     if(Baza.VezaLT.ToList().FirstOrDefault(qq=>qq.id_task==row.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                     {
@@ -391,10 +392,13 @@ namespace AbacusSUPP
                 {
                     int index = Main_lista.IndexOf(task);
                     Main_lista.Remove(task);
+                    var db = new AbacusSUPEntities();
+                    //var editovan = Baza.Task.First(qq => qq.id_task == task.id_task);
 
-                    var Baza = new AbacusSUPEntities();
-                    Task novi = Baza.Task.First(qq => qq.id_task == task.id_task);
+                   
+                    Task novi = db.Task.First(qq => qq.id_task == task.id_task);
                     Main_lista.Insert(index, novi);
+                    db.Entry(novi).Reload();
                     //gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
                     gridView1.RefreshData();
                 }

@@ -13,8 +13,8 @@ namespace AbacusSUPP
 {
     public partial class FormAddTask : DevExpress.XtraEditors.XtraForm
     {
-        public Task task { get; set; }
-        //AbacusSUPEntities Baza { get; set; }
+        public Task task = new Task();
+        AbacusSUPEntities Baza { get; set; }
         bool sacuvano = false;
         List<int> idoperatera = new List<int>();
         List<VezaLT> listaveza_old = new List<VezaLT>();
@@ -22,28 +22,28 @@ namespace AbacusSUPP
         public FormAddTask(Task _task)
         {
             InitializeComponent();
-            var Baza = new AbacusSUPEntities();
-             
+            Baza = new AbacusSUPEntities();
+
             partneriBindingSource.DataSource = Baza.Partneri.ToList();
             statusBindingSource.DataSource = Baza.Status.ToList();
             prioritetBindingSource.DataSource = Baza.Prioritet.ToList();
-            gridControl1.DataSource = Baza.Login.ToList().OrderBy(qq=>qq.id);
+            gridControl1.DataSource = Baza.Login.ToList().OrderBy(qq => qq.id);
             this.DialogResult = DialogResult.Cancel;
 
             if (_task.id_task == 0)
             {
-                task = _task;    
+                task = _task;
             }
             else
             {
                 isEdit = true;
                 Baza = new AbacusSUPEntities();
-                task = Baza.Task.First(qq=> qq.id_task == _task.id_task);
-                
+                task = Baza.Task.First(qq => qq.id_task == _task.id_task);
+
                 listaveza_old = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
-                
+
                 List<Login> datasource = Baza.Login.OrderBy(qq => qq.id).ToList();
-                
+
 
                 Baza.VezaLT.RemoveRange(listaveza_old);
                 Baza.SaveChanges();
@@ -54,7 +54,7 @@ namespace AbacusSUPP
                 {
                     idoperatera.Add(veza.id_login);
                 }
-                foreach(int id in idoperatera)
+                foreach (int id in idoperatera)
                 {
 
                     //int handle = datasource.IndexOf(datasource.First(qq => qq.id == id));
@@ -68,15 +68,22 @@ namespace AbacusSUPP
 
             taskbindingSource.Add(task);
 
-            
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+
             
-            //Baza.SaveChanges();
-            var Baza = new AbacusSUPEntities();
+            //var Baza = new AbacusSUPEntities();
             if (!isEdit) Baza.Task.Add(task);
+            else
+            {
+                foreach (Binding bind in taskbindingSource.CurrencyManager.Bindings)
+                bind.WriteValue();
+                    
+                
+            }
             Baza.SaveChanges();
 
             int[] handlelista = gridView1.GetSelectedRows();
@@ -91,12 +98,12 @@ namespace AbacusSUPP
                     veza.id_login = login.id;
                     if (task.status_id == 1) veza.isActive = true;
                     else veza.isActive = false;
-                    Baza.VezaLT.Add(veza); 
+                    Baza.VezaLT.Add(veza);
                 }
             }
             Baza.SaveChanges();
             sacuvano = true;
-            if(!Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            if (!Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
                 Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
             }
@@ -121,7 +128,7 @@ namespace AbacusSUPP
 
         private void FormAddTask_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (this.DialogResult != DialogResult.OK)
             {
                 /*
@@ -142,9 +149,9 @@ namespace AbacusSUPP
                 {
                     if (listaveza_old.Count > 0)
                     {
-                        var Baza = new AbacusSUPEntities();
-                        Baza.VezaLT.AddRange(listaveza_old);
-                        Baza.SaveChanges();
+                        var Db = new AbacusSUPEntities();
+                        Db.VezaLT.AddRange(listaveza_old);
+                        Db.SaveChanges();
                     }
                 }
                 catch (Exception ex)
