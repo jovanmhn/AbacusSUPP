@@ -37,6 +37,7 @@ namespace AbacusSUPP
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
+            //this.IsMdiContainer = true;
             task = Baza.Task.First(qq=>qq.id_task==_task.id_task);
             if (task == null) { MessageBox.Show("Neki problem sa taskom."); this.Close(); }
             this.Text += " - " + task.naslov.ToString();
@@ -320,10 +321,10 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            FormDodajKomentar frmdkom = new FormDodajKomentar(task);
+            FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
+            //frmdkom.MdiParent = this;
             frmdkom.ShowDialog();
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
-            layoutView1.RefreshData();
+            
         }
 
         private void richEditControl1_KeyUp(object sender, KeyEventArgs e)
@@ -414,13 +415,14 @@ namespace AbacusSUPP
 
         private void FormTaskMain_Shown(object sender, EventArgs e)
         {
-            Program.MainForm.WindowState = FormWindowState.Minimized;           
+            //Program.MainForm.WindowState = FormWindowState.Minimized;           
         }
 
         private void FormTaskMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            Program.MainForm.WindowState = FormWindowState.Maximized;
+            
+            //Program.MainForm.WindowState = FormWindowState.Maximized;
         }
 
         private void richEditControl1_Enter(object sender, EventArgs e)

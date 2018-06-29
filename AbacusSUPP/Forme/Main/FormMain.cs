@@ -141,13 +141,26 @@ namespace AbacusSUPP
             {
                 OperaterLogin.seen_tasks.Add(task.id_task);
                 FormTaskMain frmtm = new FormTaskMain(task, splashScreenManager1);
+                frmtm.MdiParent = this;
+                xtraTabControl1.Visible = false;
+
                 frmtm.Show();
-                frmtm.FormClosed += (ss, ee) =>         //NOVO**
+                frmtm.FormClosed += (ss, ee) =>         //NOVO**    
                 {
                     if (frmtm.DialogResult == DialogResult.OK)
                     {
-                         Baza = new AbacusSUPEntities();
-                        gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                        Task local = Main_lista.First(qq => qq.id_task == task.id_task);
+                        int index = Main_lista.IndexOf(local);
+                        Main_lista.Remove(local);
+                        var db = new AbacusSUPEntities();
+                        //var editovan = Baza.Task.First(qq => qq.id_task == task.id_task);
+
+                        xtraTabControl1.Visible = true;
+                        Task novi = db.Task.First(qq => qq.id_task == task.id_task);
+                        Main_lista.Insert(index, novi);
+                        db.Entry(novi).Reload();
+                        //gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=>qq.datum);
+                        Main_lista.OrderByDescending(qq => qq.datum);
                         gridView1.RefreshData();
                     }
                 };
@@ -367,7 +380,7 @@ namespace AbacusSUPP
             
             
         }
-        public void deleteTask(Task taskzaDelete)
+        public void deleteTask(Task taskzaDelete) // ne koristi se!
         {
             //int id = taskzaDelete.id_task;
             //List<Komentar> listakom = Baza.Komentar.Where(qq => qq.id_task == id).ToList();           
