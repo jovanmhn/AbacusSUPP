@@ -246,25 +246,16 @@ namespace AbacusSUPP
                 {
                     
                     var row = (Task)gridView1.GetRow(e.RowHandle);
-                    /*
-                    if (!OperaterLogin.seen_tasks.Contains(row.id_task))
+
+                    if (row!=null)
                     {
-                        Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
-                        e.Cache.DrawImage(image, e.Bounds.Left + 15, e.Bounds.Top + 15);
-                        using (Pen p = new Pen(Color.Salmon, 1))
+                        var Baza = new AbacusSUPEntities();
+                        Task red = Baza.Task.First(qq => qq.id_task == row.id_task);
+                        if (Baza.VezaLT.ToList().FirstOrDefault(qq => qq.id_task == red.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                         {
-                            Rectangle rect = e.Bounds;
-                            rect.Width -= 1;
-                            rect.Height -= 1;
-                            e.Graphics.DrawRectangle(p, rect);
-                        }
-                        e.Handled = true;
-                    }*/
-                    var Baza = new AbacusSUPEntities();
-                    if(Baza.VezaLT.ToList().FirstOrDefault(qq=>qq.id_task==row.id_task && qq.id_login == OperaterLogin.operater.id) != null)
-                    {
-                        Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("feature_16x16.png")];
-                        e.Cache.DrawImage(image, e.Bounds.Left + 45, e.Bounds.Top + 15);
+                            Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("feature_16x16.png")];
+                            e.Cache.DrawImage(image, e.Bounds.Left + 45, e.Bounds.Top + 15);
+                        } 
                     }
 
                 }
@@ -362,7 +353,7 @@ namespace AbacusSUPP
         {
             var Baza = new AbacusSUPEntities();
             Task zaDel = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
-            Main_lista.Remove(zaDel);
+            Main_lista.Remove(Main_lista.First(qq=> qq.id_task==zaDel.id_task));
             Baza.Task.Remove(Baza.Task.First(qq=>qq.id_task==zaDel.id_task));
             Baza.SaveChanges();
 
@@ -376,6 +367,7 @@ namespace AbacusSUPP
                 MessageBox.Show(ex.Message) ;
             }
             //gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+            Main_lista.OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
             
             

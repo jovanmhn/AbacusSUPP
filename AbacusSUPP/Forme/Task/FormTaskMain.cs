@@ -126,7 +126,7 @@ namespace AbacusSUPP
                 this.DialogResult = DialogResult.OK;
                 this.Close(); 
             }
-            if (task.status_id == 2)
+            else if (task.status_id == 2)
             {
 
                 if (XtraMessageBox.Show("Ovaj task je zatvoren. Otvoriti opet?","Provjera",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)

@@ -98,12 +98,13 @@ namespace AbacusSUPP
                 {
                     System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                 }
-                a.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + count.ToString());
-                var b = image.Range;
+                a.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + count.ToString()+".bmp");
+                DocumentRange b = image.Range;
                 richEditControl1.Document.Delete(b);
                 //var d = 200 * a.Height / a.Width;
                 var c = AbacusSUPP.Helper.ResizeImage(a, 200, 200 * a.Height / a.Width);
                 imageCollection.Insert(richEditControl1.Document.CaretPosition, c);
+                
 
                 count++;
 

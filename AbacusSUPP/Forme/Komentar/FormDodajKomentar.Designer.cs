@@ -36,9 +36,12 @@
             // simpleButton1
             // 
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Appearance.BackColor = System.Drawing.SystemColors.Window;
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(510, 196);
+            this.simpleButton1.Location = new System.Drawing.Point(509, 195);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(45, 45);
             this.simpleButton1.TabIndex = 1;
