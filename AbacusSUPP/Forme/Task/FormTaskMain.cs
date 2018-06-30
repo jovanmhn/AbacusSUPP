@@ -266,11 +266,13 @@ namespace AbacusSUPP
             {
                 var row = (Komentar)e.Row;
 
-
-                if (row != null)
-                {                    
-                    e.Value = AbacusSUPP.Helper.GetImageFromByteArray(row.Login.avatar);
+                var db = new AbacusSUPEntities();
+                Komentar kom = db.Komentar.FirstOrDefault(qq => qq.id == row.id);
+                if (kom != null)
+                {
+                    e.Value = AbacusSUPP.Helper.GetImageFromByteArray(kom.Login.avatar);
                 }
+                else MessageBox.Show("Nesto ne valja.");
 
 
             }
@@ -446,7 +448,9 @@ namespace AbacusSUPP
 
             if (e.RowHandle >= 0)
             {
-                Komentar kom = (Komentar)layoutView1.GetRow(e.RowHandle);
+                var db = new AbacusSUPEntities();
+                Komentar kom1 = (Komentar)layoutView1.GetRow(e.RowHandle);
+                Komentar kom = db.Komentar.FirstOrDefault(qq => qq.id == kom1.id);
                 if (kom != null && kom.Login.outline_kom == true)
                 {
                     e.DefaultDraw();

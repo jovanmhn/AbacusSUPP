@@ -250,8 +250,8 @@ namespace AbacusSUPP
                     if (row!=null)
                     {
                         var Baza = new AbacusSUPEntities();
-                        Task red = Baza.Task.First(qq => qq.id_task == row.id_task);
-                        if (Baza.VezaLT.ToList().FirstOrDefault(qq => qq.id_task == red.id_task && qq.id_login == OperaterLogin.operater.id) != null)
+                        Task red = Baza.Task.FirstOrDefault(qq => qq.id_task == row.id_task);
+                        if (red!=null && Baza.VezaLT.ToList().FirstOrDefault(qq => qq.id_task == red.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                         {
                             Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("feature_16x16.png")];
                             e.Cache.DrawImage(image, e.Bounds.Left + 45, e.Bounds.Top + 15);
