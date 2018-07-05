@@ -41,6 +41,7 @@
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
@@ -52,6 +53,7 @@
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -79,7 +81,6 @@
             this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon(this.components);
             this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), false, false);
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu2)).BeginInit();
@@ -113,6 +114,7 @@
             // ribbonControl1
             // 
             this.ribbonControl1.ApplicationButtonDropDownControl = this.applicationMenu2;
+            this.ribbonControl1.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -134,15 +136,23 @@
             this.barButtonItem12,
             this.barButtonItem13,
             this.barButtonItem14,
-            this.barButtonItem15});
+            this.barButtonItem15,
+            this.barButtonItem16,
+            this.barButtonItem17});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 2;
+            this.ribbonControl1.MaxItemId = 6;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
+            this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl1.Size = new System.Drawing.Size(957, 162);
+            this.ribbonControl1.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.False;
+            this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
+            this.ribbonControl1.ShowQatLocationSelector = false;
+            this.ribbonControl1.ShowToolbarCustomizeItem = false;
+            this.ribbonControl1.Size = new System.Drawing.Size(957, 143);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
+            this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // applicationMenu2
             // 
@@ -198,7 +208,8 @@
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem16)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // barButtonItem8
@@ -225,6 +236,15 @@
             this.barButtonItem10.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem10.ImageOptions.LargeImage")));
             this.barButtonItem10.Name = "barButtonItem10";
             this.barButtonItem10.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
+            // 
+            // barButtonItem16
+            // 
+            this.barButtonItem16.Caption = "Samo moje taskove";
+            this.barButtonItem16.Id = 2;
+            this.barButtonItem16.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem16.ImageOptions.Image")));
+            this.barButtonItem16.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem16.ImageOptions.LargeImage")));
+            this.barButtonItem16.Name = "barButtonItem16";
+            this.barButtonItem16.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem16_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -257,6 +277,8 @@
             // 
             this.barStaticItem1.Caption = "barStaticItem1";
             this.barStaticItem1.Id = 17;
+            this.barStaticItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barStaticItem1.ImageOptions.Image")));
+            this.barStaticItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barStaticItem1.ImageOptions.LargeImage")));
             this.barStaticItem1.Name = "barStaticItem1";
             // 
             // barButtonItem11
@@ -323,6 +345,15 @@
             this.barButtonItem15.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
+            // barButtonItem17
+            // 
+            this.barButtonItem17.Caption = "Zatvori task";
+            this.barButtonItem17.Id = 3;
+            this.barButtonItem17.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem17.ImageOptions.Image")));
+            this.barButtonItem17.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem17.ImageOptions.LargeImage")));
+            this.barButtonItem17.Name = "barButtonItem17";
+            this.barButtonItem17.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem17_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -377,10 +408,10 @@
             this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 168);
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 149);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.Aktivni;
-            this.xtraTabControl1.Size = new System.Drawing.Size(957, 242);
+            this.xtraTabControl1.Size = new System.Drawing.Size(957, 261);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Aktivni,
@@ -390,7 +421,7 @@
             // 
             this.Aktivni.Controls.Add(this.gridControl1);
             this.Aktivni.Name = "Aktivni";
-            this.Aktivni.Size = new System.Drawing.Size(955, 213);
+            this.Aktivni.Size = new System.Drawing.Size(955, 232);
             this.Aktivni.Text = "Aktivni";
             // 
             // gridControl1
@@ -405,7 +436,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbonControl1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(955, 213);
+            this.gridControl1.Size = new System.Drawing.Size(955, 232);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -430,7 +461,7 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -556,7 +587,7 @@
             // Zavrseni
             // 
             this.Zavrseni.Name = "Zavrseni";
-            this.Zavrseni.Size = new System.Drawing.Size(955, 213);
+            this.Zavrseni.Size = new System.Drawing.Size(955, 232);
             this.Zavrseni.Text = "Zavrseni";
             // 
             // imageCollection1
@@ -569,12 +600,14 @@
             this.imageCollection1.Images.SetKeyName(4, "newtask_16x16.png");
             this.imageCollection1.Images.SetKeyName(5, "zubcanik_notif_Ld7_icon.ico");
             this.imageCollection1.Images.SetKeyName(6, "feature_16x16.png");
+            this.imageCollection1.Images.SetKeyName(7, "zubcanik 100ico.png");
             // 
             // popupMenu1
             // 
             this.popupMenu1.ItemLinks.Add(this.barSubItem1);
-            this.popupMenu1.ItemLinks.Add(this.barButtonItem4);
+            this.popupMenu1.ItemLinks.Add(this.barButtonItem17);
             this.popupMenu1.ItemLinks.Add(this.barButtonItem5);
+            this.popupMenu1.ItemLinks.Add(this.barButtonItem4);
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbonControl1;
             // 
@@ -597,7 +630,7 @@
             this.toastNotificationsTask.ApplicationName = "AbacusSUPP";
             this.toastNotificationsTask.Notifications.AddRange(new DevExpress.XtraBars.ToastNotifications.IToastNotificationProperties[] {
             new DevExpress.XtraBars.ToastNotifications.ToastNotification("041e1435-c832-4a12-948e-1b0ff6353038", ((System.Drawing.Image)(resources.GetObject("toastNotificationsTask.Notifications"))), "", "Novi task!", "", DevExpress.XtraBars.ToastNotifications.ToastNotificationSound.IM, DevExpress.XtraBars.ToastNotifications.ToastNotificationDuration.Default, DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.Text01)});
-            this.toastNotificationsTask.Activated += new System.EventHandler<DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs>(this.toastNotificationsTask_Activated);
+            this.toastNotificationsTask.Activated += new System.EventHandler<DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs>(this.toastNotificationsTask_Activated_1);
             // 
             // notifyIconNotifikacija
             // 
@@ -618,30 +651,23 @@
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(854, 97);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(91, 23);
-            this.simpleButton1.TabIndex = 6;
-            this.simpleButton1.Text = "show in taskbar";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // toastNotificationsKomentar
             // 
-            this.toastNotificationsKomentar.ApplicationId = "377853e6-0719-4ea9-89f3-f5db7e72b26c";
+            this.toastNotificationsKomentar.ApplicationId = "c65ba894-3c54-4851-85e5-cdb49d097c02";
             this.toastNotificationsKomentar.ApplicationName = "AbacusSUPP";
+            this.toastNotificationsKomentar.Notifications.AddRange(new DevExpress.XtraBars.ToastNotifications.IToastNotificationProperties[] {
+            new DevExpress.XtraBars.ToastNotifications.ToastNotification("6b7812e3-e69b-44d9-8fe2-7605fc7ce833", ((System.Drawing.Image)(resources.GetObject("toastNotificationsKomentar.Notifications"))), "Pellentesque lacinia tellus eget volutpat", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i" +
+                    "ncididunt ut labore et dolore magna aliqua.", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor i" +
+                    "ncididunt ut labore et dolore magna aliqua.", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.Text01)});
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 437);
-            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "FormMain";
@@ -721,7 +747,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem15;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager toastNotificationsKomentar;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem16;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem17;
     }
 }

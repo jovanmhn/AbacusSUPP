@@ -51,15 +51,19 @@ namespace AbacusSUPP
                 id_task = task.id_task
             };
             int id = 0;
-            Baza.Komentar.Add(kom);
-            Baza.SaveChanges();
-            gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            var db = new AbacusSUPEntities();
+            db.Komentar.Add(kom);
+            db.SaveChanges();
+            db.Entry(kom).Reload();
+            var db2 = new AbacusSUPEntities();
+            gridControl1.DataSource = db2.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
+            //var x = kom.Login.username;
             
-            string[] fajlovi = null;
+            List<string> fajlovi = new List<string>();
             if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
-                fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()).ToList();
                 id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
                 if (id != 0)
                 {
@@ -70,10 +74,14 @@ namespace AbacusSUPP
                     XtraMessageBox.Show("Komentar_id vratio 0! (folder ime)"); goto kraj;
                 }
             }
-            else { XtraMessageBox.Show("Nema task foldera!"); goto kraj; }
-            foreach (string fajl in fajlovi)
+            else { Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()); };
+            if (fajlovi.Count>0)
             {
-                System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
+
+                foreach (string fajl in fajlovi)
+                {
+                    System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
+                }
             }
             
 

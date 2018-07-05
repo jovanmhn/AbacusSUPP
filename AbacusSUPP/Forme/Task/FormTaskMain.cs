@@ -56,7 +56,7 @@ namespace AbacusSUPP
             if (task.status_id == 2)
             {
                 labelControl6.Visible = true;
-                labelControl6.Text = "Datum zatvaranja"+task.datum_zatv.ToString();
+                labelControl6.Text = "Task zatvorio "+task.Login1.username.ToString()+", "+task.datum_zatv.ToString();
             }
             this.Text = task.naslov;
             labelControl5.Text = task.naslov;
@@ -96,10 +96,6 @@ namespace AbacusSUPP
                 splashscreenmanager.CloseWaitForm();
             }
 
-            this.WindowState = FormWindowState.Maximized;
-            this.Focus();
-            this.BringToFront();
-
             repositoryItemPictureEdit1.ContextMenuStrip = new ContextMenuStrip(); //da nema right click meni
             richEditControl1.Options.Behavior.ShowPopupMenu = DocumentCapability.Disabled;
 
@@ -111,6 +107,7 @@ namespace AbacusSUPP
         {
             if (task.status_id==1)
             {
+                var Baza = new AbacusSUPEntities();
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
