@@ -13,6 +13,7 @@ namespace AbacusSUPP
         public static Settings podesavanja { get; set; } // ovo se ne koristi vise
         public static List<Komentar> stara_kom_lista { get; set; }
         public static List<Task> main_lista { get; set; }
+        public static bool NotifOverride { get; set; }
         
     }
     

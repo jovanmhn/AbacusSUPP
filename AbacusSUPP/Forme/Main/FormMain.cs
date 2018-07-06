@@ -18,15 +18,16 @@ namespace AbacusSUPP
 {
     public partial class FormMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        Dictionary<string, Task> Notifications { get; set; }
-
+        Dictionary<string, Task> NotificationsTask { get; set; }
+        Dictionary<string, Komentar> NotificationsKomentar { get; set; }
         //AbacusSUPEntities Baza { get; set; }
         List<Task> Main_lista = new List<Task>();
         AbacusSUPEntities Baza { get; set; }
 
         public FormMain(Login operater, ProgressBarControl progressBar)
         {
-            Notifications = new Dictionary<string, Task>();
+            NotificationsTask = new Dictionary<string, Task>();
+            NotificationsKomentar = new Dictionary<string, Komentar>();
 
             InitializeComponent();
             progressBar.PerformStep();
@@ -141,6 +142,8 @@ namespace AbacusSUPP
                 Baza = new AbacusSUPEntities();
                 var new_task = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task);
                 Main_lista.Add(new_task);
+                Main_lista.OrderByDescending(qq => qq.datum);
+                taskBindingSource.DataSource = Main_lista.OrderByDescending(qq => qq.datum);
                 gridView1.RefreshData();
             }
 
@@ -468,7 +471,7 @@ namespace AbacusSUPP
         {
             timer1.Stop();
             var Baza = new AbacusSUPEntities();
-
+            
 
             List<Task> stara_lista = Main_lista.OrderByDescending(qq => qq.datum).ToList();
             List<Task> nova_lista = Baza.Task.OrderByDescending(qq => qq.datum).ToList();
@@ -493,7 +496,7 @@ namespace AbacusSUPP
                     if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                     {
 
-                        if (OperaterLogin.operater.Podesavanja.novitask_notif && novi.Login.id != OperaterLogin.operater.id)  // ako su podesavanja ispravna i operater razlicit od logovanog
+                        if (OperaterLogin.operater.Podesavanja.novitask_notif && novi.Login.id != OperaterLogin.operater.id && OperaterLogin.NotifOverride)  // ako su podesavanja ispravna i operater razlicit od logovanog
                         {
 
                             //toastNotificationsTask.Activated += (ss, ee) =>         //NOVO**
@@ -510,11 +513,11 @@ namespace AbacusSUPP
                                 ID = guid,
                                 Body = novi.Login.username + " je otvorio novi task, " + novi.naslov + "!",
                                 Sound = DevExpress.XtraBars.ToastNotifications.ToastNotificationSound.IM,
-                                Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("zubcanik 100ico.png")],
+                                
                                 
                             };
-                            
-                            Notifications.Add(guid, novi);
+                            //notification.Image = notification.AppLogoImage;
+                            NotificationsTask.Add(guid, novi);
                             toastNotificationsTask.Notifications.Add(notification);
                             toastNotificationsTask.ShowNotification(notification);
 
@@ -558,20 +561,22 @@ namespace AbacusSUPP
                     if (listaveza.Where(qq => qq.id_task == novi.id_task && qq.id_login == OperaterLogin.operater.id) != null)
                     {
 
-                        if (OperaterLogin.operater.Podesavanja.novikom_notif && OperaterLogin.operater.id != novi.Login.id) // ako podesavanj dozvoljavaju i ako je komentar od operatera koji nije trenutno logovan
+                        if (OperaterLogin.operater.Podesavanja.novikom_notif && OperaterLogin.operater.id != novi.Login.id && OperaterLogin.NotifOverride) // ako podesavanj dozvoljavaju i ako je komentar od operatera koji nije trenutno logovan
                         {
-                            toastNotificationsKomentar.Activated += (ss, ee) =>         //NOVO**
+                            string guid = Guid.NewGuid().ToString();
+                            var notification = new DevExpress.XtraBars.ToastNotifications.ToastNotification()
                             {
+                                ID = guid,
+                                Body = novi.Login.username + " je dodao novi komentar na task, " + novi.Task.naslov + "!",
+                                Sound = DevExpress.XtraBars.ToastNotifications.ToastNotificationSound.IM,
 
 
-                                //FormTaskMain frmtm = new FormTaskMain(novi.Task);
-                                //frmtm.Show();
-
-                                MessageBox.Show("Komentar notifikacija kliknuta!");
                             };
-
-                            toastNotificationsKomentar.Notifications[0].Body = "Novi komentar od" + novi.Login.username.ToString() + " na tasku " + novi.Task.naslov.ToString();
-                            toastNotificationsKomentar.ShowNotification(toastNotificationsTask.Notifications[0]);
+                            //notification.Image = notification.AppLogoImage;
+                            NotificationsKomentar.Add(guid, novi);
+                            toastNotificationsKomentar.Notifications.Add(notification);
+                            toastNotificationsKomentar.ShowNotification(notification);
+                            
 
                         }
                         if (this.WindowState == FormWindowState.Minimized && OperaterLogin.operater.Podesavanja.minimize_tray)
@@ -784,14 +789,40 @@ namespace AbacusSUPP
         private void toastNotificationsTask_Activated_1(object sender, DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs e)
         {
             string guid = (string)e.NotificationID;
-            if (Notifications.ContainsKey(guid))
+            if (NotificationsTask.ContainsKey(guid))
             {
-                Task task = Notifications[guid];
-                Notifications.Remove(guid);
+                Task task = NotificationsTask[guid];
+                NotificationsTask.Remove(guid);
 
                 FormTaskMain frmtask = new FormTaskMain(task);
                 frmtask.Show();
 
+            }
+        }
+
+        private void toastNotificationsKomentar_Activated(object sender, DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs e)
+        {
+            string guid = (string)e.NotificationID;
+            if (NotificationsKomentar.ContainsKey(guid))
+            {
+                Task task = NotificationsKomentar[guid].Task;
+                NotificationsKomentar.Remove(guid);
+
+                FormTaskMain frmtask = new FormTaskMain(task);
+                frmtask.Show();
+
+            }
+        }
+
+        private void barToggleSwitchItem1_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (barToggleSwitchItem1.Checked)
+            {
+                OperaterLogin.NotifOverride = false;
+            }
+            else
+            {
+                OperaterLogin.NotifOverride = true;
             }
         }
     }
