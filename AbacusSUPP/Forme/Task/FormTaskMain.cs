@@ -320,9 +320,16 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
-            //frmdkom.MdiParent = this;
-            frmdkom.ShowDialog();
+            if (task.status_id==1)
+            {
+                FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
+                //frmdkom.MdiParent = this;
+                frmdkom.ShowDialog(); 
+            }
+            else
+            {
+                XtraMessageBox.Show( "Task je zatvoren, dodavanje komentara nije moguće!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             
         }
 

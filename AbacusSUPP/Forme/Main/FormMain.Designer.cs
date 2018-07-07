@@ -73,7 +73,6 @@
             this.colprioritet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collogin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BrKomentara = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Zavrseni = new DevExpress.XtraTab.XtraTabPage();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -427,8 +426,7 @@
             this.xtraTabControl1.Size = new System.Drawing.Size(957, 261);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.Aktivni,
-            this.Zavrseni});
+            this.Aktivni});
             // 
             // Aktivni
             // 
@@ -443,7 +441,6 @@
             this.gridControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gridControl1.DataSource = this.taskBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gridControl1.EmbeddedNavigator.BackgroundImage")));
             this.gridControl1.EmbeddedNavigator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
@@ -597,12 +594,6 @@
             this.BrKomentara.VisibleIndex = 6;
             this.BrKomentara.Width = 62;
             // 
-            // Zavrseni
-            // 
-            this.Zavrseni.Name = "Zavrseni";
-            this.Zavrseni.Size = new System.Drawing.Size(955, 232);
-            this.Zavrseni.Text = "Zavrseni";
-            // 
             // imageCollection1
             // 
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
@@ -719,7 +710,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage Aktivni;
-        private DevExpress.XtraTab.XtraTabPage Zavrseni;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;

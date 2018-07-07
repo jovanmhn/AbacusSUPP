@@ -103,7 +103,7 @@
             this.panelControl1.Controls.Add(this.gridControl1);
             this.panelControl1.Location = new System.Drawing.Point(0, 130);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(821, 350);
+            this.panelControl1.Size = new System.Drawing.Size(1132, 417);
             this.panelControl1.TabIndex = 0;
             // 
             // simpleButton1
@@ -111,9 +111,10 @@
             this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Red;
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.simpleButton1.Appearance.Options.UseBorderColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(712, 308);
+            this.simpleButton1.Location = new System.Drawing.Point(1023, 375);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(104, 37);
             this.simpleButton1.TabIndex = 16;
@@ -132,7 +133,7 @@
             this.repositoryItemRichTextEdit1,
             this.repositoryItemPictureEdit1,
             this.repositoryItemButtonEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(817, 346);
+            this.gridControl1.Size = new System.Drawing.Size(1128, 413);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutView1});
@@ -254,6 +255,7 @@
             this.coldatum.FieldName = "datum";
             this.coldatum.LayoutViewField = this.layoutViewField_coldatum;
             this.coldatum.Name = "coldatum";
+            this.coldatum.OptionsColumn.AllowEdit = false;
             this.coldatum.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.coldatum.OptionsColumn.ReadOnly = true;
             this.coldatum.OptionsFilter.AllowFilter = false;
@@ -286,6 +288,7 @@
             this.colLogin.FieldName = "Login.username";
             this.colLogin.LayoutViewField = this.layoutViewField_colLogin;
             this.colLogin.Name = "colLogin";
+            this.colLogin.OptionsColumn.AllowEdit = false;
             this.colLogin.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colLogin.OptionsColumn.ReadOnly = true;
             this.colLogin.OptionsField.SortFilterButtonShowMode = DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.Nowhere;
@@ -557,7 +560,7 @@
             this.richEditControl1.Appearance.Text.Image = ((System.Drawing.Image)(resources.GetObject("richEditControl1.Appearance.Text.Image")));
             this.richEditControl1.Appearance.Text.Options.UseImage = true;
             this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.richEditControl1.Location = new System.Drawing.Point(691, 5);
+            this.richEditControl1.Location = new System.Drawing.Point(1002, 5);
             this.richEditControl1.Name = "richEditControl1";
             this.richEditControl1.Size = new System.Drawing.Size(65, 31);
             this.richEditControl1.TabIndex = 17;
@@ -570,7 +573,7 @@
             // simpleButton3
             // 
             this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton3.Location = new System.Drawing.Point(762, 6);
+            this.simpleButton3.Location = new System.Drawing.Point(1073, 6);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(47, 30);
             this.simpleButton3.TabIndex = 12;
@@ -582,7 +585,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 479);
+            this.ClientSize = new System.Drawing.Size(1132, 546);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.richEditControl1);
             this.Controls.Add(this.labelControl6);

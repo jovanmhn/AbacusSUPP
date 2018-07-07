@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDodajKomentar));
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 
             // simpleButton1
@@ -60,13 +61,30 @@
             this.richEditControl1.TabIndex = 0;
             this.richEditControl1.ContentChanged += new System.EventHandler(this.richEditControl1_ContentChanged);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton2.Appearance.BackColor = System.Drawing.SystemColors.Window;
+            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButton2.Location = new System.Drawing.Point(509, 1);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(45, 45);
+            this.simpleButton2.TabIndex = 2;
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // FormDodajKomentar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 241);
+            this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.richEditControl1);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDodajKomentar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -78,5 +96,6 @@
         #endregion
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
     }
 }

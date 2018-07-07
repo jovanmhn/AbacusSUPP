@@ -90,7 +90,6 @@
             this.lookUpEdit1.Properties.NullText = "";
             this.lookUpEdit1.Properties.NullValuePrompt = "Partner";
             this.lookUpEdit1.Properties.NullValuePromptShowForEmptyValue = true;
-            this.lookUpEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit1.Properties.ValueMember = "id";
             this.lookUpEdit1.Size = new System.Drawing.Size(191, 20);
             this.lookUpEdit1.TabIndex = 0;
@@ -113,7 +112,6 @@
             this.lookUpEdit2.Properties.NullText = "";
             this.lookUpEdit2.Properties.NullValuePrompt = "Status";
             this.lookUpEdit2.Properties.NullValuePromptShowForEmptyValue = true;
-            this.lookUpEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit2.Properties.ValueMember = "id_status";
             this.lookUpEdit2.Size = new System.Drawing.Size(126, 20);
             this.lookUpEdit2.TabIndex = 1;
@@ -136,7 +134,6 @@
             this.lookUpEdit3.Properties.NullText = "";
             this.lookUpEdit3.Properties.NullValuePrompt = "Prioritet";
             this.lookUpEdit3.Properties.NullValuePromptShowForEmptyValue = true;
-            this.lookUpEdit3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpEdit3.Properties.ValueMember = "id_prioritet";
             this.lookUpEdit3.Size = new System.Drawing.Size(126, 20);
             this.lookUpEdit3.TabIndex = 2;

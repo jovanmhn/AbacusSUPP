@@ -30,6 +30,7 @@ namespace AbacusSUPP
             NotificationsKomentar = new Dictionary<string, Komentar>();
 
             InitializeComponent();
+            OperaterLogin.NotifOverride = true;
             progressBar.PerformStep();
             progressBar.Update();
 
@@ -399,6 +400,7 @@ namespace AbacusSUPP
             }
             //gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
             Main_lista.OrderByDescending(qq => qq.datum);
+            taskBindingSource.DataSource = Main_lista.OrderByDescending(qq => qq.datum);  
             gridView1.RefreshData();
 
 
@@ -482,9 +484,9 @@ namespace AbacusSUPP
             {
 
                 //gridControl1.DataSource = Baza.Task.OrderByDescending(qq => qq.datum).ToList();
-                Main_lista.AddRange(razlika);
+                Main_lista.Clear();
+                Main_lista.AddRange(nova_lista);
                 taskBindingSource.DataSource = Main_lista.OrderByDescending(qq => qq.datum);
-                Main_lista.OrderByDescending(qq => qq.datum);
                 gridView1.RefreshData();
 
                 List<VezaLT> listaveza = Baza.VezaLT.ToList();
@@ -818,11 +820,11 @@ namespace AbacusSUPP
         {
             if (barToggleSwitchItem1.Checked)
             {
-                OperaterLogin.NotifOverride = false;
+                OperaterLogin.NotifOverride = true;
             }
             else
             {
-                OperaterLogin.NotifOverride = true;
+                OperaterLogin.NotifOverride = false;
             }
         }
     }
