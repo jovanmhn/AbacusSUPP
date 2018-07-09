@@ -323,6 +323,7 @@
             this.UnboundKomentar.Name = "UnboundKomentar";
             this.UnboundKomentar.OptionsColumn.AllowEdit = false;
             this.UnboundKomentar.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.UnboundKomentar.OptionsColumn.ReadOnly = true;
             this.UnboundKomentar.OptionsFilter.AllowFilter = false;
             this.UnboundKomentar.UnboundType = DevExpress.Data.UnboundColumnType.String;
             // 

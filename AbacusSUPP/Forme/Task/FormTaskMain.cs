@@ -282,29 +282,32 @@ namespace AbacusSUPP
 
         private void layoutView1_DoubleClick(object sender, EventArgs e)
         {
-            //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
-            Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
-            string[] fajlovi=null;
-            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
-            {
-                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
-            }
-            else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
+            
+            
+                //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
+                Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
+                string[] fajlovi = null;
+                if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+                {
+                    fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+                }
+                else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
 
 
-            if (fajlovi.Count()>0)
-            {
-                FormSlike frmslike = new FormSlike(fajlovi);
-                frmslike.Show(); 
-            }
-            kraj:;
-           /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
-            fkdetalj.ShowDialog();*/
+                if (fajlovi.Count() > 0)
+                {
+                    FormSlike frmslike = new FormSlike(fajlovi);
+                    frmslike.Show();
+                }
+                kraj:;
+                /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
+                 fkdetalj.ShowDialog();*/ 
+            
         }
 
         private void layoutView1_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if(e.Button == MouseButtons.Right)
             {
             layoutView1.PanModeSwitch();
             }
@@ -312,7 +315,7 @@ namespace AbacusSUPP
 
         private void layoutView1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Right)
             {
                 layoutView1.PanModeSwitch();
             }

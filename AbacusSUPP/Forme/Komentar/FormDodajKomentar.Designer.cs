@@ -32,6 +32,7 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 
             // simpleButton1
@@ -44,6 +45,7 @@
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.simpleButton1.Location = new System.Drawing.Point(509, 195);
             this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             this.simpleButton1.Size = new System.Drawing.Size(45, 45);
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -56,6 +58,7 @@
             this.richEditControl1.Location = new System.Drawing.Point(0, 0);
             this.richEditControl1.Name = "richEditControl1";
             this.richEditControl1.Options.HorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
+            this.richEditControl1.Options.Hyperlinks.ModifierKeys = System.Windows.Forms.Keys.None;
             this.richEditControl1.Options.VerticalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
             this.richEditControl1.Size = new System.Drawing.Size(555, 241);
             this.richEditControl1.TabIndex = 0;
@@ -71,15 +74,32 @@
             this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.simpleButton2.Location = new System.Drawing.Point(509, 1);
             this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             this.simpleButton2.Size = new System.Drawing.Size(45, 45);
             this.simpleButton2.TabIndex = 2;
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton3.Appearance.BackColor = System.Drawing.SystemColors.Window;
+            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.simpleButton3.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.simpleButton3.Location = new System.Drawing.Point(458, 195);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.simpleButton3.Size = new System.Drawing.Size(45, 45);
+            this.simpleButton3.TabIndex = 3;
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // FormDodajKomentar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 241);
+            this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.richEditControl1);
@@ -97,5 +117,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
     }
 }

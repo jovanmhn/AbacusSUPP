@@ -20,36 +20,46 @@ namespace AbacusSUPP
         public FormTest()
         {
             InitializeComponent();
-            
-        }
-
-        
-
-        private void simpleButton1_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void richEditControl1_ContentChanged(object sender, EventArgs e)
-        {
-            DocumentImageCollection imageCollection = richEditControl1.Document.Images;
-            if (imageCollection.Count > count)
+            if (!Directory.Exists(Application.StartupPath + "\\Fajlovi"))
             {
-
-                DocumentImage image = imageCollection[imageCollection.Count - 1];
-                var a = image.Image.NativeImage;
-                a.Save(string.Format("C:\\Users\\www.mojweb.me\\Desktop\\{0}.bmp", count));
-                
-                var b = image.Range;
-                richEditControl1.Document.Delete(b);
-                //var d = 200 * a.Height / a.Width;
-                var c = AbacusSUPP.Helper.ResizeImage(a, 200, 200 * a.Height / a.Width);
-                imageCollection.Insert(richEditControl1.Document.CaretPosition, c);
-
-                count++;
-
+                Directory.CreateDirectory(Application.StartupPath + "\\Fajlovi");
             }
-            if (imageCollection.Count < count) count--;
+        }
+
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                List<string> fajlovi = ofd.FileNames.ToList();
+                foreach(string file in fajlovi)
+                {
+                    string uri = Application.StartupPath + "\\Fajlovi" + "\\" + Path.GetFileName(file);
+                    File.Copy(file, uri);
+                    string file1 = Path.GetFileName(file) + System.Environment.NewLine;
+                    DocumentRange range = richEditControl1.Document.AppendText(file1);
+
+                    //string rec1String = richEditControl1.Text.Replace("\r\n", "\n");
+                    //string fileN = file1.Replace("\r\n", "\n");
+                    //int rec1Length = rec1String.Length;
+                    //int fileNameLength = fileN.Length;
+                    
+                    Hyperlink hyperlink = richEditControl1.Document.CreateHyperlink(range);
+                    hyperlink.NavigateUri = uri;
+                }
+            }
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            richEditControl1.ReadOnly = true;
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            richEditControl1.ReadOnly = false;
         }
     }
 }
