@@ -1,5 +1,6 @@
 ﻿using DevExpress.Office.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraGrid.Views.Layout.ViewInfo;
@@ -21,7 +22,7 @@ using System.Windows.Forms;
 
 namespace AbacusSUPP
 {
-    
+
     public partial class FormTaskMain : DevExpress.XtraEditors.XtraForm
     {
         AbacusSUPEntities Baza { get; set; }
@@ -29,7 +30,7 @@ namespace AbacusSUPP
         int broj_slike = 0;
         Size org_size = new Size();
 
-        
+
         public string rtfprezip;
         public string rtfpostunzip;
 
@@ -38,13 +39,13 @@ namespace AbacusSUPP
             InitializeComponent();
             Baza = new AbacusSUPEntities();
             //this.IsMdiContainer = true;
-            task = Baza.Task.First(qq=>qq.id_task==_task.id_task);
+            task = Baza.Task.First(qq => qq.id_task == _task.id_task);
             if (task == null) { MessageBox.Show("Neki problem sa taskom."); this.Close(); }
             this.Text += " - " + task.naslov.ToString();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             labelControl1.Text = task.id_task.ToString();
 
-            
+
             memoEdit2.Text = task.opis;
             labelControl2.Text = "Prioritet: " + task.Prioritet.opis;
             if (task.Login != null)
@@ -56,7 +57,7 @@ namespace AbacusSUPP
             if (task.status_id == 2)
             {
                 labelControl6.Visible = true;
-                labelControl6.Text = "Task zatvorio "+task.Login1.username.ToString()+", "+task.datum_zatv.ToString();
+                labelControl6.Text = "Task zatvorio " + task.Login1.username.ToString() + ", " + task.datum_zatv.ToString();
             }
             this.Text = task.naslov;
             labelControl5.Text = task.naslov;
@@ -71,7 +72,7 @@ namespace AbacusSUPP
 
             List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
             List<Login> listaoperatera = new List<Login>();
-            foreach(VezaLT veza in listaveza)
+            foreach (VezaLT veza in listaveza)
             {
                 Login operater = Baza.Login.FirstOrDefault(qq => qq.id == veza.id_login);
                 listaoperatera.Add(operater);
@@ -84,7 +85,7 @@ namespace AbacusSUPP
                 fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                 if (fajlovi.Count() > 0)
                 {
-                    foreach(string file in fajlovi)
+                    foreach (string file in fajlovi)
                     {
                         File.Delete(file); //ako postoje fajlovi od cancelovanih komentara
                     }
@@ -101,18 +102,18 @@ namespace AbacusSUPP
 
         }
 
-        
+
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if (task.status_id==1)
+            if (task.status_id == 1)
             {
                 var Baza = new AbacusSUPEntities();
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
                 Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
                 labelControl6.Text = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
-                
+
                 List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                 foreach (VezaLT veza in listaveza)
                 {
@@ -121,12 +122,12 @@ namespace AbacusSUPP
 
                 Baza.SaveChanges();
                 this.DialogResult = DialogResult.OK;
-                this.Close(); 
+                this.Close();
             }
             else if (task.status_id == 2)
             {
 
-                if (XtraMessageBox.Show("Ovaj task je zatvoren. Otvoriti opet?","Provjera",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                if (XtraMessageBox.Show("Ovaj task je zatvoren. Otvoriti opet?", "Provjera", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "U toku").id_status;
                     List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
@@ -134,11 +135,11 @@ namespace AbacusSUPP
                     {
                         Baza.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = true;
                     }
-                    
+
                     Baza.SaveChanges();
                     simpleButton3.Enabled = true;
                     this.DialogResult = DialogResult.OK;
-                    this.Close(); 
+                    this.Close();
                 }
             }
 
@@ -164,7 +165,7 @@ namespace AbacusSUPP
                 id_login = OperaterLogin.operater.id,
                 id_task = task.id_task
             };
-            int id=0;
+            int id = 0;
             Baza.Komentar.Add(kom);
             Baza.SaveChanges();
             gridControl1.DataSource = Baza.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
@@ -174,7 +175,7 @@ namespace AbacusSUPP
             if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
                 fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
-                id = Baza.Komentar.OrderByDescending(qq=>qq.datum).ToList()[0].id;
+                id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
                 if (id != 0)
                 {
                     Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString());
@@ -185,9 +186,9 @@ namespace AbacusSUPP
                 }
             }
             else { XtraMessageBox.Show("Nema task foldera!"); goto kraj; }
-            foreach(string fajl in fajlovi)
+            foreach (string fajl in fajlovi)
             {
-                System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()+"\\"+Path.GetFileName(fajl));
+                System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
             }
             broj_slike = 0;
 
@@ -246,7 +247,7 @@ namespace AbacusSUPP
                 var row = (Komentar)e.Row;
 
 
-                if (row!=null)
+                if (row != null)
                 {
                     byte[] zipovan = Convert.FromBase64String(row.sadrzaj);
                     string rtfraw = Unzip(zipovan);
@@ -254,10 +255,10 @@ namespace AbacusSUPP
                     rtfpostunzip = rtfraw;
 
                     repositoryItemRichTextEdit1.DocumentFormat = DevExpress.XtraRichEdit.DocumentFormat.Rtf;
-                    e.Value = rtfraw; 
+                    e.Value = rtfraw;
                 }
-                
-                
+
+
             }
             if (e.Column == UnboundSlika)
             {
@@ -282,34 +283,34 @@ namespace AbacusSUPP
 
         private void layoutView1_DoubleClick(object sender, EventArgs e)
         {
-            
-            
-                //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
-                Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
-                string[] fajlovi = null;
-                if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
-                {
-                    fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
-                }
-                else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
 
 
-                if (fajlovi.Count() > 0)
-                {
-                    FormSlike frmslike = new FormSlike(fajlovi);
-                    frmslike.Show();
-                }
-                kraj:;
-                /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
-                 fkdetalj.ShowDialog();*/ 
-            
+            //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
+            Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
+            string[] fajlovi = null;
+            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+            {
+                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+            }
+            else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
+
+
+            if (fajlovi.Count() > 0)
+            {
+                FormSlike frmslike = new FormSlike(fajlovi);
+                frmslike.Show();
+            }
+            kraj:;
+            /* FormKomentarDetalj fkdetalj = new FormKomentarDetalj(kom.sadrzaj);
+             fkdetalj.ShowDialog();*/
+
         }
 
         private void layoutView1_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
-            layoutView1.PanModeSwitch();
+                layoutView1.PanModeSwitch();
             }
         }
 
@@ -323,17 +324,17 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (task.status_id==1)
+            if (task.status_id == 1)
             {
                 FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
                 //frmdkom.MdiParent = this;
-                frmdkom.ShowDialog(); 
+                frmdkom.ShowDialog();
             }
             else
             {
-                XtraMessageBox.Show( "Task je zatvoren, dodavanje komentara nije moguće!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Task je zatvoren, dodavanje komentara nije moguće!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
         }
 
         private void richEditControl1_KeyUp(object sender, KeyEventArgs e)
@@ -370,7 +371,7 @@ namespace AbacusSUPP
                     {
                         System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                     }
-                    c.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString()+".bmp");
+                    c.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
                     broj_slike++;
                 }
                 if (b != null)
@@ -390,7 +391,7 @@ namespace AbacusSUPP
                     {
                         System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                     }
-                    slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString()+".bmp");
+                    slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
                     broj_slike++;
                 }
 
@@ -418,7 +419,7 @@ namespace AbacusSUPP
             {
                 System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
             }
-            slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() +"\\"+broj_slike.ToString()+".bmp");
+            slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
             broj_slike++;
         }
 
@@ -430,7 +431,7 @@ namespace AbacusSUPP
         private void FormTaskMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            
+
             //Program.MainForm.WindowState = FormWindowState.Maximized;
         }
 
@@ -448,7 +449,7 @@ namespace AbacusSUPP
         {
             labelControl1.Focus();
         }
- 
+
 
         private void layoutView1_CustomDrawCardBackground(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventArgs e)
         {
@@ -465,7 +466,7 @@ namespace AbacusSUPP
                     {
                         // Fill card with semi-transparent color 
                         e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
-                        
+
                     }
 
 
@@ -483,8 +484,8 @@ namespace AbacusSUPP
                         e.Handled = true;
                     }*/
                 }
-            }     
-            
+            }
+
         }
 
         private void layoutView1_CustomDrawCardFieldCaption(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
@@ -510,6 +511,70 @@ namespace AbacusSUPP
             }
             kraj:;
         }
+
+        private void layoutView1_ShownEditor(object sender, EventArgs e)
+        {
+            ColumnView columnView = sender as ColumnView;
+
+            if (columnView != null)
+            {
+                RichTextEdit activeEditor = columnView.ActiveEditor as RichTextEdit;
+
+                if (activeEditor != null)
+                {
+
+                    RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
+                    richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
+
+                    ColumnView view = (ColumnView)sender;
+                    Komentar a = (Komentar)view.GetFocusedRow();
+                    richEditControl.Options.Hyperlinks.ModifierKeys = Keys.None;
+                    richEditControl.Options.Hyperlinks.ShowToolTip = false;
+                    if (a.Login.outline_kom == true)
+                    {
+
+
+                        richEditControl.CustomDrawActiveView += (ss, ee) => richEditControl_CustomDrawActiveView(richEditControl, ee);
+                        //richEditControl.ActiveView.
+
+                    }
+
+                }
+            }
+        }
+
+        private void layoutView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+            layoutView1.FocusedColumn = layoutView1.Columns.ColumnByName("UnboundKomentar");
+        }
+        private void richEditControl_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
+        {
+
+            
+            RichEditControl rec = (RichEditControl)sender;
+            SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
+            e.Cache.FillRectangle(brush, rec.Bounds);
+            
+
+        }
+
+        private void layoutView1_MouseMove(object sender, MouseEventArgs e)
+        {
+            LayoutViewHitInfo hitInfo = layoutView1.CalcHitInfo(e.Location);
+            if (hitInfo.InCard)
+            {
+                if (hitInfo.Column != null)
+                {
+
+                    if (hitInfo.Column.FieldName == "UnboundKomentar")
+                    {
+                        layoutView1.FocusedRowHandle = hitInfo.RowHandle;
+                        layoutView1.FocusedColumn = hitInfo.Column;
+                        layoutView1.ShowEditor();
+                    }
+                }
+            }
+        }
     }
     public static class StringExt
     {
@@ -519,6 +584,6 @@ namespace AbacusSUPP
             return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
     }
-    
-    
+
+
 }

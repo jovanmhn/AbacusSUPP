@@ -170,6 +170,7 @@
             this.layoutViewField_layoutViewColumn1_2});
             this.layoutView1.Name = "layoutView1";
             this.layoutView1.OptionsBehavior.AllowRuntimeCustomization = false;
+            this.layoutView1.OptionsBehavior.AutoSelectAllInEditor = false;
             this.layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Auto;
             this.layoutView1.OptionsHeaderPanel.EnableCarouselModeButton = false;
             this.layoutView1.OptionsHeaderPanel.EnableColumnModeButton = false;
@@ -200,9 +201,12 @@
             this.layoutView1.TemplateCard = this.layoutViewCard1;
             this.layoutView1.CustomDrawCardBackground += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventHandler(this.layoutView1_CustomDrawCardBackground);
             this.layoutView1.CustomDrawCardFieldCaption += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.layoutView1_CustomDrawCardFieldCaption);
+            this.layoutView1.ShownEditor += new System.EventHandler(this.layoutView1_ShownEditor);
+            this.layoutView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.layoutView1_FocusedRowChanged);
             this.layoutView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.layoutView1_CustomUnboundColumnData);
             this.layoutView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseDown);
             this.layoutView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseUp);
+            this.layoutView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseMove);
             this.layoutView1.DoubleClick += new System.EventHandler(this.layoutView1_DoubleClick);
             // 
             // testbutton
@@ -256,6 +260,7 @@
             this.coldatum.LayoutViewField = this.layoutViewField_coldatum;
             this.coldatum.Name = "coldatum";
             this.coldatum.OptionsColumn.AllowEdit = false;
+            this.coldatum.OptionsColumn.AllowFocus = false;
             this.coldatum.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.coldatum.OptionsColumn.ReadOnly = true;
             this.coldatum.OptionsFilter.AllowFilter = false;
@@ -289,6 +294,7 @@
             this.colLogin.LayoutViewField = this.layoutViewField_colLogin;
             this.colLogin.Name = "colLogin";
             this.colLogin.OptionsColumn.AllowEdit = false;
+            this.colLogin.OptionsColumn.AllowFocus = false;
             this.colLogin.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colLogin.OptionsColumn.ReadOnly = true;
             this.colLogin.OptionsField.SortFilterButtonShowMode = DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.Nowhere;
@@ -321,7 +327,6 @@
             this.UnboundKomentar.FieldName = "UnboundKomentar";
             this.UnboundKomentar.LayoutViewField = this.layoutViewField_layoutViewColumn1;
             this.UnboundKomentar.Name = "UnboundKomentar";
-            this.UnboundKomentar.OptionsColumn.AllowEdit = false;
             this.UnboundKomentar.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.UnboundKomentar.OptionsColumn.ReadOnly = true;
             this.UnboundKomentar.OptionsFilter.AllowFilter = false;
@@ -332,9 +337,9 @@
             this.repositoryItemRichTextEdit1.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 12F);
             this.repositoryItemRichTextEdit1.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemRichTextEdit1.DocumentFormat = DevExpress.XtraRichEdit.DocumentFormat.Rtf;
-            this.repositoryItemRichTextEdit1.MaxHeight = 5000;
+            this.repositoryItemRichTextEdit1.MaxHeight = 999999;
             this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
-            this.repositoryItemRichTextEdit1.OptionsHorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Auto;
+            this.repositoryItemRichTextEdit1.OptionsVerticalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
             this.repositoryItemRichTextEdit1.ReadOnly = true;
             this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
             // 
@@ -358,6 +363,7 @@
             this.UnboundSlika.LayoutViewField = this.layoutViewField_layoutViewColumn1_1;
             this.UnboundSlika.Name = "UnboundSlika";
             this.UnboundSlika.OptionsColumn.AllowEdit = false;
+            this.UnboundSlika.OptionsColumn.AllowFocus = false;
             this.UnboundSlika.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.UnboundSlika.OptionsFilter.AllowFilter = false;
             this.UnboundSlika.UnboundType = DevExpress.Data.UnboundColumnType.Object;

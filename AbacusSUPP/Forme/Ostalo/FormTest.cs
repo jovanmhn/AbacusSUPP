@@ -20,46 +20,26 @@ namespace AbacusSUPP
         public FormTest()
         {
             InitializeComponent();
-            if (!Directory.Exists(Application.StartupPath + "\\Fajlovi"))
-            {
-                Directory.CreateDirectory(Application.StartupPath + "\\Fajlovi");
-            }
+            simpleButton1.BackColor = Color.FromArgb(25, Color.Green);
         }
-
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Multiselect = true;
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                List<string> fajlovi = ofd.FileNames.ToList();
-                foreach(string file in fajlovi)
-                {
-                    string uri = Application.StartupPath + "\\Fajlovi" + "\\" + Path.GetFileName(file);
-                    File.Copy(file, uri);
-                    string file1 = Path.GetFileName(file) + System.Environment.NewLine;
-                    DocumentRange range = richEditControl1.Document.AppendText(file1);
-
-                    //string rec1String = richEditControl1.Text.Replace("\r\n", "\n");
-                    //string fileN = file1.Replace("\r\n", "\n");
-                    //int rec1Length = rec1String.Length;
-                    //int fileNameLength = fileN.Length;
-                    
-                    Hyperlink hyperlink = richEditControl1.Document.CreateHyperlink(range);
-                    hyperlink.NavigateUri = uri;
-                }
-            }
+            int a  = Convert.ToInt32(spinEdit1.Value);
+            int b = Convert.ToInt32(spinEdit2.Value);
+            richEditControl1.Views.SimpleView.BackColor = Color.FromArgb(a, 0, b, 0);
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        
+
+        private void simpleButton2_Click_1(object sender, EventArgs e)
         {
-            richEditControl1.ReadOnly = true;
+            richEditControl1.ActiveView.BackColor = Color.FromArgb(25, Color.Green);
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
+        private void richEditControl1_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
         {
-            richEditControl1.ReadOnly = false;
+
         }
     }
 }
