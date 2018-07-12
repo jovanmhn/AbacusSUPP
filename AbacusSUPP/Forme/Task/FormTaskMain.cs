@@ -534,7 +534,7 @@ namespace AbacusSUPP
                     {
 
 
-                        richEditControl.CustomDrawActiveView += (ss, ee) => richEditControl_CustomDrawActiveView(richEditControl, ee);
+                        //richEditControl.CustomDrawActiveView += (ss, ee) => richEditControl_CustomDrawActiveView(richEditControl, ee);
                         //richEditControl.ActiveView.
 
                     }
@@ -568,11 +568,24 @@ namespace AbacusSUPP
 
                     if (hitInfo.Column.FieldName == "UnboundKomentar")
                     {
-                        layoutView1.FocusedRowHandle = hitInfo.RowHandle;
-                        layoutView1.FocusedColumn = hitInfo.Column;
-                        layoutView1.ShowEditor();
+                        bool a = false; bool b = false;
+                        if (layoutView1.FocusedRowHandle != hitInfo.RowHandle)
+                        {
+                            layoutView1.FocusedRowHandle = hitInfo.RowHandle;
+                            a = true;
+                        }
+                        if (layoutView1.FocusedColumn != hitInfo.Column)
+                        {
+                            layoutView1.FocusedColumn = hitInfo.Column;
+                            b = true;
+                        }
+                        if(a||b)layoutView1.ShowEditor();
                     }
                 }
+            }
+            else
+            {
+                layoutView1.HideEditor();
             }
         }
     }

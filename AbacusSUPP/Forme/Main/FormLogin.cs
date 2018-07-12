@@ -82,11 +82,27 @@ namespace AbacusSUPP
         private void textEdit1_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) textEdit2.Focus();
+            else if (e.KeyCode == Keys.J && e.Modifiers == Keys.Shift)
+            {
+                textEdit1.Text = "jovanm";
+                textEdit2.Text = "jovan123";
+                simpleButton1.PerformClick();
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.J && e.Modifiers == Keys.RShiftKey)
+            {
+                textEdit1.Text = "jovanm";
+                textEdit2.Text = "jovan123";
+                simpleButton1.PerformClick();
+            }
         }
     }
     

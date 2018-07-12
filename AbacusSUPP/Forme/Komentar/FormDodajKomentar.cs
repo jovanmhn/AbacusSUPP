@@ -12,8 +12,9 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraRichEdit.API.Native;
 using System.IO;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
 
-namespace AbacusSUPP
+namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
 {
     public partial class FormDodajKomentar : DevExpress.XtraEditors.XtraForm
     {
@@ -61,8 +62,10 @@ namespace AbacusSUPP
             //var x = kom.Login.username;
             
             List<string> fajlovi = new List<string>();
+            opet:
             if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
+                
                 fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()).ToList();
                 id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
                 if (id != 0)
@@ -74,7 +77,7 @@ namespace AbacusSUPP
                     XtraMessageBox.Show("Komentar_id vratio 0! (folder ime)"); goto kraj;
                 }
             }
-            else { Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()); };
+            else { Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()); goto opet; };
             if (fajlovi.Count>0)
             {
 
@@ -83,7 +86,31 @@ namespace AbacusSUPP
                     System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
                 }
             }
-            
+
+            #region Ovo sve je sranje, cijelu formu treba ispraviti, mozda GUID za link za sliku prije nego sto dobije ID...
+           
+            string uri = Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\";
+            int broj = 0;
+            foreach (DocumentImage image in richEditControl1.Document.Images)
+            {
+                var a = image.Range;
+                uri += broj.ToString() + ".bmp";
+                Hyperlink hyperlink = richEditControl1.Document.CreateHyperlink(a);
+                hyperlink.NavigateUri = uri;
+                broj++;
+            }
+            byte[] test = AbacusSUPP.Helper.Zip(richEditControl1.Document.RtfText);
+            string test2 = Convert.ToBase64String(test);
+            var db3 = new AbacusSUPEntities();
+            Komentar testkom = db3.Komentar.First(qq => qq.id == kom.id);
+            testkom.sadrzaj = test2;
+            db3.SaveChanges();
+            gridControl1.DataSource = db3.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
+            layoutView1.RefreshData();
+            #endregion
+
+
+
 
             OperaterLogin.stara_kom_lista.Add(kom);
             this.Close();
@@ -106,13 +133,17 @@ namespace AbacusSUPP
                 {
                     System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                 }
-                a.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + count.ToString()+".bmp");
+                string uri = Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + count.ToString() + ".bmp";
+                a.Save(uri);
                 DocumentRange b = image.Range;
-                richEditControl1.Document.Delete(b);
-                //var d = 200 * a.Height / a.Width;
+                richEditControl1.Document.Delete(b);                
                 var c = AbacusSUPP.Helper.ResizeImage(a, 200, 200 * a.Height / a.Width);
                 imageCollection.Insert(richEditControl1.Document.CaretPosition, c);
-                
+                //var d = imageCollection[imageCollection.Count - 1];
+                //b = d.Range;
+                //Hyperlink hyperlink = richEditControl1.Document.CreateHyperlink(b);
+                //hyperlink.NavigateUri = uri;
+
 
                 count++;
 
@@ -138,7 +169,8 @@ namespace AbacusSUPP
                 List<string> fajlovi = ofd.FileNames.ToList();
                 foreach (string file in fajlovi)
                 {
-                    string uri = Application.StartupPath + "\\Fajlovi" + "\\" + Path.GetFileName(file);
+                    string ime = Guid.NewGuid().ToString();
+                    string uri = Application.StartupPath + "\\Fajlovi" + "\\" +ime + Path.GetExtension(file);
                     File.Copy(file, uri);
                     string file1 = Path.GetFileName(file) + System.Environment.NewLine;
                     DocumentRange range = richEditControl1.Document.AppendText(file1);
