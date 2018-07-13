@@ -36,7 +36,6 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.komentarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
@@ -58,6 +57,7 @@
             this.item5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.item2 = new DevExpress.XtraLayout.SimpleSeparator();
             this.item3 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
@@ -99,27 +99,11 @@
             this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.gridControl1);
             this.panelControl1.Location = new System.Drawing.Point(0, 130);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1132, 417);
             this.panelControl1.TabIndex = 0;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Red;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.simpleButton1.Appearance.Options.UseBorderColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(1023, 375);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(104, 37);
-            this.simpleButton1.TabIndex = 16;
-            this.simpleButton1.Text = "Novi \r\nkomentar";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // gridControl1
             // 
@@ -200,9 +184,8 @@
             this.layoutView1.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
             this.layoutView1.TemplateCard = this.layoutViewCard1;
             this.layoutView1.CustomDrawCardBackground += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventHandler(this.layoutView1_CustomDrawCardBackground);
-            this.layoutView1.CustomDrawCardFieldCaption += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.layoutView1_CustomDrawCardFieldCaption);
+
             this.layoutView1.ShownEditor += new System.EventHandler(this.layoutView1_ShownEditor);
-            this.layoutView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.layoutView1_FocusedRowChanged);
             this.layoutView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.layoutView1_CustomUnboundColumnData);
             this.layoutView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseDown);
             this.layoutView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseUp);
@@ -334,6 +317,12 @@
             // 
             // repositoryItemRichTextEdit1
             // 
+            this.repositoryItemRichTextEdit1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.repositoryItemRichTextEdit1.Appearance.Options.UseFont = true;
+            this.repositoryItemRichTextEdit1.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.repositoryItemRichTextEdit1.AppearanceDisabled.Options.UseFont = true;
+            this.repositoryItemRichTextEdit1.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.repositoryItemRichTextEdit1.AppearanceFocused.Options.UseFont = true;
             this.repositoryItemRichTextEdit1.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 12F);
             this.repositoryItemRichTextEdit1.AppearanceReadOnly.Options.UseFont = true;
             this.repositoryItemRichTextEdit1.DocumentFormat = DevExpress.XtraRichEdit.DocumentFormat.Rtf;
@@ -436,6 +425,21 @@
             this.item3.Location = new System.Drawing.Point(157, 0);
             this.item3.Name = "item3";
             this.item3.Size = new System.Drawing.Size(1, 22);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Appearance.BorderColor = System.Drawing.Color.Red;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.simpleButton1.Appearance.Options.UseBorderColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(1016, 89);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(104, 37);
+            this.simpleButton1.TabIndex = 16;
+            this.simpleButton1.Text = "Novi \r\nkomentar";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // labelControl1
             // 
@@ -593,6 +597,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1132, 546);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.richEditControl1);
             this.Controls.Add(this.labelControl6);

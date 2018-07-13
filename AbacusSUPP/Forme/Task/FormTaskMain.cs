@@ -1,4 +1,5 @@
 ﻿using DevExpress.Office.Utils;
+using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -453,7 +454,7 @@ namespace AbacusSUPP
 
         private void layoutView1_CustomDrawCardBackground(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventArgs e)
         {
-
+           
             if (e.RowHandle >= 0)
             {
                 var db = new AbacusSUPEntities();
@@ -462,36 +463,21 @@ namespace AbacusSUPP
                 if (kom != null && kom.Login.outline_kom == true)
                 {
                     e.DefaultDraw();
+
                     using (var highlight = new SolidBrush(Color.FromArgb(25, Color.Green)))
                     {
                         // Fill card with semi-transparent color 
+                        
                         e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
 
                     }
 
-
-                    /*
-                    using (var highlight = new SolidBrush(Color.FromArgb(25, Color.Green)))
-                    {
-                        // Fill card with semi-transparent color 
-                        e.Cache.FillRectangle(highlight, Rectangle.Inflate(e.Bounds, -1, -1));
-
-                    }
-                    using (var backBrush = e.Cache.GetGradientBrush(Rectangle.Inflate(e.Bounds, -1, -1), Color.FromArgb(25, Color.Green), Color.FromArgb(25, Color.Red), LinearGradientMode.Horizontal))
-                    {
-                        // Fill card with semi-transparent color 
-                        e.Cache.FillRectangle(backBrush, Rectangle.Inflate(e.Bounds, -1, -1));
-                        e.Handled = true;
-                    }*/
                 }
             }
 
         }
 
-        private void layoutView1_CustomDrawCardFieldCaption(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            //CAPTION ODJE
-        }
+     
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -525,6 +511,7 @@ namespace AbacusSUPP
 
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
+                    richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
 
                     ColumnView view = (ColumnView)sender;
                     Komentar a = (Komentar)view.GetFocusedRow();
@@ -532,10 +519,11 @@ namespace AbacusSUPP
                     richEditControl.Options.Hyperlinks.ShowToolTip = false;
                     if (a.Login.outline_kom == true)
                     {
+                        //richEditControl.CustomDrawActiveView += new DevExpress.XtraRichEdit.RichEditViewCustomDrawEventHandler(this.richEditControl_CustomDrawActiveView);
+                        GraphicsCache pokusaj = new GraphicsCache(richEditControl.CreateGraphics());
+                        SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
+                        pokusaj.FillRectangle(brush, richEditControl.Bounds);
 
-
-                        //richEditControl.CustomDrawActiveView += (ss, ee) => richEditControl_CustomDrawActiveView(richEditControl, ee);
-                        //richEditControl.ActiveView.
 
                     }
 
@@ -543,20 +531,20 @@ namespace AbacusSUPP
             }
         }
 
-        private void layoutView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
-        {
-            layoutView1.FocusedColumn = layoutView1.Columns.ColumnByName("UnboundKomentar");
-        }
+
         private void richEditControl_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
         {
-
+             
             
             RichEditControl rec = (RichEditControl)sender;
             SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
             e.Cache.FillRectangle(brush, rec.Bounds);
             
+            
 
         }
+
+        
 
         private void layoutView1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -579,7 +567,8 @@ namespace AbacusSUPP
                             layoutView1.FocusedColumn = hitInfo.Column;
                             b = true;
                         }
-                        if(a||b)layoutView1.ShowEditor();
+                        if (a || b) layoutView1.ShowEditor();
+
                     }
                 }
             }
@@ -588,6 +577,8 @@ namespace AbacusSUPP
                 layoutView1.HideEditor();
             }
         }
+
+   
     }
     public static class StringExt
     {

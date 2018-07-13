@@ -41,6 +41,7 @@
             this.simpleButton1.Appearance.BackColor = System.Drawing.SystemColors.Window;
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.simpleButton1.Location = new System.Drawing.Point(509, 195);
@@ -70,6 +71,7 @@
             this.simpleButton2.Appearance.BackColor = System.Drawing.SystemColors.Window;
             this.simpleButton2.Appearance.Options.UseBackColor = true;
             this.simpleButton2.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
             this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.simpleButton2.Location = new System.Drawing.Point(509, 1);
@@ -85,9 +87,10 @@
             this.simpleButton3.Appearance.BackColor = System.Drawing.SystemColors.Window;
             this.simpleButton3.Appearance.Options.UseBackColor = true;
             this.simpleButton3.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.simpleButton3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
             this.simpleButton3.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton3.Location = new System.Drawing.Point(458, 195);
+            this.simpleButton3.Location = new System.Drawing.Point(509, 144);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             this.simpleButton3.Size = new System.Drawing.Size(45, 45);
