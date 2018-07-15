@@ -101,6 +101,12 @@ namespace AbacusSUPP
             repositoryItemPictureEdit1.ContextMenuStrip = new ContextMenuStrip(); //da nema right click meni
             richEditControl1.Options.Behavior.ShowPopupMenu = DocumentCapability.Disabled;
 
+            #region Fora sa scroll controlom
+            LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
+            layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue))); 
+            #endregion
+
         }
 
 
@@ -520,6 +526,7 @@ namespace AbacusSUPP
                     if (a.Login.outline_kom == true)
                     {
                         //richEditControl.CustomDrawActiveView += new DevExpress.XtraRichEdit.RichEditViewCustomDrawEventHandler(this.richEditControl_CustomDrawActiveView);
+                        
                         GraphicsCache pokusaj = new GraphicsCache(richEditControl.CreateGraphics());
                         SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
                         pokusaj.FillRectangle(brush, richEditControl.Bounds);
@@ -551,6 +558,7 @@ namespace AbacusSUPP
             LayoutViewHitInfo hitInfo = layoutView1.CalcHitInfo(e.Location);
             if (hitInfo.InCard)
             {
+                
                 if (hitInfo.Column != null)
                 {
 
@@ -572,10 +580,10 @@ namespace AbacusSUPP
                     }
                 }
             }
-            else
-            {
-                layoutView1.HideEditor();
-            }
+            //else
+            //{
+            //    layoutView1.HideEditor();
+            //}
         }
 
    
