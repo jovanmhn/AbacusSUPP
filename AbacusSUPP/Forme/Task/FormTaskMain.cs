@@ -104,7 +104,7 @@ namespace AbacusSUPP
             #region Fora sa scroll controlom
             LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
             layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue))); 
+            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
             #endregion
 
         }
@@ -335,7 +335,16 @@ namespace AbacusSUPP
             {
                 FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
                 //frmdkom.MdiParent = this;
-                frmdkom.ShowDialog();
+                if (frmdkom.ShowDialog() == DialogResult.OK)
+                {
+                    var db = new AbacusSUPEntities();
+                    gridControl1.DataSource = db.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(qq => qq.datum).ToList();
+                    layoutView1.RefreshData();
+
+                    LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
+                    layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+                    gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
+                }
             }
             else
             {
@@ -514,31 +523,39 @@ namespace AbacusSUPP
 
                 if (activeEditor != null)
                 {
+                    //CustomRichEditControl custom = (CustomRichEditControl)activeEditor.Controls[0];
 
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
                     richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
-
+                    
                     ColumnView view = (ColumnView)sender;
                     Komentar a = (Komentar)view.GetFocusedRow();
                     richEditControl.Options.Hyperlinks.ModifierKeys = Keys.None;
                     richEditControl.Options.Hyperlinks.ShowToolTip = false;
+
                     if (a.Login.outline_kom == true)
                     {
+                        //richEditControl.CustomDrawActiveView -= new DevExpress.XtraRichEdit.RichEditViewCustomDrawEventHandler(this.richEditControl_CustomDrawActiveView);
                         //richEditControl.CustomDrawActiveView += new DevExpress.XtraRichEdit.RichEditViewCustomDrawEventHandler(this.richEditControl_CustomDrawActiveView);
                         
-                        GraphicsCache pokusaj = new GraphicsCache(richEditControl.CreateGraphics());
-                        SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
-                        pokusaj.FillRectangle(brush, richEditControl.Bounds);
+                        //GraphicsCache pokusaj = new GraphicsCache(richEditControl.CreateGraphics());
+                        //SolidBrush brush = new SolidBrush(Color.FromArgb(25, Color.Green));
+                        //pokusaj.FillRectangle(brush, richEditControl.Bounds);
 
 
+                    }
+                    else
+                    {
+                        //richEditControl.ActiveView.BackColor = Color.White;
                     }
 
                 }
             }
         }
+        
 
-
+       
         private void richEditControl_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
         {
              
@@ -556,6 +573,7 @@ namespace AbacusSUPP
         private void layoutView1_MouseMove(object sender, MouseEventArgs e)
         {
             LayoutViewHitInfo hitInfo = layoutView1.CalcHitInfo(e.Location);
+            if (layoutView1.FocusedRowHandle == hitInfo.RowHandle && layoutView1.FocusedColumn != hitInfo.Column) return;
             if (hitInfo.InCard)
             {
                 
@@ -564,26 +582,28 @@ namespace AbacusSUPP
 
                     if (hitInfo.Column.FieldName == "UnboundKomentar")
                     {
-                        bool a = false; bool b = false;
-                        if (layoutView1.FocusedRowHandle != hitInfo.RowHandle)
-                        {
-                            layoutView1.FocusedRowHandle = hitInfo.RowHandle;
-                            a = true;
-                        }
-                        if (layoutView1.FocusedColumn != hitInfo.Column)
-                        {
-                            layoutView1.FocusedColumn = hitInfo.Column;
-                            b = true;
-                        }
-                        if (a || b) layoutView1.ShowEditor();
+                        layoutView1.FocusedRowHandle = hitInfo.RowHandle;
+                        layoutView1.FocusedColumn = hitInfo.Column;
+                        layoutView1.ShowEditor();
+                        
+                        //bool a = false; bool b = false;
+                        //if (layoutView1.FocusedRowHandle != hitInfo.RowHandle)
+                        //{
+                        //    layoutView1.FocusedRowHandle = hitInfo.RowHandle;
+                        //    a = true;
+                        //}
+                        //if (layoutView1.FocusedColumn != hitInfo.Column)
+                        //{
+                        //    layoutView1.FocusedColumn = hitInfo.Column;
+                        //    b = true;
+                        //}
+                        //if (a || b) layoutView1.ShowEditor();
 
                     }
+                    
                 }
             }
-            //else
-            //{
-            //    layoutView1.HideEditor();
-            //}
+            
         }
 
    

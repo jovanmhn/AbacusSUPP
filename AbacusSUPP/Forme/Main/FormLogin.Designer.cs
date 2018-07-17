@@ -45,7 +45,7 @@
             // 
             // textEdit2
             // 
-            this.textEdit2.EditValue = "bencom331860";
+            this.textEdit2.EditValue = "jovan123";
             this.textEdit2.Location = new System.Drawing.Point(21, 145);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Properties.NullValuePrompt = "Lozinka";
@@ -79,7 +79,7 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.EditValue = "root";
+            this.textEdit1.EditValue = "jovanm";
             this.textEdit1.Location = new System.Drawing.Point(21, 117);
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.NullValuePrompt = "Korisnicko ime";

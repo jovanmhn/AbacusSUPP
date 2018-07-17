@@ -114,6 +114,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
 
             OperaterLogin.stara_kom_lista.Add(kom);
             this.Close();
+            this.DialogResult = DialogResult.OK;
             kraj:;
         }
 
