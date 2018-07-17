@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTaskMain));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -36,7 +35,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.komentarBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.komentarBindingSource = new System.Windows.Forms.BindingSource();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.testbutton = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -65,7 +64,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginBindingSource = new System.Windows.Forms.BindingSource();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -175,6 +174,7 @@
             this.layoutView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.layoutView1_CustomUnboundColumnData);
             this.layoutView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseDown);
             this.layoutView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseUp);
+            
             this.layoutView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseMove);
             this.layoutView1.DoubleClick += new System.EventHandler(this.layoutView1_DoubleClick);
             // 
@@ -583,7 +583,6 @@
             this.xtraScrollableControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
-            this.xtraScrollableControl1.FireScrollEventOnMouseWheel = true;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 130);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
             this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 413);

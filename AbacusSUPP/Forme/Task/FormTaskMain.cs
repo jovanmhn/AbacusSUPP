@@ -512,10 +512,19 @@ namespace AbacusSUPP
             }
             kraj:;
         }
+        //void ActiveEditor_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        //{
+        //    LayoutView view = sender as LayoutView;
 
+        //    MouseWheel -= ActiveEditor_MouseWheel;
+        //    view.CloseEditor();
+        //}
         private void layoutView1_ShownEditor(object sender, EventArgs e)
         {
             ColumnView columnView = sender as ColumnView;
+            //LayoutView view2 = sender as LayoutView;
+            //view2.MouseWheel -= ActiveEditor_MouseWheel;
+            //view2.MouseWheel += ActiveEditor_MouseWheel;
 
             if (columnView != null)
             {
@@ -523,7 +532,7 @@ namespace AbacusSUPP
 
                 if (activeEditor != null)
                 {
-                    //CustomRichEditControl custom = (CustomRichEditControl)activeEditor.Controls[0];
+                  
 
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
@@ -553,9 +562,9 @@ namespace AbacusSUPP
                 }
             }
         }
-        
+      
 
-       
+
         private void richEditControl_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
         {
              
@@ -573,7 +582,7 @@ namespace AbacusSUPP
         private void layoutView1_MouseMove(object sender, MouseEventArgs e)
         {
             LayoutViewHitInfo hitInfo = layoutView1.CalcHitInfo(e.Location);
-            if (layoutView1.FocusedRowHandle == hitInfo.RowHandle && layoutView1.FocusedColumn != hitInfo.Column) return;
+            if (layoutView1.FocusedRowHandle != hitInfo.RowHandle && layoutView1.FocusedColumn != hitInfo.Column) return;
             if (hitInfo.InCard)
             {
                 
@@ -600,13 +609,14 @@ namespace AbacusSUPP
                         //if (a || b) layoutView1.ShowEditor();
 
                     }
+                    else { layoutView1.HideEditor(); }
                     
                 }
             }
             
         }
-
-   
+        
+        
     }
     public static class StringExt
     {
