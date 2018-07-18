@@ -1,6 +1,8 @@
 ﻿using DevExpress.Office.Utils;
+using DevExpress.Utils;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Layout;
@@ -107,6 +109,7 @@ namespace AbacusSUPP
             gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
             #endregion
 
+            gridControl1.MouseWheel += GridControl1_MouseWheel;
         }
 
 
@@ -607,16 +610,24 @@ namespace AbacusSUPP
                         //    b = true;
                         //}
                         //if (a || b) layoutView1.ShowEditor();
-
+                        
                     }
-                    else { layoutView1.HideEditor(); }
+                    else { layoutView1.HideEditor(); xtraScrollableControl1.Focus(); }
                     
                 }
             }
             
         }
-        
-        
+        private void GridControl1_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            GridControl control = sender as GridControl;
+            if (!control.Focused)
+            {
+                (e as DXMouseEventArgs).Handled = true;
+                xtraScrollableControl1.VerticalScroll.Value -= e.Delta/2;
+            }
+        }
+
     }
     public static class StringExt
     {
