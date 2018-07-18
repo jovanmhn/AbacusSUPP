@@ -12,6 +12,8 @@ namespace AbacusSUPP
 {
     public partial class FormPartneri : DevExpress.XtraEditors.XtraForm
     {
+        public Panel MainPanel { get { return this.panel1; } }
+
         AbacusSUPEntities Baza { get; set; }
         public FormPartneri()
         {

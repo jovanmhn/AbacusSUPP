@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
+            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -64,7 +63,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.Aktivni = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.taskBindingSource = new System.Windows.Forms.BindingSource();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid_task = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,15 +72,15 @@
             this.colprioritet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collogin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BrKomentara = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toastNotificationsTask = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
-            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon(this.components);
-            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon();
+            this.toastNotificationsTask = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
+            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon();
+            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), false, false);
-            this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
+            this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -168,6 +167,7 @@
             this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem2.Tag = "Operateri";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick_1);
             // 
             // barButtonItem1
@@ -335,6 +335,7 @@
             this.barButtonItem14.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem14.ImageOptions.Image")));
             this.barButtonItem14.Name = "barButtonItem14";
             this.barButtonItem14.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem14.Tag = "Partneri";
             this.barButtonItem14.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem14_ItemClick);
             // 
             // barButtonItem15
@@ -420,6 +421,7 @@
             this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageHeaderAndOnMouseHover;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 149);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.Aktivni;
@@ -427,13 +429,14 @@
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Aktivni});
+            this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
             // Aktivni
             // 
             this.Aktivni.Controls.Add(this.gridControl1);
             this.Aktivni.Name = "Aktivni";
             this.Aktivni.Size = new System.Drawing.Size(955, 232);
-            this.Aktivni.Text = "Aktivni";
+            this.Aktivni.Text = "Taskovi";
             // 
             // gridControl1
             // 

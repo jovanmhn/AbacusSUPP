@@ -12,6 +12,7 @@ namespace AbacusSUPP
 {
     public partial class FormOperater : DevExpress.XtraEditors.XtraForm
     {
+        public Panel MainPanel { get { return this.panel1; } }
         AbacusSUPEntities Baza { get; set; }
         public FormOperater()
         {

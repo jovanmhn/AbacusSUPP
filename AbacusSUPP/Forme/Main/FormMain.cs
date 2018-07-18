@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraTab;
+using DevExpress.XtraTab.ViewInfo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -452,19 +454,39 @@ namespace AbacusSUPP
 
         private void barButtonItem2_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            //foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            //{
+            //    if (form.GetType() == typeof(FormOperater))
+            //    {
+            //        form.Activate();
+            //        return;
+            //    }
+            //}
+
+            //FormOperater fdo = new FormOperater();
+            //fdo.MdiParent = this;
+            //fdo.Show();
+            //xtraTabControl1.Visible = false;
+            var page = xtraTabControl1.TabPages.FirstOrDefault(it => it.Tag == barButtonItem2.Tag);
+
+            if (page == null)
             {
-                if (form.GetType() == typeof(FormOperater))
+                page = new DevExpress.XtraTab.XtraTabPage()
                 {
-                    form.Activate();
-                    return;
-                }
+                    Tag = barButtonItem2.Tag,
+                    Text = barButtonItem2.Caption,
+
+                };
+
+                FormOperater formoperater = new FormOperater();
+
+                page.Controls.Add(formoperater.MainPanel);
+                xtraTabControl1.TabPages.Add(page);
+                
             }
 
-            FormOperater fdo = new FormOperater();
-            fdo.MdiParent = this;
-            fdo.Show();
-            xtraTabControl1.Visible = false;
+            xtraTabControl1.SelectedTabPage = page;
+
 
 
         }
@@ -717,21 +739,39 @@ namespace AbacusSUPP
 
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            //foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            //{
+            //    if (form.GetType() == typeof(FormPartneri))
+            //    {
+            //        form.Activate();
+            //        return;
+            //    }
+            //}
+
+            //FormPartneri fpart = new FormPartneri();
+            //fpart.Show();
+            //fpart.MdiParent = this;
+            //fpart.Show();
+            //xtraTabControl1.Visible = false;
+
+            var page = xtraTabControl1.TabPages.FirstOrDefault(it => it.Tag == barButtonItem14.Tag);
+
+            if (page == null)
             {
-                if (form.GetType() == typeof(FormPartneri))
+                page = new DevExpress.XtraTab.XtraTabPage()
                 {
-                    form.Activate();
-                    return;
-                }
+                    Tag = barButtonItem14.Tag,
+                    Text = barButtonItem14.Caption,
+
+                };
+
+                FormPartneri formpartneri = new FormPartneri();
+
+                page.Controls.Add(formpartneri.MainPanel);
+                xtraTabControl1.TabPages.Add(page);
             }
 
-            FormPartneri fpart = new FormPartneri();
-            fpart.Show();
-            fpart.MdiParent = this;
-            fpart.Show();
-            xtraTabControl1.Visible = false;
-
+            xtraTabControl1.SelectedTabPage = page;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -826,6 +866,19 @@ namespace AbacusSUPP
             {
                 OperaterLogin.NotifOverride = false;
             }
+        }
+
+        private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
+        {
+            ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
+            (arg.Page as XtraTabPage).Dispose();
+            //xtraTabControl1.SelectedTabPage.Dispose();
+            //xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
+            if (xtraTabControl1.TabPages.Count > 0)
+            {
+                xtraTabControl1.SelectedTabPage = xtraTabControl1.TabPages.Last();
+            }
+            
         }
     }
 
