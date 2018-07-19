@@ -42,6 +42,7 @@ namespace AbacusSUPP
             progressBar.PerformStep();
             progressBar.Update();
 
+
             //gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq=> qq.datum);
             barStaticItem1.Caption = "Operater: " + OperaterLogin.operater.username;
             progressBar.PerformStep();
@@ -762,6 +763,7 @@ namespace AbacusSUPP
                 {
                     Tag = barButtonItem14.Tag,
                     Text = barButtonItem14.Caption,
+                    
 
                 };
 
@@ -781,14 +783,17 @@ namespace AbacusSUPP
 
         private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (xtraTabControl1.Visible == true) xtraTabControl1.Visible = false;
-            else xtraTabControl1.Visible = true;
+            //if (xtraTabControl1.Visible == true) xtraTabControl1.Visible = false;
+            //else xtraTabControl1.Visible = true;
+            xtraTabControl1.TabPages.First(qq => (string)qq.Tag == barButtonItem15.Caption).PageVisible = true;
+            xtraTabControl1.SelectedTabPage = xtraTabControl1.TabPages.First(qq => (string)qq.Tag == barButtonItem15.Caption);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             this.ShowInTaskbar = true;
         }
+
 
 
 
@@ -871,7 +876,12 @@ namespace AbacusSUPP
         private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
         {
             ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
-            (arg.Page as XtraTabPage).Dispose();
+            var page = arg.Page as XtraTabPage;
+            if ((string)page.Tag != barButtonItem15.Caption)
+            {
+                (arg.Page as XtraTabPage).Dispose();
+            }
+            else page.PageVisible = false;
             //xtraTabControl1.SelectedTabPage.Dispose();
             //xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
             if (xtraTabControl1.TabPages.Count > 0)
