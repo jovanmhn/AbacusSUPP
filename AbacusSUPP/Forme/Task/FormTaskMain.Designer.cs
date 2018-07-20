@@ -69,6 +69,7 @@
             this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
@@ -90,20 +91,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
             this.xtraScrollableControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gridControl1.BackgroundImage")));
             this.gridControl1.DataSource = this.komentarBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(2, 0);
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.layoutView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1,
             this.repositoryItemPictureEdit1,
             this.repositoryItemButtonEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(779, 334);
+            this.gridControl1.Size = new System.Drawing.Size(1131, 332);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutView1});
@@ -174,7 +178,6 @@
             this.layoutView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.layoutView1_CustomUnboundColumnData);
             this.layoutView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseDown);
             this.layoutView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseUp);
-            
             this.layoutView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.layoutView1_MouseMove);
             this.layoutView1.DoubleClick += new System.EventHandler(this.layoutView1_DoubleClick);
             // 
@@ -514,7 +517,8 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.simpleButton2.Appearance.Options.UseFont = true;
             this.simpleButton2.Location = new System.Drawing.Point(12, 85);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(123, 39);
@@ -580,31 +584,40 @@
             // 
             // xtraScrollableControl1
             // 
-            this.xtraScrollableControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.xtraScrollableControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 130);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 142);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 413);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 379);
             this.xtraScrollableControl1.TabIndex = 18;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.simpleButton1);
+            this.panel1.Controls.Add(this.groupControl1);
+            this.panel1.Controls.Add(this.simpleButton3);
+            this.panel1.Controls.Add(this.xtraScrollableControl1);
+            this.panel1.Controls.Add(this.richEditControl1);
+            this.panel1.Controls.Add(this.memoEdit2);
+            this.panel1.Controls.Add(this.labelControl6);
+            this.panel1.Controls.Add(this.labelControl2);
+            this.panel1.Controls.Add(this.labelControl5);
+            this.panel1.Controls.Add(this.labelControl3);
+            this.panel1.Controls.Add(this.simpleButton2);
+            this.panel1.Controls.Add(this.labelControl4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1132, 546);
+            this.panel1.TabIndex = 19;
             // 
             // FormTaskMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1132, 546);
-            this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.simpleButton3);
-            this.Controls.Add(this.richEditControl1);
-            this.Controls.Add(this.labelControl6);
-            this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.simpleButton2);
-            this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.memoEdit2);
-            this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.xtraScrollableControl1);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "The Bezier";
             this.MaximizeBox = false;
@@ -637,13 +650,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
             this.xtraScrollableControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Layout.LayoutView layoutView1;
         private System.Windows.Forms.BindingSource komentarBindingSource;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn coldatum;
@@ -678,5 +691,7 @@
         private DevExpress.XtraLayout.SimpleSeparator item2;
         private DevExpress.XtraLayout.SimpleSeparator item3;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private System.Windows.Forms.Panel panel1;
+        public DevExpress.XtraGrid.GridControl gridControl1;
     }
 }

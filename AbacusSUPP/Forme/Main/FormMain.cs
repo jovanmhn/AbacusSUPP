@@ -37,7 +37,7 @@ namespace AbacusSUPP
             progressBar.Update();
 
             Baza = new AbacusSUPEntities();
-            taskBindingSource.DataSource = Main_lista = Baza.Task.ToList();
+            taskBindingSource.DataSource = Main_lista = Baza.Task.OrderByDescending(qq=>qq.datum).ToList();
 
             progressBar.PerformStep();
             progressBar.Update();
@@ -166,10 +166,10 @@ namespace AbacusSUPP
                 {
                     OperaterLogin.seen_tasks.Add(task.id_task);
                     FormTaskMain frmtm = new FormTaskMain(task, splashScreenManager1);
-                    frmtm.MdiParent = this;
-                    xtraTabControl1.Visible = false;
+                    //frmtm.MdiParent = this;
+                    //xtraTabControl1.Visible = false;
+                    //frmtm.Show();
 
-                    frmtm.Show();
                     frmtm.FormClosed += (ss, ee) =>         //NOVO**    
                     {
                         if (frmtm.DialogResult == DialogResult.OK)
@@ -189,6 +189,27 @@ namespace AbacusSUPP
                             gridView1.RefreshData();
                         }
                     };
+
+                    var page = xtraTabControl1.TabPages.FirstOrDefault(it => (string)it.Tag == task.id_task.ToString());
+
+                    if (page == null)
+                    {
+                        page = new DevExpress.XtraTab.XtraTabPage()
+                        {
+                            Tag = task.id_task.ToString(),
+                            Text = task.id_task.ToString() + " - " + task.naslov,
+
+                        };
+
+
+                        page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("task_16x16.png")];
+                        page.Controls.Add(frmtm.MainPanel);
+                        
+                        xtraTabControl1.TabPages.Add(page);
+
+                    }
+
+                    xtraTabControl1.SelectedTabPage = page;
 
 
                     /**************************STARO**************************
@@ -480,7 +501,8 @@ namespace AbacusSUPP
                 };
 
                 FormOperater formoperater = new FormOperater();
-
+                page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("usergroup_16x16.png")];
+                page.Appearance.Header.Font = new Font("Tahoma", (float)8.25, FontStyle.Bold);
                 page.Controls.Add(formoperater.MainPanel);
                 xtraTabControl1.TabPages.Add(page);
                 
@@ -764,11 +786,11 @@ namespace AbacusSUPP
                     Tag = barButtonItem14.Tag,
                     Text = barButtonItem14.Caption,
                     
-
                 };
 
                 FormPartneri formpartneri = new FormPartneri();
-
+                page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("user_16x16.png")];
+                page.Appearance.Header.Font = new Font("Tahoma", (float)8.25, FontStyle.Bold);
                 page.Controls.Add(formpartneri.MainPanel);
                 xtraTabControl1.TabPages.Add(page);
             }

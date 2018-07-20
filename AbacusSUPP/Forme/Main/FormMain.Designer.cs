@@ -432,9 +432,12 @@
             // 
             // Taskovi
             // 
+            this.Taskovi.Appearance.Header.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Taskovi.Appearance.Header.Options.UseFont = true;
             this.Taskovi.Controls.Add(this.gridControl1);
+            this.Taskovi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Taskovi.ImageOptions.Image")));
             this.Taskovi.Name = "Taskovi";
-            this.Taskovi.Size = new System.Drawing.Size(955, 239);
+            this.Taskovi.Size = new System.Drawing.Size(955, 236);
             this.Taskovi.Tag = "Taskovi";
             this.Taskovi.Text = "Taskovi";
             // 
@@ -449,7 +452,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbonControl1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(955, 239);
+            this.gridControl1.Size = new System.Drawing.Size(955, 236);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -608,6 +611,9 @@
             this.imageCollection1.Images.SetKeyName(5, "zubcanik_notif_Ld7_icon.ico");
             this.imageCollection1.Images.SetKeyName(6, "feature_16x16.png");
             this.imageCollection1.Images.SetKeyName(7, "zubcanik 100ico.png");
+            this.imageCollection1.Images.SetKeyName(8, "usergroup_16x16.png");
+            this.imageCollection1.Images.SetKeyName(9, "user_16x16.png");
+            this.imageCollection1.Images.SetKeyName(10, "task_16x16.png");
             // 
             // popupMenu1
             // 

@@ -32,7 +32,7 @@ namespace AbacusSUPP
         Task task { get; set; }
         int broj_slike = 0;
         Size org_size = new Size();
-
+        public Panel MainPanel { get { return this.panel1; } }
 
         public string rtfprezip;
         public string rtfpostunzip;
@@ -116,38 +116,46 @@ namespace AbacusSUPP
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if (task.status_id == 1)
+            var db = new AbacusSUPEntities();
+            if ( db.Task.FirstOrDefault(qq=> qq.id_task==task.id_task).status_id == 1)
             {
-                var Baza = new AbacusSUPEntities();
-                Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
-                Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
-                Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
-                labelControl6.Text = Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
+                //var Baza = new AbacusSUPEntities();
+                db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = db.Status.FirstOrDefault(qw => qw.opis == "Zavrseno").id_status;
+                db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
+                db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
+                labelControl6.Text = db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
 
-                List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
+                List<VezaLT> listaveza = db.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                 foreach (VezaLT veza in listaveza)
                 {
-                    Baza.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = false;
+                    db.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = false;
                 }
+                simpleButton2.Text = "Otvori task";
 
-                Baza.SaveChanges();
+                db.SaveChanges();
+                var db2 = new AbacusSUPEntities();
+                labelControl6.Visible = true;
+                labelControl6.Text = "Task zatvorio " + db2.Task.FirstOrDefault(qq=>qq.id_task==task.id_task).Login1.username.ToString() + ", " + db2.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
+                simpleButton1.Enabled = false;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else if (task.status_id == 2)
+            else if (db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id == 2)
             {
 
                 if (XtraMessageBox.Show("Ovaj task je zatvoren. Otvoriti opet?", "Provjera", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Baza.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = Baza.Status.FirstOrDefault(qw => qw.opis == "U toku").id_status;
-                    List<VezaLT> listaveza = Baza.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
+                    db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = db.Status.FirstOrDefault(qw => qw.opis == "U toku").id_status;
+                    List<VezaLT> listaveza = db.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                     foreach (VezaLT veza in listaveza)
                     {
-                        Baza.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = true;
+                       db.VezaLT.FirstOrDefault(qw => qw.id_veza == veza.id_veza).isActive = true;
                     }
-
-                    Baza.SaveChanges();
+                    simpleButton2.Text = "Zatvori task";
+                    simpleButton1.Enabled = true;
+                    db.SaveChanges();
                     simpleButton3.Enabled = true;
+                    labelControl6.Visible = false;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -334,8 +342,7 @@ namespace AbacusSUPP
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (task.status_id == 1)
-            {
+            
                 FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
                 //frmdkom.MdiParent = this;
                 if (frmdkom.ShowDialog() == DialogResult.OK)
@@ -348,11 +355,8 @@ namespace AbacusSUPP
                     layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
                     gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
                 }
-            }
-            else
-            {
-                XtraMessageBox.Show("Task je zatvoren, dodavanje komentara nije moguće!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            
+            
 
         }
 
@@ -629,14 +633,7 @@ namespace AbacusSUPP
         }
 
     }
-    public static class StringExt
-    {
-        public static string Truncate(this string value, int maxLength)
-        {
-            if (string.IsNullOrEmpty(value)) return value;
-            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
-        }
-    }
+
 
 
 }
