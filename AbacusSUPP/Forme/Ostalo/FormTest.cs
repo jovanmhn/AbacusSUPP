@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraRichEdit.API.Native;
+﻿using DevExpress.Services;
+using DevExpress.Utils;
+using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,16 +14,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace AbacusSUPP
 {
     public partial class FormTest : DevExpress.XtraEditors.XtraForm
     {
         AbacusSUPEntities Baza { get; set; }
-        int count = 0;
+        
         public FormTest()
         {
             InitializeComponent();
+            
         }
 
+        
+
+    }
+    public class CustomRichEditControl : RichEditControl
+    {
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            //base.OnMouseWheel(e);
+        }
     }
 }

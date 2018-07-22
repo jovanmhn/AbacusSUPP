@@ -628,10 +628,11 @@ namespace AbacusSUPP
             if (!control.Focused)
             {
                 (e as DXMouseEventArgs).Handled = true;
-                xtraScrollableControl1.VerticalScroll.Value -= e.Delta/2;
+                xtraScrollableControl1.VerticalScroll.Value -= e.Delta/3;
             }
         }
 
+        
     }
 
 

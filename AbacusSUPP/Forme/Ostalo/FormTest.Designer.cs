@@ -32,8 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTest));
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.richEditControl1 = new DevExpress.XtraRichEdit.RichEditControl();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.customRichEditControl1 = new AbacusSUPP.CustomRichEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageCollection1
@@ -46,26 +48,32 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
-            // richEditControl1
+            // xtraScrollableControl1
             // 
-            this.richEditControl1.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
-            this.richEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.richEditControl1.Location = new System.Drawing.Point(0, 0);
-            this.richEditControl1.Name = "richEditControl1";
-            this.richEditControl1.Size = new System.Drawing.Size(915, 539);
-            this.richEditControl1.TabIndex = 0;
-            //this.richEditControl1.CustomDrawActiveView += new DevExpress.XtraRichEdit.RichEditViewCustomDrawEventHandler(this.richEditControl1_CustomDrawActiveView);
+            this.xtraScrollableControl1.Controls.Add(this.customRichEditControl1);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(92, 78);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(566, 267);
+            this.xtraScrollableControl1.TabIndex = 1;
+            // 
+            // customRichEditControl1
+            // 
+            this.customRichEditControl1.Location = new System.Drawing.Point(96, 31);
+            this.customRichEditControl1.Name = "customRichEditControl1";
+            this.customRichEditControl1.Size = new System.Drawing.Size(400, 418);
+            this.customRichEditControl1.TabIndex = 0;
+            this.customRichEditControl1.Text = "customRichEditControl1";
             // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 539);
-            this.Controls.Add(this.richEditControl1);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "FormTest";
             this.Text = "FormTest";
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -73,6 +81,7 @@
         #endregion
         private DevExpress.Utils.ImageCollection imageCollection1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
+        public DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private CustomRichEditControl customRichEditControl1;
     }
 }
