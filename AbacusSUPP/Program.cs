@@ -1,5 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace AbacusSUPP
             Application.Run(new FormLogin());
             SkinManager.EnableFormSkins();
             SkinManager.EnableMdiFormSkins();
+            //WindowsFormsSettings.AllowHoverAnimation = DevExpress.Utils.DefaultBoolean.True;
+            //WindowsFormsSettings.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            //WindowsFormsSettings.AnimationMode = AnimationMode.EnableAll;
+            //WindowsFormsSettings.ForceDirectXPaint();
+            
             //UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier);
             //UserLookAndFeel.Default.SetSkinStyle(SkinSvgPalette.Bezier.OfficeColorful);
         }

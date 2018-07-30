@@ -5,16 +5,15 @@ using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
+using System.Reflection;
+using DevExpress.Utils.Paint;
+
 
 namespace AbacusSUPP
 {
@@ -250,7 +249,7 @@ namespace AbacusSUPP
         private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             GridView view = sender as GridView;
-            //if (e.RowHandle == view.FocusedRowHandle) return;
+            
             if (e.Column.FieldName == "Prioritet.opis")
             {
                 if (e.RowHandle >= 0)
@@ -801,6 +800,7 @@ namespace AbacusSUPP
         private void FormMain_Load(object sender, EventArgs e)
         {
             this.IsMdiContainer = true;
+            
         }
 
         private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -901,6 +901,7 @@ namespace AbacusSUPP
             var page = arg.Page as XtraTabPage;
             if ((string)page.Tag != barButtonItem15.Caption)
             {
+                
                 (arg.Page as XtraTabPage).Dispose();
             }
             else page.PageVisible = false;
@@ -912,6 +913,7 @@ namespace AbacusSUPP
             }
             
         }
+       
     }
 
 }

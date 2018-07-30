@@ -138,7 +138,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
                 a.Save(uri);
                 DocumentRange b = image.Range;
                 richEditControl1.Document.Delete(b);                
-                var c = AbacusSUPP.Helper.ResizeImage(a, 200, 200 * a.Height / a.Width);
+                var c = AbacusSUPP.Helper.ResizeImage(a, 350, 350 * a.Height / a.Width);
                 imageCollection.Insert(richEditControl1.Document.CaretPosition, c);
                 //var d = imageCollection[imageCollection.Count - 1];
                 //b = d.Range;

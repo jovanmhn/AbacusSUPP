@@ -448,9 +448,10 @@ namespace AbacusSUPP
 
         private void FormTaskMain_Shown(object sender, EventArgs e)
         {
-            //Program.MainForm.WindowState = FormWindowState.Minimized;           
+            //Program.MainForm.WindowState = FormWindowState.Minimized;     
+            
         }
-
+        
         private void FormTaskMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -476,11 +477,12 @@ namespace AbacusSUPP
 
         private void layoutView1_CustomDrawCardBackground(object sender, DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventArgs e)
         {
-           
+            //if (Program.MainForm.xtraTabControl1.SelectedTabPage.Disposing) return;
             if (e.RowHandle >= 0)
             {
                 var db = new AbacusSUPEntities();
                 Komentar kom1 = (Komentar)layoutView1.GetRow(e.RowHandle);
+                if (kom1 == null) return;
                 Komentar kom = db.Komentar.FirstOrDefault(qq => qq.id == kom1.id);
                 if (kom != null && kom.Login.outline_kom == true)
                 {
@@ -543,7 +545,7 @@ namespace AbacusSUPP
 
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
-                    richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
+                    richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Both;
                     
                     ColumnView view = (ColumnView)sender;
                     Komentar a = (Komentar)view.GetFocusedRow();
@@ -628,11 +630,20 @@ namespace AbacusSUPP
             if (!control.Focused)
             {
                 (e as DXMouseEventArgs).Handled = true;
+                if (xtraScrollableControl1.VerticalScroll.Value <= e.Delta / 3) { xtraScrollableControl1.VerticalScroll.Value = 0; }
                 xtraScrollableControl1.VerticalScroll.Value -= e.Delta/3;
             }
         }
 
-        
+        private void memoEdit2_Enter(object sender, EventArgs e)
+        {
+            memoEdit2.Height = memoEdit2.Height * 3;
+        }
+
+        private void memoEdit2_Leave(object sender, EventArgs e)
+        {
+            memoEdit2.Height = memoEdit2.Height / 3;
+        }
     }
 
 

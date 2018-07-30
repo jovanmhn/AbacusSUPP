@@ -97,8 +97,6 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gridControl1.BackgroundImage")));
             this.gridControl1.DataSource = this.komentarBindingSource;
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
@@ -108,7 +106,7 @@
             this.repositoryItemRichTextEdit1,
             this.repositoryItemPictureEdit1,
             this.repositoryItemButtonEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(974, 325);
+            this.gridControl1.Size = new System.Drawing.Size(957, 340);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.layoutView1});
@@ -132,7 +130,7 @@
             this.layoutView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.layoutView1.CardCaptionFormat = "Komentar {0}/{1}";
             this.layoutView1.CardHorzInterval = 0;
-            this.layoutView1.CardMinSize = new System.Drawing.Size(206, 92);
+            this.layoutView1.CardMinSize = new System.Drawing.Size(208, 94);
             this.layoutView1.CardVertInterval = 1;
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.testbutton,
@@ -170,8 +168,10 @@
             this.layoutView1.OptionsView.PartialCardsSimpleScrolling = DevExpress.Utils.DefaultBoolean.False;
             this.layoutView1.OptionsView.ShowCardCaption = false;
             this.layoutView1.OptionsView.ShowCardFieldBorders = true;
+            this.layoutView1.OptionsView.ShowCardLines = false;
             this.layoutView1.OptionsView.ShowFieldHints = false;
             this.layoutView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.layoutView1.OptionsView.ShowHeaderPanel = false;
             this.layoutView1.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
             this.layoutView1.TemplateCard = this.layoutViewCard1;
             this.layoutView1.CustomDrawCardBackground += new DevExpress.XtraGrid.Views.Layout.Events.LayoutViewCustomDrawCardBackgroundEventHandler(this.layoutView1_CustomDrawCardBackground);
@@ -214,7 +214,7 @@
             this.layoutViewField_layoutViewColumn1_2.MaxSize = new System.Drawing.Size(30, 30);
             this.layoutViewField_layoutViewColumn1_2.MinSize = new System.Drawing.Size(30, 30);
             this.layoutViewField_layoutViewColumn1_2.Name = "layoutViewField_layoutViewColumn1_2";
-            this.layoutViewField_layoutViewColumn1_2.Size = new System.Drawing.Size(535, 84);
+            this.layoutViewField_layoutViewColumn1_2.Size = new System.Drawing.Size(469, 89);
             this.layoutViewField_layoutViewColumn1_2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutViewField_layoutViewColumn1_2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutViewField_layoutViewColumn1_2.TextVisible = false;
@@ -240,13 +240,13 @@
             // 
             // layoutViewField_coldatum
             // 
-            this.layoutViewField_coldatum.EditorPreferredWidth = 78;
+            this.layoutViewField_coldatum.EditorPreferredWidth = 158;
             this.layoutViewField_coldatum.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_coldatum.ImageOptions.Image")));
-            this.layoutViewField_coldatum.Location = new System.Drawing.Point(158, 0);
+            this.layoutViewField_coldatum.Location = new System.Drawing.Point(222, 0);
             this.layoutViewField_coldatum.MaxSize = new System.Drawing.Size(0, 22);
             this.layoutViewField_coldatum.MinSize = new System.Drawing.Size(93, 22);
             this.layoutViewField_coldatum.Name = "layoutViewField_coldatum";
-            this.layoutViewField_coldatum.Size = new System.Drawing.Size(143, 22);
+            this.layoutViewField_coldatum.Size = new System.Drawing.Size(223, 22);
             this.layoutViewField_coldatum.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutViewField_coldatum.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutViewField_coldatum.TextLocation = DevExpress.Utils.Locations.Left;
@@ -275,13 +275,13 @@
             // 
             // layoutViewField_colLogin
             // 
-            this.layoutViewField_colLogin.EditorPreferredWidth = 79;
+            this.layoutViewField_colLogin.EditorPreferredWidth = 142;
             this.layoutViewField_colLogin.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_colLogin.ImageOptions.Image")));
             this.layoutViewField_colLogin.Location = new System.Drawing.Point(0, 0);
             this.layoutViewField_colLogin.MaxSize = new System.Drawing.Size(0, 22);
             this.layoutViewField_colLogin.MinSize = new System.Drawing.Size(93, 22);
             this.layoutViewField_colLogin.Name = "layoutViewField_colLogin";
-            this.layoutViewField_colLogin.Size = new System.Drawing.Size(157, 22);
+            this.layoutViewField_colLogin.Size = new System.Drawing.Size(220, 22);
             this.layoutViewField_colLogin.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutViewField_colLogin.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutViewField_colLogin.TextLocation = DevExpress.Utils.Locations.Left;
@@ -321,16 +321,14 @@
             this.repositoryItemRichTextEdit1.OptionsVerticalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Hidden;
             this.repositoryItemRichTextEdit1.ReadOnly = true;
             this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
-            
             // 
             // layoutViewField_layoutViewColumn1
             // 
-            this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = 470;
+            this.layoutViewField_layoutViewColumn1.EditorPreferredWidth = 403;
             this.layoutViewField_layoutViewColumn1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("layoutViewField_layoutViewColumn1.ImageOptions.Image")));
-            this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(61, 23);
+            this.layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(62, 24);
             this.layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
-            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(474, 60);
-            this.layoutViewField_layoutViewColumn1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.SupportHorzAlignment;
+            this.layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(407, 65);
             this.layoutViewField_layoutViewColumn1.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutViewField_layoutViewColumn1.TextVisible = false;
@@ -355,11 +353,11 @@
             // layoutViewField_layoutViewColumn1_1
             // 
             this.layoutViewField_layoutViewColumn1_1.EditorPreferredWidth = 56;
-            this.layoutViewField_layoutViewColumn1_1.Location = new System.Drawing.Point(0, 23);
+            this.layoutViewField_layoutViewColumn1_1.Location = new System.Drawing.Point(0, 24);
             this.layoutViewField_layoutViewColumn1_1.MaxSize = new System.Drawing.Size(60, 60);
             this.layoutViewField_layoutViewColumn1_1.MinSize = new System.Drawing.Size(60, 60);
             this.layoutViewField_layoutViewColumn1_1.Name = "layoutViewField_layoutViewColumn1_1";
-            this.layoutViewField_layoutViewColumn1_1.Size = new System.Drawing.Size(60, 60);
+            this.layoutViewField_layoutViewColumn1_1.Size = new System.Drawing.Size(60, 65);
             this.layoutViewField_layoutViewColumn1_1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutViewField_layoutViewColumn1_1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutViewField_layoutViewColumn1_1.TextVisible = false;
@@ -388,17 +386,17 @@
             // 
             this.item1.AllowHotTrack = false;
             this.item1.CustomizationFormText = "item1";
-            this.item1.Location = new System.Drawing.Point(60, 23);
+            this.item1.Location = new System.Drawing.Point(60, 24);
             this.item1.Name = "item1";
-            this.item1.Size = new System.Drawing.Size(1, 60);
+            this.item1.Size = new System.Drawing.Size(2, 65);
             // 
             // item5
             // 
             this.item5.AllowHotTrack = false;
             this.item5.CustomizationFormText = "item5";
-            this.item5.Location = new System.Drawing.Point(301, 0);
+            this.item5.Location = new System.Drawing.Point(445, 0);
             this.item5.Name = "item5";
-            this.item5.Size = new System.Drawing.Size(234, 22);
+            this.item5.Size = new System.Drawing.Size(24, 22);
             this.item5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // item2
@@ -407,15 +405,15 @@
             this.item2.CustomizationFormText = "item2";
             this.item2.Location = new System.Drawing.Point(0, 22);
             this.item2.Name = "item2";
-            this.item2.Size = new System.Drawing.Size(535, 1);
+            this.item2.Size = new System.Drawing.Size(469, 2);
             // 
             // item3
             // 
             this.item3.AllowHotTrack = false;
             this.item3.CustomizationFormText = "item3";
-            this.item3.Location = new System.Drawing.Point(157, 0);
+            this.item3.Location = new System.Drawing.Point(220, 0);
             this.item3.Name = "item3";
-            this.item3.Size = new System.Drawing.Size(1, 22);
+            this.item3.Size = new System.Drawing.Size(2, 22);
             // 
             // simpleButton1
             // 
@@ -425,7 +423,7 @@
             this.simpleButton1.Appearance.Options.UseBorderColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(1016, 89);
+            this.simpleButton1.Location = new System.Drawing.Point(1002, 58);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(104, 37);
             this.simpleButton1.TabIndex = 16;
@@ -436,7 +434,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(43, 29);
+            this.labelControl1.Location = new System.Drawing.Point(43, 36);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(40, 33);
             this.labelControl1.TabIndex = 3;
@@ -457,14 +455,14 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(123, 67);
+            this.groupControl1.Size = new System.Drawing.Size(123, 83);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "TASK ID";
             // 
             // memoEdit2
             // 
             this.memoEdit2.EditValue = "";
-            this.memoEdit2.Location = new System.Drawing.Point(141, 42);
+            this.memoEdit2.Location = new System.Drawing.Point(281, 42);
             this.memoEdit2.Name = "memoEdit2";
             this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.memoEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -472,8 +470,10 @@
             this.memoEdit2.Properties.Appearance.Options.UseFont = true;
             this.memoEdit2.Properties.ReadOnly = true;
             this.memoEdit2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.memoEdit2.Size = new System.Drawing.Size(337, 82);
+            this.memoEdit2.Size = new System.Drawing.Size(417, 53);
             this.memoEdit2.TabIndex = 5;
+            this.memoEdit2.Enter += new System.EventHandler(this.memoEdit2_Enter);
+            this.memoEdit2.Leave += new System.EventHandler(this.memoEdit2_Leave);
             // 
             // labelControl2
             // 
@@ -484,7 +484,7 @@
             this.labelControl2.Appearance.Options.UseImage = true;
             this.labelControl2.Appearance.Options.UseImageAlign = true;
             this.labelControl2.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl2.Location = new System.Drawing.Point(484, 36);
+            this.labelControl2.Location = new System.Drawing.Point(704, 10);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(106, 20);
             this.labelControl2.TabIndex = 6;
@@ -498,7 +498,7 @@
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseImage = true;
             this.labelControl3.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl3.Location = new System.Drawing.Point(484, 58);
+            this.labelControl3.Location = new System.Drawing.Point(704, 32);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(106, 20);
             this.labelControl3.TabIndex = 7;
@@ -511,7 +511,7 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.Appearance.Options.UseImage = true;
             this.labelControl4.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl4.Location = new System.Drawing.Point(484, 80);
+            this.labelControl4.Location = new System.Drawing.Point(704, 54);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(106, 20);
             this.labelControl4.TabIndex = 8;
@@ -521,9 +521,9 @@
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(12, 85);
+            this.simpleButton2.Location = new System.Drawing.Point(147, 43);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(123, 39);
+            this.simpleButton2.Size = new System.Drawing.Size(123, 52);
             this.simpleButton2.TabIndex = 9;
             this.simpleButton2.Text = "Zatvori task";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -532,7 +532,8 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(142, 12);
+            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.labelControl5.Location = new System.Drawing.Point(147, 14);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(133, 24);
             this.labelControl5.TabIndex = 10;
@@ -549,7 +550,7 @@
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseImage = true;
             this.labelControl6.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.labelControl6.Location = new System.Drawing.Point(484, 102);
+            this.labelControl6.Location = new System.Drawing.Point(704, 76);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(106, 20);
             this.labelControl6.TabIndex = 15;
@@ -586,13 +587,10 @@
             // 
             // xtraScrollableControl1
             // 
-            this.xtraScrollableControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 142);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 101);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 401);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 442);
             this.xtraScrollableControl1.TabIndex = 18;
             // 
             // panel1
@@ -683,6 +681,9 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn testbutton;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private System.Windows.Forms.Panel panel1;
+        public DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_2;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_coldatum;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_colLogin;
@@ -693,8 +694,5 @@
         private DevExpress.XtraLayout.EmptySpaceItem item5;
         private DevExpress.XtraLayout.SimpleSeparator item2;
         private DevExpress.XtraLayout.SimpleSeparator item3;
-        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
-        private System.Windows.Forms.Panel panel1;
-        public DevExpress.XtraGrid.GridControl gridControl1;
     }
 }

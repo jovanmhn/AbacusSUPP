@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.coldatum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
+            this.applicationMenu2 = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -63,7 +64,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.Taskovi = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colid_task = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpartner = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -72,15 +73,15 @@
             this.colprioritet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collogin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BrKomentara = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon();
-            this.toastNotificationsTask = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
-            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon();
-            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.toastNotificationsTask = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
+            this.notifyIconNotifikacija = new System.Windows.Forms.NotifyIcon(this.components);
+            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), false, false);
-            this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager();
+            this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -428,6 +429,7 @@
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Taskovi});
+            this.xtraTabControl1.Transition.AllowTransition = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
             // Taskovi
@@ -717,7 +719,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage Taskovi;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -764,5 +765,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem16;
         private DevExpress.XtraBars.BarButtonItem barButtonItem17;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
+        public DevExpress.XtraTab.XtraTabControl xtraTabControl1;
     }
 }
