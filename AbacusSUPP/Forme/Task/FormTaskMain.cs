@@ -547,7 +547,8 @@ namespace AbacusSUPP
 
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
-                    richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Both;
+                    richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
+                    
                     
                     ColumnView view = (ColumnView)sender;
                     Komentar a = (Komentar)view.GetFocusedRow();
