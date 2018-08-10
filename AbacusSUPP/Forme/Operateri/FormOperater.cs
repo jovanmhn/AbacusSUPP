@@ -65,5 +65,12 @@ namespace AbacusSUPP
             FormPregledTaskova fpt = new FormPregledTaskova(login);
             fpt.ShowDialog();
         }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            Login login = (Login)gridView1.GetRow(gridView1.FocusedRowHandle);
+            FormOperaterGraph frmog = new FormOperaterGraph(login);
+            frmog.ShowDialog();
+        }
     }
 }

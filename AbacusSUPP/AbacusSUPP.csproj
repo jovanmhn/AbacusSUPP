@@ -161,6 +161,18 @@
     <Compile Include="Forme\Ostalo\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormKolone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKolone.Designer.cs">
+      <DependentUpon>FormKolone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormOperaterGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormOperaterGraph.Designer.cs">
+      <DependentUpon>FormOperaterGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTest2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +273,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Ostalo\FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKolone.resx">
+      <DependentUpon>FormKolone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Operateri\FormOperaterGraph.resx">
+      <DependentUpon>FormOperaterGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTest2.resx">
       <DependentUpon>FormTest2.cs</DependentUpon>

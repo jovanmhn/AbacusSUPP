@@ -82,6 +82,8 @@
             this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AbacusSUPP.WaitForm1), false, false);
             this.toastNotificationsKomentar = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
+            this.radialMenu1 = new DevExpress.XtraBars.Ribbon.RadialMenu(this.components);
+            this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.applicationMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -95,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsTask)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsKomentar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // coldatum
@@ -139,9 +142,10 @@
             this.barButtonItem15,
             this.barButtonItem16,
             this.barButtonItem17,
-            this.barToggleSwitchItem1});
+            this.barToggleSwitchItem1,
+            this.barButtonItem18});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -676,6 +680,21 @@
                     "ncididunt ut labore et dolore magna aliqua.", DevExpress.XtraBars.ToastNotifications.ToastNotificationTemplate.Text01)});
             this.toastNotificationsKomentar.Activated += new System.EventHandler<DevExpress.XtraBars.ToastNotifications.ToastNotificationEventArgs>(this.toastNotificationsKomentar_Activated);
             // 
+            // radialMenu1
+            // 
+            this.radialMenu1.ItemLinks.Add(this.barButtonItem17);
+            this.radialMenu1.ItemLinks.Add(this.barButtonItem5);
+            this.radialMenu1.ItemLinks.Add(this.barButtonItem18);
+            this.radialMenu1.Name = "radialMenu1";
+            this.radialMenu1.Ribbon = this.ribbonControl1;
+            // 
+            // barButtonItem18
+            // 
+            this.barButtonItem18.Caption = "Kolone";
+            this.barButtonItem18.Id = 7;
+            this.barButtonItem18.Name = "barButtonItem18";
+            this.barButtonItem18.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem18_ItemClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -707,6 +726,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsTask)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toastNotificationsKomentar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radialMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -766,5 +786,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem17;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
         public DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem18;
     }
 }

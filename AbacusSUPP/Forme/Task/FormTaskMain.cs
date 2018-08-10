@@ -146,6 +146,8 @@ namespace AbacusSUPP
                 if (XtraMessageBox.Show("Ovaj task je zatvoren. Otvoriti opet?", "Provjera", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).status_id = db.Status.FirstOrDefault(qw => qw.opis == "U toku").id_status;
+                    db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = null;
+                    db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = null; 
                     List<VezaLT> listaveza = db.VezaLT.Where(qq => qq.id_task == task.id_task).ToList();
                     foreach (VezaLT veza in listaveza)
                     {

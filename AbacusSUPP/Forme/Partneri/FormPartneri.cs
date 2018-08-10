@@ -15,7 +15,7 @@ namespace AbacusSUPP
     public partial class FormPartneri : DevExpress.XtraEditors.XtraForm
     {
         public Panel MainPanel { get { return this.panel1; } }
-
+        public bool datechanged = false;
         AbacusSUPEntities Baza { get; set; }
         public FormPartneri()
         {
@@ -24,7 +24,9 @@ namespace AbacusSUPP
             gridControl1.DataSource = Baza.Partneri.ToList();
             gridView1.RefreshData();
 
-            dateEdit1.DateTime = dateEdit2.DateTime = DateTime.Today;
+            dateEdit2.DateTime = DateTime.Today.Date;
+            dateEdit1.DateTime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).Date;
+            
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -68,9 +70,9 @@ namespace AbacusSUPP
         {
             var datumPocetni= new DateTime();
             var datumKraj=new DateTime();
-            if (dateEdit1.DateTime == dateEdit2.DateTime)
+            if (datechanged==false)
             {
-                datumPocetni = DateTime.Today.AddMonths(-2);
+                datumPocetni = DateTime.Today.AddMonths(-3);
                 datumKraj = DateTime.Today;
             }
             else
@@ -84,15 +86,17 @@ namespace AbacusSUPP
 
         private void GenerisiChartove(Partneri partner, DateTime datumPocetni, DateTime datumKraj)
         {
-            Series series1 = new Series("Aktivnih taskova po danu:"+System.Environment.NewLine+"["+partner.naziv+"]", ViewType.Spline);
+            Series series1 = new Series("Aktivnih taskova po danu:"+System.Environment.NewLine+"["+partner.naziv+"]", ViewType.SplineArea);
             var db = new AbacusSUPEntities();
             
+
+            List<Task> listataskova = db.Task.Where(qq=> qq.id_partner == partner.id).ToList();
             
-            List<Task> listataskova = db.Task.Where(qq => qq.id_partner == partner.id && ((qq.datum>=datumPocetni.Date && qq.datum<=datumKraj.Date) || (qq.datum_zatv >= datumPocetni.Date && qq.datum_zatv <= datumKraj.Date))).ToList();
+            listataskova = listataskova.Where(qq => qq.id_partner == partner.id && ((qq.datum.Value.Date >= datumPocetni.Date && qq.datum.Value.Date <= datumKraj.Date) || (qq.datum_zatv.HasValue && (qq.datum_zatv.Value.Date >= datumPocetni.Date && qq.datum_zatv.Value.Date <= datumKraj.Date)) || (qq.datum.HasValue && (!qq.datum_zatv.HasValue || qq.datum_zatv>datumKraj.Date)))).ToList();
             for (DateTime i = datumPocetni; i <= datumKraj; i = i.AddDays(1))
             {
                 
-                int broj = listataskova.Where(qq => qq.datum <= i.Date && (qq.datum_zatv >= i || qq.datum_zatv==null)).ToList().Count();
+                int broj = listataskova.Where(qq => qq.datum.Value.Date <= i.Date && ((qq.datum_zatv.HasValue && qq.datum_zatv.Value.Date >= i.Date ) || !qq.datum_zatv.HasValue)).ToList().Count();
                 series1.Points.Add(new SeriesPoint(i, broj));
                 //series2.Points.Add(new SeriesPoint(i, trajanje2 / 60));
 
@@ -102,15 +106,17 @@ namespace AbacusSUPP
            
             
             series1.ArgumentScaleType = ScaleType.DateTime;
-            ((SplineSeriesView)series1.View).LineTensionPercent = 90;
-            ((SplineSeriesView)series1.View).LineMarkerOptions.Kind = MarkerKind.Circle;
-            ((SplineSeriesView)series1.View).LineStyle.DashStyle = DashStyle.Solid;
-            ((SplineSeriesView)series1.View).SeriesAnimation = new XYSeriesUnwindAnimation
-            {
-                Direction = AnimationDirection.FromLeft,
-                Duration = new TimeSpan(0, 0, 5)
-            };
+            //((SplineAreaSeriesView)series1.View).FillStyle.FillMode = FillMode.Gradient;
+            //((SplineAreaSeriesView)series1.View).LineMarkerOptions.Kind = MarkerKind.Circle;
+            //((SplineAreaSeriesView)series1.View).LineStyle.DashStyle = DashStyle.Solid;
+            //((SplineAreaSeriesView)series1.View).SeriesAnimation = new XYSeriesUnwindAnimation
+            //{
+            //    Direction = AnimationDirection.FromLeft,
+            //    Duration = new TimeSpan(0, 0, 5)
+            //};
+            
             chartControl1.Series.Add(series1);
+            chartControl1.Animate();
             //chartControl1.Titles.Add(new ChartTitle());
             //chartControl1.Titles[0].Text = "Aktivnih taskova po danu:";
         }
@@ -120,6 +126,24 @@ namespace AbacusSUPP
             Partneri partner = (Partneri)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (gridView1.SelectedRowsCount < 2) chartControl1.Series.Clear();
             GenerisiChartove(partner);
+            chartControl1.Refresh();
+        }
+
+        private void dateEdit1_DateTimeChanged(object sender, EventArgs e)
+        {
+            datechanged = true;
+        }
+
+        private void dateEdit2_DateTimeChanged(object sender, EventArgs e)
+        {
+            datechanged = true;
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            Partneri partner = (Partneri)gridView1.GetRow(gridView1.FocusedRowHandle);
+            chartControl1.Series.Clear();
+            GenerisiChartove(partner, dateEdit1.DateTime.Date, dateEdit2.DateTime.Date);
             chartControl1.Refresh();
         }
     }

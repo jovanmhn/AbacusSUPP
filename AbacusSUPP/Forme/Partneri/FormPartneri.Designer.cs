@@ -28,35 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPartneri));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.partneriBindingSource = new System.Windows.Forms.BindingSource();
+            this.partneriBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colnaziv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -126,6 +128,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dateEdit2);
+            this.panel1.Controls.Add(this.dateEdit1);
+            this.panel1.Controls.Add(this.simpleButton4);
             this.panel1.Controls.Add(this.xtraTabControl1);
             this.panel1.Controls.Add(this.gridControl1);
             this.panel1.Controls.Add(this.simpleButton3);
@@ -136,6 +141,42 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(909, 422);
             this.panel1.TabIndex = 4;
+            // 
+            // dateEdit2
+            // 
+            this.dateEdit2.EditValue = null;
+            this.dateEdit2.Location = new System.Drawing.Point(526, 390);
+            this.dateEdit2.Name = "dateEdit2";
+            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit2.Size = new System.Drawing.Size(100, 20);
+            this.dateEdit2.TabIndex = 9;
+            this.dateEdit2.DateTimeChanged += new System.EventHandler(this.dateEdit2_DateTimeChanged);
+            // 
+            // dateEdit1
+            // 
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(381, 390);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
+            this.dateEdit1.TabIndex = 9;
+            this.dateEdit1.DateTimeChanged += new System.EventHandler(this.dateEdit1_DateTimeChanged);
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.simpleButton4.Location = new System.Drawing.Point(651, 388);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton4.TabIndex = 8;
+            this.simpleButton4.Text = "Refresh";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // xtraTabControl1
             // 
@@ -171,30 +212,6 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(610, 329);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
-            // dateEdit1
-            // 
-            this.dateEdit1.EditValue = new System.DateTime(2018, 7, 20, 7, 57, 42, 975);
-            this.dateEdit1.Location = new System.Drawing.Point(381, 0);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit1.TabIndex = 2;
-            // 
-            // dateEdit2
-            // 
-            this.dateEdit2.EditValue = new System.DateTime(2018, 7, 20, 7, 57, 58, 526);
-            this.dateEdit2.Location = new System.Drawing.Point(509, 0);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit2.TabIndex = 3;
-            // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(360, 3);
@@ -227,15 +244,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabControl1.PerformLayout();
-            this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,9 +270,10 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraCharts.ChartControl chartControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
     }
 }

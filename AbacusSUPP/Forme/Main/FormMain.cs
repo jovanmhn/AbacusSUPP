@@ -361,6 +361,12 @@ namespace AbacusSUPP
                 view.FocusedRowHandle = hitInfo.RowHandle;
                 popupMenu1.ShowPopup(MousePosition);
             }
+            if ((e.Button == MouseButtons.Middle) && (hitInfo.InDataRow))
+            {
+                view.FocusedRowHandle = hitInfo.RowHandle;
+                radialMenu1.ShowPopup(MousePosition);
+                
+            }
         }
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -841,7 +847,7 @@ namespace AbacusSUPP
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             Main_lista.Remove(task);
 
-
+            
             var db = new AbacusSUPEntities();
             db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
             db.Task.FirstOrDefault(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
@@ -913,7 +919,14 @@ namespace AbacusSUPP
             }
             
         }
-       
+
+        private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+            GridView view = sender as GridView;
+            FormKolone frmkolone = new FormKolone(view.Columns, view);
+            frmkolone.Show();
+        }
     }
 
 }

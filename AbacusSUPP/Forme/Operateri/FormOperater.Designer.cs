@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOperater));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.loginBindingSource = new System.Windows.Forms.BindingSource();
+            this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,6 +43,7 @@
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -171,6 +173,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.simpleButton5);
             this.panel1.Controls.Add(this.gridControl1);
             this.panel1.Controls.Add(this.simpleButton4);
             this.panel1.Controls.Add(this.simpleButton1);
@@ -181,6 +184,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(660, 327);
             this.panel1.TabIndex = 5;
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
+            this.simpleButton5.Location = new System.Drawing.Point(259, 286);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(24, 23);
+            this.simpleButton5.TabIndex = 5;
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
             // 
             // FormOperater
             // 
@@ -216,5 +228,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
         private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
     }
 }
