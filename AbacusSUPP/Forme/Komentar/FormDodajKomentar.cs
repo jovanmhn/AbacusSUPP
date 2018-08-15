@@ -33,6 +33,25 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             gridControl1 = gridcontrol;
             layoutView1 = layoutView;
 
+            #region Da olaksa .rtf! brisanje styleova i sl
+            richEditControl1.Document.BeginUpdate();
+            try
+            {
+                for (int i = richEditControl1.Document.TableStyles.Count - 1; i >= 1; i--)
+                    richEditControl1.Document.TableStyles.Delete(richEditControl1.Document.TableStyles[i]);
+
+                for (int i = richEditControl1.Document.ParagraphStyles.Count - 1; i >= 1; i--)
+                    richEditControl1.Document.ParagraphStyles.Delete(richEditControl1.Document.ParagraphStyles[i]);
+
+                for (int i = richEditControl1.Document.CharacterStyles.Count - 1; i >= 1; i--)
+                    richEditControl1.Document.CharacterStyles.Delete(richEditControl1.Document.CharacterStyles[i]);
+            }
+            finally
+            {
+                richEditControl1.Document.EndUpdate();
+            } 
+            #endregion
+
         }
     
 

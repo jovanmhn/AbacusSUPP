@@ -31,20 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            this.PodesavanjaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
+            this.PodesavanjaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // checkEdit1
@@ -57,12 +59,9 @@
             this.checkEdit1.TabIndex = 0;
             this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
             // 
-            // PodesavanjaBindingSource
-            // 
-            this.PodesavanjaBindingSource.DataSource = typeof(AbacusSUPP.Podesavanja);
-            // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.checkEdit5);
             this.groupControl1.Controls.Add(this.checkEdit4);
             this.groupControl1.Controls.Add(this.checkEdit3);
             this.groupControl1.Controls.Add(this.checkEdit2);
@@ -120,6 +119,19 @@
             this.simpleButton2.Text = "Otkazi";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
+            // checkEdit5
+            // 
+            this.checkEdit5.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PodesavanjaBindingSource, "task_novi_prozor", true));
+            this.checkEdit5.Location = new System.Drawing.Point(5, 134);
+            this.checkEdit5.Name = "checkEdit5";
+            this.checkEdit5.Properties.Caption = "Otvori task u novom prozoru";
+            this.checkEdit5.Size = new System.Drawing.Size(170, 20);
+            this.checkEdit5.TabIndex = 6;
+            // 
+            // PodesavanjaBindingSource
+            // 
+            this.PodesavanjaBindingSource.DataSource = typeof(AbacusSUPP.Podesavanja);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -134,12 +146,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Podesavanja";
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,5 +167,6 @@
         private DevExpress.XtraEditors.CheckEdit checkEdit3;
         private System.Windows.Forms.BindingSource PodesavanjaBindingSource;
         private DevExpress.XtraEditors.CheckEdit checkEdit4;
+        private DevExpress.XtraEditors.CheckEdit checkEdit5;
     }
 }

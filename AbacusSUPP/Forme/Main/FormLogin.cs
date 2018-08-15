@@ -68,8 +68,9 @@ namespace AbacusSUPP
                 }
                 FormMain frmmain = Program.MainForm = new FormMain(OperaterLogin.operater, progressBarControl1);
                 frmmain.Show();
+                OperaterLogin.loginforma = this;
+                OperaterLogin.NE_IZLAZI_AOAO = false;
                 this.Hide();
-                
                 
             }
             else

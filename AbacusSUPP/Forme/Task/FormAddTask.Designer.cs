@@ -34,7 +34,6 @@
             this.taskbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.partneriBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             this.statusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
             this.prioritetBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,7 +42,6 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,7 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).BeginInit();
@@ -98,24 +95,6 @@
             // 
             this.partneriBindingSource.DataSource = typeof(AbacusSUPP.Partneri);
             // 
-            // lookUpEdit2
-            // 
-            this.lookUpEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "status_id", true));
-            this.lookUpEdit2.Location = new System.Drawing.Point(209, 41);
-            this.lookUpEdit2.Name = "lookUpEdit2";
-            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("opis", "opis", 29, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lookUpEdit2.Properties.DataSource = this.statusBindingSource;
-            this.lookUpEdit2.Properties.DisplayMember = "opis";
-            this.lookUpEdit2.Properties.NullText = "";
-            this.lookUpEdit2.Properties.NullValuePrompt = "Status";
-            this.lookUpEdit2.Properties.NullValuePromptShowForEmptyValue = true;
-            this.lookUpEdit2.Properties.ValueMember = "id_status";
-            this.lookUpEdit2.Size = new System.Drawing.Size(126, 20);
-            this.lookUpEdit2.TabIndex = 1;
-            // 
             // statusBindingSource
             // 
             this.statusBindingSource.DataSource = typeof(AbacusSUPP.Status);
@@ -123,7 +102,7 @@
             // lookUpEdit3
             // 
             this.lookUpEdit3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "prioritet_id", true));
-            this.lookUpEdit3.Location = new System.Drawing.Point(341, 41);
+            this.lookUpEdit3.Location = new System.Drawing.Point(209, 41);
             this.lookUpEdit3.Name = "lookUpEdit3";
             this.lookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -190,21 +169,11 @@
             this.labelControl2.TabIndex = 8;
             this.labelControl2.Text = "Partner:";
             // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(209, 22);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(40, 13);
-            this.labelControl3.TabIndex = 9;
-            this.labelControl3.Text = "Status:";
-            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(341, 22);
+            this.labelControl4.Location = new System.Drawing.Point(209, 22);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(50, 13);
             this.labelControl4.TabIndex = 10;
@@ -266,14 +235,12 @@
             this.ClientSize = new System.Drawing.Size(684, 358);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.lookUpEdit3);
-            this.Controls.Add(this.lookUpEdit2);
             this.Controls.Add(this.lookUpEdit1);
             this.Controls.Add(this.memoEdit1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -287,7 +254,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partneriBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prioritetBindingSource)).EndInit();
@@ -305,7 +271,6 @@
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private System.Windows.Forms.BindingSource partneriBindingSource;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
         private System.Windows.Forms.BindingSource statusBindingSource;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit3;
         private System.Windows.Forms.BindingSource prioritetBindingSource;
@@ -315,7 +280,6 @@
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;

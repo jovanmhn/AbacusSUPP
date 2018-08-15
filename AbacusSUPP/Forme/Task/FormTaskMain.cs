@@ -112,7 +112,12 @@ namespace AbacusSUPP
             gridControl1.MouseWheel += GridControl1_MouseWheel;
         }
 
-
+        public void koriguj_izgled()
+        {
+            xtraScrollableControl1.Width = Program.MainForm.xtraTabControl1.Width;
+            LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
+            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, Int32.MaxValue)));
+        }
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -533,9 +538,7 @@ namespace AbacusSUPP
         private void layoutView1_ShownEditor(object sender, EventArgs e)
         {
             ColumnView columnView = sender as ColumnView;
-            //LayoutView view2 = sender as LayoutView;
-            //view2.MouseWheel -= ActiveEditor_MouseWheel;
-            //view2.MouseWheel += ActiveEditor_MouseWheel;
+            //koriguj_izgled();
 
             if (columnView != null)
             {
@@ -543,10 +546,9 @@ namespace AbacusSUPP
 
                 if (activeEditor != null)
                 {
-                  
-
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
-                    richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
+                    
+                    //richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
                     richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
                     
                     

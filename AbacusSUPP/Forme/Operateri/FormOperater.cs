@@ -44,18 +44,22 @@ namespace AbacusSUPP
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            try
+            var res = MessageBox.Show("Da li ste sigurni?","Potvrda", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (res==DialogResult.Yes)
             {
-                Login login = (Login)gridView1.GetRow(gridView1.FocusedRowHandle);
-                Baza.Login.Remove(login);
-                Baza.SaveChanges();
-                gridControl1.DataSource = Baza.Login.ToList();
-                gridView1.RefreshData();
-            }
-            catch (Exception ex)
-            {
+                try
+                {                    
+                    Login login = (Login)gridView1.GetRow(gridView1.FocusedRowHandle);
+                    Baza.Login.Remove(Baza.Login.First(qq=> qq.id==login.id));
+                    Baza.SaveChanges();
+                    gridControl1.DataSource = Baza.Login.ToList();
+                    gridView1.RefreshData();
+                }
+                catch (Exception ex)
+                {
 
-                MessageBox.Show("Greska! Vjerovatno povezan sa taskom, komentarima... \n " + ex.Message);
+                    MessageBox.Show("Greska! Vjerovatno povezan sa taskom, komentarima... "+System.Environment.NewLine + ex.Message);
+                } 
             }
         }
 

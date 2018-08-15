@@ -14,7 +14,8 @@ namespace AbacusSUPP
         public static List<Komentar> stara_kom_lista { get; set; }
         public static List<Task> main_lista { get; set; }
         public static bool NotifOverride { get; set; }
-        
+        public static bool NE_IZLAZI_AOAO { get; set; }
+        public static FormLogin loginforma { get; set; }
     }
     
 

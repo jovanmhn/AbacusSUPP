@@ -52,6 +52,7 @@ namespace AbacusSUPP
             else { checkEdit2.Checked = podesavanja.minimize_notif; }
             checkEdit3.Checked = podesavanja.novitask_notif;
             checkEdit4.Checked = podesavanja.minimize_tray;
+            checkEdit5.Checked = podesavanja.task_novi_prozor;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -96,6 +97,7 @@ namespace AbacusSUPP
             this.Close();
             */
             #endregion
+            OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

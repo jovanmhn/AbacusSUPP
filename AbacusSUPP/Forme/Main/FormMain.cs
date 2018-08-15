@@ -106,7 +106,7 @@ namespace AbacusSUPP
         {
             notifyIcon1.Visible = false;
             notifyIconNotifikacija.Visible = false;
-            Application.Exit();
+            if(OperaterLogin.NE_IZLAZI_AOAO==false) Application.Exit();
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -135,6 +135,7 @@ namespace AbacusSUPP
             {
                 login_id = OperaterLogin.operater.id,
                 datum = DateTime.Now,
+                status_id = 1,
             };
             FormAddTask frmat = new FormAddTask(task);
 
@@ -189,42 +190,48 @@ namespace AbacusSUPP
                         }
                     };
 
-                    var page = xtraTabControl1.TabPages.FirstOrDefault(it => (string)it.Tag == task.id_task.ToString());
-
-                    if (page == null)
+                    if (!OperaterLogin.operater.Podesavanja.task_novi_prozor)
                     {
-                        page = new DevExpress.XtraTab.XtraTabPage()
+                        var page = xtraTabControl1.TabPages.FirstOrDefault(it => (string)it.Tag == task.id_task.ToString());
+
+                        if (page == null)
                         {
-                            Tag = task.id_task.ToString(),
-                            Text = task.id_task.ToString() + " - " + task.naslov,
+                            page = new DevExpress.XtraTab.XtraTabPage()
+                            {
+                                Tag = task.id_task.ToString(),
+                                Text = task.id_task.ToString() + " - " + task.naslov,
 
-                        };
+                            };
 
 
-                        page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("task_16x16.png")];
-                        page.Controls.Add(frmtm.MainPanel);
-                        
-                        xtraTabControl1.TabPages.Add(page);
+                            page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("task_16x16.png")];
+                            page.Controls.Add(frmtm.MainPanel);
+                            frmtm.koriguj_izgled();
+                            xtraTabControl1.TabPages.Add(page);
 
+                        }
+
+                        xtraTabControl1.SelectedTabPage = page; 
                     }
 
-                    xtraTabControl1.SelectedTabPage = page;
-
-
-                    /**************************STARO**************************
-                    //this.WindowState = FormWindowState.Minimized;
-                    var res = frmtm.ShowDialog();
-                    frmtm.Focus();
-                    frmtm.BringToFront();
-
-
-                    if (res==DialogResult.OK)
+                    else
                     {
-                        Baza = new AbacusSUPEntities();
-                        gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
-                        gridView1.RefreshData(); 
+
+                        //*************************STARO**************************
+                        //this.WindowState = FormWindowState.Minimized;
+                        frmtm.Show();
+                        frmtm.Focus();
+                        frmtm.BringToFront();
+
+
+                        if (frmtm.DialogResult==DialogResult.OK)
+                        {
+                            Baza = new AbacusSUPEntities();
+                            gridControl1.DataSource = Baza.Task.ToList().OrderByDescending(qq => qq.datum);
+                            gridView1.RefreshData(); 
+                        }
+                        //*****************************************************/
                     }
-                    *****************************************************/
                 }
             }
             else MessageBox.Show("Nije prosao hit info!");
@@ -722,12 +729,39 @@ namespace AbacusSUPP
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FormSettings frmsett = new FormSettings(OperaterLogin.operater.Podesavanja);
-            var res = frmsett.ShowDialog();
-            if (res == DialogResult.OK)
+            settings:
+            if(OperaterLogin.operater.id_podesavanja!=0 && OperaterLogin.operater.id_podesavanja != null)
             {
-                var Baza = new AbacusSUPEntities();
-                OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
+
+                FormSettings frmsett = new FormSettings(OperaterLogin.operater.Podesavanja);
+                var res = frmsett.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    var Baza = new AbacusSUPEntities();
+                    OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
+                }
+            }
+            else
+            {
+                Podesavanja pod = new Podesavanja
+                {
+                    minimize_notif = false,
+                    minimize_tray = true,
+                    novitask_notif = true,
+                    novikom_notif = true,
+                    task_novi_prozor = false,
+                    
+                };
+                var db = new AbacusSUPEntities();
+                db.Podesavanja.Add(pod);
+                db.SaveChanges();
+                var op = db.Login.First(qq => qq.id == OperaterLogin.operater.id);
+                op.id_podesavanja = pod.id_podesavanja;
+                db.SaveChanges();
+                var log = db.Login.First(qq => qq.id == OperaterLogin.operater.id);
+                OperaterLogin.operater = log;
+                goto settings;
+
             }
 
             /*frmsett.FormClosed += (ss, ee) =>         //NOVO**
@@ -926,6 +960,13 @@ namespace AbacusSUPP
             GridView view = sender as GridView;
             FormKolone frmkolone = new FormKolone(view.Columns, view);
             frmkolone.Show();
+        }
+
+        private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OperaterLogin.NE_IZLAZI_AOAO = true;
+            this.Close();
+            OperaterLogin.loginforma.Show();
         }
     }
 

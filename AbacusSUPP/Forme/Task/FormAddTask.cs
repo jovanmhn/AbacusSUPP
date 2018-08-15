@@ -25,7 +25,7 @@ namespace AbacusSUPP
             Baza = new AbacusSUPEntities();
 
             partneriBindingSource.DataSource = Baza.Partneri.ToList();
-            statusBindingSource.DataSource = Baza.Status.ToList();
+            //statusBindingSource.DataSource = Baza.Status.ToList();
             prioritetBindingSource.DataSource = Baza.Prioritet.ToList();
             gridControl1.DataSource = Baza.Login.ToList().OrderBy(qq => qq.id);
             this.DialogResult = DialogResult.Cancel;

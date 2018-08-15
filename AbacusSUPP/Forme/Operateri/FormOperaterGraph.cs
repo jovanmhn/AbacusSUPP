@@ -54,24 +54,37 @@ namespace AbacusSUPP
                 series2.Points.Add(new SeriesPoint(i, brojzatvorenih));
 
             }
-
+            
 
 
             series1.ArgumentScaleType = ScaleType.DateTime;
             ((SideBySideBarSeriesView)series1.View).Animation.Enabled = true;
+            ((SideBySideBarSeriesView)series1.View).Color = Color.LightBlue;
             chartControl1.Series.Add(series1);
             series2.ArgumentScaleType = ScaleType.DateTime;
             ((SideBySideBarSeriesView)series2.View).Animation.Enabled = true;
+            ((SideBySideBarSeriesView)series2.View).Color = Color.Salmon;
             chartControl1.Series.Add(series2);
 
             chartControl1.Animate();
             //chartControl1.Titles.Add(new ChartTitle());
             //chartControl1.Titles[0].Text = "Aktivnih taskova po danu:";
         }
+        
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             GenerisiChartove(login, dateEdit1.DateTime, dateEdit2.DateTime);
+        }
+
+        private void checkButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            chartControl1.Series[0].Visible=(checkButton1.Checked);
+        }
+
+        private void checkButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            chartControl1.Series[1].Visible = (checkButton2.Checked);
         }
     }
 }

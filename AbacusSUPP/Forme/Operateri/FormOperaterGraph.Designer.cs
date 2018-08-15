@@ -35,6 +35,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.checkButton1 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton2 = new DevExpress.XtraEditors.CheckButton();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
@@ -44,7 +46,8 @@
             // 
             // chartControl1
             // 
-            this.chartControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.chartControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chartControl1.Legend.Name = "Default Legend";
             this.chartControl1.Location = new System.Drawing.Point(0, 29);
@@ -103,17 +106,46 @@
             this.simpleButton1.Text = "Refresh";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // checkButton1
+            // 
+            this.checkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkButton1.Checked = true;
+            this.checkButton1.Location = new System.Drawing.Point(779, 3);
+            this.checkButton1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.checkButton1.Name = "checkButton1";
+            this.checkButton1.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.checkButton1.Size = new System.Drawing.Size(57, 23);
+            this.checkButton1.TabIndex = 6;
+            this.checkButton1.Text = "Otvoreni";
+            this.checkButton1.CheckedChanged += new System.EventHandler(this.checkButton1_CheckedChanged);
+            // 
+            // checkButton2
+            // 
+            this.checkButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkButton2.Checked = true;
+            this.checkButton2.Location = new System.Drawing.Point(842, 3);
+            this.checkButton2.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.checkButton2.Name = "checkButton2";
+            this.checkButton2.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
+            this.checkButton2.Size = new System.Drawing.Size(57, 23);
+            this.checkButton2.TabIndex = 7;
+            this.checkButton2.Text = "Zatvoreni";
+            this.checkButton2.CheckedChanged += new System.EventHandler(this.checkButton2_CheckedChanged);
+            // 
             // FormOperaterGraph
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 369);
+            this.Controls.Add(this.checkButton2);
+            this.Controls.Add(this.checkButton1);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.dateEdit2);
             this.Controls.Add(this.dateEdit1);
             this.Controls.Add(this.chartControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOperaterGraph";
             this.Text = "FormOperaterGraph";
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
@@ -134,5 +166,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.CheckButton checkButton1;
+        private DevExpress.XtraEditors.CheckButton checkButton2;
     }
 }

@@ -46,6 +46,7 @@
           <Property Name="minimize_tray" Type="bit" Nullable="false" />
           <Property Name="novitask_notif" Type="bit" Nullable="false" />
           <Property Name="novikom_notif" Type="bit" Nullable="false" />
+          <Property Name="task_novi_prozor" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Prioritet">
           <Key>
@@ -472,6 +473,7 @@
           <Property Name="novitask_notif" Type="Boolean" Nullable="false" />
           <Property Name="novikom_notif" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Podesavanja" ToRole="Login" />
+          <Property Name="task_novi_prozor" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="VezaLT">
           <Key>
@@ -663,6 +665,7 @@
           <EntitySetMapping Name="Podesavanja">
             <EntityTypeMapping TypeName="AbacusSUPModel.Podesavanja">
               <MappingFragment StoreEntitySet="Podesavanja">
+                <ScalarProperty Name="task_novi_prozor" ColumnName="task_novi_prozor" />
                 <ScalarProperty Name="novikom_notif" ColumnName="novikom_notif" />
                 <ScalarProperty Name="novitask_notif" ColumnName="novitask_notif" />
                 <ScalarProperty Name="minimize_tray" ColumnName="minimize_tray" />

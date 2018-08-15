@@ -25,6 +25,7 @@ namespace AbacusSUPP
         public bool minimize_tray { get; set; }
         public bool novitask_notif { get; set; }
         public bool novikom_notif { get; set; }
+        public bool task_novi_prozor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Login> Login { get; set; }
