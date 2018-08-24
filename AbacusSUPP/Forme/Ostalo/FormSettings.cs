@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Skins;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace AbacusSUPP
     {
         AbacusSUPEntities Baza { get; set; }
         Podesavanja podesavanja { get; set; }
+        string skinName_old;
+
         public FormSettings(Podesavanja _podesavanja)
         {
             InitializeComponent();
@@ -53,6 +56,15 @@ namespace AbacusSUPP
             checkEdit3.Checked = podesavanja.novitask_notif;
             checkEdit4.Checked = podesavanja.minimize_tray;
             checkEdit5.Checked = podesavanja.task_novi_prozor;
+            foreach (SkinContainer cnt in SkinManager.Default.Skins)
+            {
+
+                List<string> listaskinova = new List<string>();
+                listaskinova.Add(cnt.SkinName);
+                
+                comboBoxEdit1.Properties.Items.AddRange(listaskinova);
+            }
+            skinName_old = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -98,6 +110,7 @@ namespace AbacusSUPP
             */
             #endregion
             OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -111,7 +124,20 @@ namespace AbacusSUPP
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+        }
+
+
+        private void comboBoxEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            string skinName = comboBoxEdit1.EditValue.ToString();
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = skinName;
+        }
+
+        private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(this.DialogResult!=DialogResult.OK) DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = skinName_old;
         }
     }
 }

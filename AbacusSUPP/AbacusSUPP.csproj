@@ -105,6 +105,12 @@
     <Compile Include="Forme\Operateri\FormDodajOperatera.Designer.cs">
       <DependentUpon>FormDodajOperatera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\Ostalo\FormArhiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormArhiva.Designer.cs">
+      <DependentUpon>FormArhiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\Partneri\FormDodajPartnera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     <Compile Include="Komentar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Label.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -253,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Operateri\FormDodajOperatera.resx">
       <DependentUpon>FormDodajOperatera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ostalo\FormArhiva.resx">
+      <DependentUpon>FormArhiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Partneri\FormDodajPartnera.resx">
       <DependentUpon>FormDodajPartnera.cs</DependentUpon>
@@ -321,6 +333,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Komentar.datasource" />
+    <None Include="Properties\DataSources\Label.datasource" />
     <None Include="Properties\DataSources\Login.datasource" />
     <None Include="Properties\DataSources\Partneri.datasource" />
     <None Include="Properties\DataSources\Podesavanja.datasource" />

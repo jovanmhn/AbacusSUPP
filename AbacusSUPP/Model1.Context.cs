@@ -34,5 +34,6 @@ namespace AbacusSUPP
         public virtual DbSet<Podesavanja> Podesavanja { get; set; }
         public virtual DbSet<VezaLT> VezaLT { get; set; }
         public virtual DbSet<Login> Login { get; set; }
+        public virtual DbSet<Label> Label { get; set; }
     }
 }

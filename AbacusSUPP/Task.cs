@@ -31,6 +31,7 @@ namespace AbacusSUPP
         public string naslov { get; set; }
         public Nullable<System.DateTime> datum_zatv { get; set; }
         public Nullable<int> login_id_zatv { get; set; }
+        public Nullable<int> id_label { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Komentar> Komentar { get; set; }
@@ -41,5 +42,6 @@ namespace AbacusSUPP
         public virtual ICollection<VezaLT> VezaLT { get; set; }
         public virtual Login Login { get; set; }
         public virtual Login Login1 { get; set; }
+        public virtual Label Label { get; set; }
     }
 }

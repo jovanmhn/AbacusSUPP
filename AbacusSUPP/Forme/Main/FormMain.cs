@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
@@ -11,8 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Reflection;
-using DevExpress.Utils.Paint;
 
 
 namespace AbacusSUPP
@@ -320,6 +319,33 @@ namespace AbacusSUPP
 
                 }
             }
+            if(e.Column.FieldName == "Label")
+            {
+                Task task = (Task)gridView1.GetRow(e.RowHandle);
+                if (e.RowHandle >= 0)
+                {
+                    if (task.Label != null)
+                    {
+                        switch (task.id_label)
+                        {
+                            case (1): { e.Appearance.BackColor = Color.GreenYellow; e.Appearance.BackColor2 = Color.White; return; }
+                            case (2): { e.Appearance.BackColor = Color.Blue; e.Appearance.BackColor2 = Color.White; return; }
+                            case (3): { e.Appearance.BackColor = Color.Red; e.Appearance.BackColor2 = Color.White; return; }
+                            default: { e.Appearance.BackColor = Color.Gray; e.Appearance.BackColor2 = Color.White; return; }
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        e.Appearance.BackColor = Color.Gray;
+                        e.Appearance.BackColor2 = Color.White;
+                    }
+                    e.Handled = true;
+                }
+            }
+            
         }
 
         private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
@@ -327,6 +353,8 @@ namespace AbacusSUPP
             GridView View = sender as GridView;
             if (e.RowHandle >= 0)
             {
+                Task task = (Task)View.GetRow(e.RowHandle);
+
                 string status = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status.opis"]);
                 if (status == "Zavrseno")
                 {
@@ -338,7 +366,7 @@ namespace AbacusSUPP
                 string prioritet = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Prioritet.opis"]);
                 if (prioritet == "High")
                 {
-                    e.Appearance.BackColor = Color.Salmon;
+                    e.Appearance.BackColor = Color.Salmon;                  
                     e.Appearance.BackColor2 = Color.SeaShell;
                 }
                 if (prioritet == "Low")
@@ -352,6 +380,8 @@ namespace AbacusSUPP
                     e.Appearance.BackColor2 = Color.LightGoldenrodYellow;
                 }
 
+                
+                
                 kraj:;
             }
         }
@@ -409,10 +439,24 @@ namespace AbacusSUPP
         private void gridView1_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             var Baza = new AbacusSUPEntities();
+
             if (e.Column == BrKomentara)
             {
                 var row = (Task)e.Row;
                 e.Value = Baza.Komentar.Where(qq => qq.id_task == row.id_task).Count();
+            }
+
+            if (e.Column == Labela)
+            {
+
+               
+                var row = (Task)e.Row;
+                row = Baza.Task.First(qq => qq.id_task == row.id_task);
+                if (row.id_label != null)
+                {
+                    e.Value = row.Label.label1;
+                }
+                else e.Value = "OST";
             }
         }
 
@@ -967,6 +1011,89 @@ namespace AbacusSUPP
             OperaterLogin.NE_IZLAZI_AOAO = true;
             this.Close();
             OperaterLogin.loginforma.Show();
+        }
+
+        private void gridControl1_PaintEx(object sender, DevExpress.XtraGrid.PaintExEventArgs e)
+        {/* // ROW BORDER 
+            GridViewInfo viewInfo = gridView1.GetViewInfo() as GridViewInfo;
+            foreach (GridRowInfo rowInfo in viewInfo.RowsInfo)
+            {
+                if (ShouldDrawThickBorder(gridView1, rowInfo.RowHandle))
+                {
+                    Color boja = new Color();
+                    Task task = (Task)gridView1.GetRow(rowInfo.RowHandle);
+                    switch (task.Label.id_label)
+                    {
+                        case 1: boja = Color.Green; break;
+                        case 2: boja = Color.Red; break;
+                        case 3: boja = Color.Blue; break;
+                        default: MessageBox.Show("ID label vratio neocekivanu vrijednost."); break;
+                    }
+                    Pen p = new Pen(boja, 1);
+                    Point p1 = new Point(rowInfo.Bounds.Left+1, rowInfo.Bounds.Bottom-1);
+                    Point p2 = new Point(rowInfo.Bounds.Right-1, rowInfo.Bounds.Bottom-1);
+
+                    Point p3 = new Point(rowInfo.Bounds.Left+1, rowInfo.Bounds.Top+1);
+                    Point p4 = new Point(rowInfo.Bounds.Right-1, rowInfo.Bounds.Top+1);
+                    e.Cache.Graphics.DrawLine(p, p1, p2);
+                    e.Cache.Graphics.DrawLine(p, p3, p4);
+                    e.Cache.Graphics.DrawLine(p, p1, p3);
+                    e.Cache.Graphics.DrawLine(p, p2, p4);
+                }
+            } */
+        }
+
+        private bool ShouldDrawThickBorder(GridView gridView1, int rowHandle)
+        {
+            if (gridView1.IsGroupRow(rowHandle)) return false;
+            Task task = (Task)gridView1.GetRow(rowHandle);
+            if (task!=null && task.Label != null) return true;
+            else return false;
+        }
+
+        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            {
+                if (form.GetType() == typeof(AbacusSUPP.Forme.Ostalo.FormArhiva))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            AbacusSUPP.Forme.Ostalo.FormArhiva formArhiva = new Forme.Ostalo.FormArhiva();
+            formArhiva.Show();
+        }
+
+        private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.Column.FieldName == "Labela")
+            {
+                Task task = (Task)gridView1.GetRow(e.RowHandle);
+                if (e.RowHandle >= 0)
+                {
+                    if (task.Label != null)
+                    {
+                        switch (task.id_label)
+                        {
+                            case (1): { e.Appearance.ForeColor = Color.GreenYellow; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            case (2): { e.Appearance.ForeColor = Color.Blue; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            case (3): { e.Appearance.ForeColor = Color.Red; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            default: { e.Appearance.ForeColor = Color.Gray;/* e.Appearance.BackColor2 = Color.White;*/ return; }
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        e.Appearance.ForeColor = Color.Gray;
+                        //e.Appearance.BackColor2 = Color.White;
+                    }
+                    //e.Handled = true;
+                }
+            }
         }
     }
 

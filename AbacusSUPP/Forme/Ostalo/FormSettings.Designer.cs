@@ -32,20 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.PodesavanjaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +64,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.comboBoxEdit1);
+            this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.checkEdit5);
             this.groupControl1.Controls.Add(this.checkEdit4);
             this.groupControl1.Controls.Add(this.checkEdit3);
@@ -71,6 +76,15 @@
             this.groupControl1.Size = new System.Drawing.Size(501, 299);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Podesavanja";
+            // 
+            // checkEdit5
+            // 
+            this.checkEdit5.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PodesavanjaBindingSource, "task_novi_prozor", true));
+            this.checkEdit5.Location = new System.Drawing.Point(5, 134);
+            this.checkEdit5.Name = "checkEdit5";
+            this.checkEdit5.Properties.Caption = "Otvori task u novom prozoru";
+            this.checkEdit5.Size = new System.Drawing.Size(170, 20);
+            this.checkEdit5.TabIndex = 6;
             // 
             // checkEdit4
             // 
@@ -119,14 +133,23 @@
             this.simpleButton2.Text = "Otkazi";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
-            // checkEdit5
+            // labelControl1
             // 
-            this.checkEdit5.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PodesavanjaBindingSource, "task_novi_prozor", true));
-            this.checkEdit5.Location = new System.Drawing.Point(5, 134);
-            this.checkEdit5.Name = "checkEdit5";
-            this.checkEdit5.Properties.Caption = "Otvori task u novom prozoru";
-            this.checkEdit5.Size = new System.Drawing.Size(170, 20);
-            this.checkEdit5.TabIndex = 6;
+            this.labelControl1.Location = new System.Drawing.Point(334, 33);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(23, 13);
+            this.labelControl1.TabIndex = 8;
+            this.labelControl1.Text = "Skin:";
+            // 
+            // comboBoxEdit1
+            // 
+            this.comboBoxEdit1.Location = new System.Drawing.Point(359, 30);
+            this.comboBoxEdit1.Name = "comboBoxEdit1";
+            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboBoxEdit1.Size = new System.Drawing.Size(137, 20);
+            this.comboBoxEdit1.TabIndex = 9;
+            this.comboBoxEdit1.EditValueChanged += new System.EventHandler(this.comboBoxEdit1_EditValueChanged);
             // 
             // PodesavanjaBindingSource
             // 
@@ -145,13 +168,16 @@
             this.Name = "FormSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Podesavanja";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettings_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PodesavanjaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -168,5 +194,7 @@
         private System.Windows.Forms.BindingSource PodesavanjaBindingSource;
         private DevExpress.XtraEditors.CheckEdit checkEdit4;
         private DevExpress.XtraEditors.CheckEdit checkEdit5;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
     }
 }

@@ -57,10 +57,12 @@
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -75,6 +77,7 @@
             this.colprioritet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.collogin = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BrKomentara = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Labela = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -112,8 +115,8 @@
             this.coldatum.MinWidth = 23;
             this.coldatum.Name = "coldatum";
             this.coldatum.Visible = true;
-            this.coldatum.VisibleIndex = 2;
-            this.coldatum.Width = 154;
+            this.coldatum.VisibleIndex = 3;
+            this.coldatum.Width = 151;
             // 
             // ribbonControl1
             // 
@@ -145,9 +148,10 @@
             this.barButtonItem17,
             this.barToggleSwitchItem1,
             this.barButtonItem18,
-            this.barButtonItem19});
+            this.barButtonItem19,
+            this.barButtonItem20});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -389,12 +393,23 @@
             this.barButtonItem19.Name = "barButtonItem19";
             this.barButtonItem19.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem19_ItemClick);
             // 
+            // barButtonItem20
+            // 
+            this.barButtonItem20.Caption = "Arhiva";
+            this.barButtonItem20.Id = 9;
+            this.barButtonItem20.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem20.ImageOptions.Image")));
+            this.barButtonItem20.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem20.ImageOptions.LargeImage")));
+            this.barButtonItem20.Name = "barButtonItem20";
+            this.barButtonItem20.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem20.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem20_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             // 
             // ribbonPageGroup1
@@ -422,6 +437,13 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem11);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.ShowCaptionButton = false;
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem20);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.ShowCaptionButton = false;
+            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
             // ribbonStatusBar1
             // 
@@ -481,6 +503,7 @@
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.PaintEx += new DevExpress.XtraGrid.PaintExEventHandler(this.gridControl1_PaintEx);
             // 
             // taskBindingSource
             // 
@@ -496,13 +519,14 @@
             this.colstatus,
             this.colprioritet,
             this.collogin,
-            this.BrKomentara});
+            this.BrKomentara,
+            this.Labela});
             this.gridView1.DetailHeight = 431;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -515,6 +539,7 @@
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colstatus, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
             this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
@@ -530,7 +555,7 @@
             this.colid_task.Name = "colid_task";
             this.colid_task.Visible = true;
             this.colid_task.VisibleIndex = 0;
-            this.colid_task.Width = 62;
+            this.colid_task.Width = 59;
             // 
             // colpartner
             // 
@@ -544,8 +569,8 @@
             this.colpartner.MinWidth = 23;
             this.colpartner.Name = "colpartner";
             this.colpartner.Visible = true;
-            this.colpartner.VisibleIndex = 1;
-            this.colpartner.Width = 154;
+            this.colpartner.VisibleIndex = 2;
+            this.colpartner.Width = 151;
             // 
             // colopis
             // 
@@ -558,8 +583,8 @@
             this.colopis.MinWidth = 23;
             this.colopis.Name = "colopis";
             this.colopis.Visible = true;
-            this.colopis.VisibleIndex = 3;
-            this.colopis.Width = 267;
+            this.colopis.VisibleIndex = 4;
+            this.colopis.Width = 263;
             // 
             // colstatus
             // 
@@ -590,8 +615,8 @@
             this.colprioritet.MinWidth = 23;
             this.colprioritet.Name = "colprioritet";
             this.colprioritet.Visible = true;
-            this.colprioritet.VisibleIndex = 4;
-            this.colprioritet.Width = 94;
+            this.colprioritet.VisibleIndex = 5;
+            this.colprioritet.Width = 91;
             // 
             // collogin
             // 
@@ -605,8 +630,8 @@
             this.collogin.MinWidth = 23;
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
-            this.collogin.VisibleIndex = 5;
-            this.collogin.Width = 128;
+            this.collogin.VisibleIndex = 6;
+            this.collogin.Width = 126;
             // 
             // BrKomentara
             // 
@@ -622,8 +647,25 @@
             this.BrKomentara.Name = "BrKomentara";
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
-            this.BrKomentara.VisibleIndex = 6;
-            this.BrKomentara.Width = 62;
+            this.BrKomentara.VisibleIndex = 7;
+            this.BrKomentara.Width = 69;
+            // 
+            // Labela
+            // 
+            this.Labela.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.Labela.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.Labela.AppearanceCell.Options.UseFont = true;
+            this.Labela.AppearanceCell.Options.UseTextOptions = true;
+            this.Labela.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Labela.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.Labela.AppearanceHeader.Options.UseFont = true;
+            this.Labela.Caption = "Label";
+            this.Labela.FieldName = "Labela";
+            this.Labela.Name = "Labela";
+            this.Labela.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            this.Labela.Visible = true;
+            this.Labela.VisibleIndex = 1;
+            this.Labela.Width = 43;
             // 
             // imageCollection1
             // 
@@ -801,5 +843,8 @@
         private DevExpress.XtraBars.Ribbon.RadialMenu radialMenu1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem18;
         private DevExpress.XtraBars.BarButtonItem barButtonItem19;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem20;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraGrid.Columns.GridColumn Labela;
     }
 }

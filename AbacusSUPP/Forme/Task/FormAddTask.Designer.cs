@@ -48,6 +48,9 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colusername = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSektor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskbindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -59,6 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // memoEdit1
@@ -228,11 +233,45 @@
             this.colSektor.Visible = true;
             this.colSektor.VisibleIndex = 2;
             // 
+            // labelBindingSource
+            // 
+            this.labelBindingSource.DataSource = typeof(AbacusSUPP.Label);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(341, 22);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(33, 13);
+            this.labelControl3.TabIndex = 13;
+            this.labelControl3.Text = "Label:";
+            // 
+            // lookUpEdit2
+            // 
+            this.lookUpEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.taskbindingSource, "id_label", true));
+            this.lookUpEdit2.Location = new System.Drawing.Point(341, 41);
+            this.lookUpEdit2.Name = "lookUpEdit2";
+            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit2.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("label1", "label1", 38, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lookUpEdit2.Properties.DataSource = this.labelBindingSource;
+            this.lookUpEdit2.Properties.DisplayMember = "label1";
+            this.lookUpEdit2.Properties.NullText = "";
+            this.lookUpEdit2.Properties.NullValuePrompt = "Label";
+            this.lookUpEdit2.Properties.NullValuePromptShowForEmptyValue = true;
+            this.lookUpEdit2.Properties.ValueMember = "id_label";
+            this.lookUpEdit2.Size = new System.Drawing.Size(126, 20);
+            this.lookUpEdit2.TabIndex = 14;
+            // 
             // FormAddTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 358);
+            this.Controls.Add(this.lookUpEdit2);
+            this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl2);
@@ -261,6 +300,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +327,8 @@
         private System.Windows.Forms.BindingSource loginBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colusername;
         private DevExpress.XtraGrid.Columns.GridColumn colSektor;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.BindingSource labelBindingSource;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
     }
 }
