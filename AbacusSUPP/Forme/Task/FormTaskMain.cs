@@ -548,7 +548,7 @@ namespace AbacusSUPP
                 {
                     RichEditControl richEditControl = (RichEditControl)activeEditor.Controls[0];
                     
-                    //richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor aktivan
+                    richEditControl.Views.SimpleView.Padding = new Padding(5, 0, 0, 0); //za onaj mali pomjeraj kad je editor postaje aktivan
                     richEditControl.AutoSizeMode = DevExpress.XtraRichEdit.AutoSizeMode.Vertical;
                     
                     

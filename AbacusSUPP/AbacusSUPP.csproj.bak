@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,19 +47,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>kofer ico.ico</ApplicationIcon>
+    <ApplicationIcon>zubcanik ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.BonusSkins.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.1.Core, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.UI, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.Wizard, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.1, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.1.Extensions, Version=18.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -68,31 +93,119 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Forme\Komentar\FormDodajKomentar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Forme\Komentar\FormDodajKomentar.Designer.cs">
+      <DependentUpon>FormDodajKomentar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormDodajOperatera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormDodajOperatera.Designer.cs">
+      <DependentUpon>FormDodajOperatera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormArhiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormArhiva.Designer.cs">
+      <DependentUpon>FormArhiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Partneri\FormDodajPartnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Partneri\FormDodajPartnera.Designer.cs">
+      <DependentUpon>FormDodajPartnera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Komentar\FormKomentarDetalj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Komentar\FormKomentarDetalj.Designer.cs">
+      <DependentUpon>FormKomentarDetalj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Main\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Main\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddTask.cs">
+    <Compile Include="Forme\Task\FormAddTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddTask.Designer.cs">
+    <Compile Include="Forme\Task\FormAddTask.Designer.cs">
       <DependentUpon>FormAddTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forme\Main\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Forme\Main\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTaskMain.cs">
+    <Compile Include="Forme\Operateri\FormOperater.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTaskMain.Designer.cs">
+    <Compile Include="Forme\Operateri\FormOperater.Designer.cs">
+      <DependentUpon>FormOperater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Partneri\FormPartneri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Partneri\FormPartneri.Designer.cs">
+      <DependentUpon>FormPartneri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Task\FormPregledTaskova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Task\FormPregledTaskova.Designer.cs">
+      <DependentUpon>FormPregledTaskova.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormSlike.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormSlike.Designer.cs">
+      <DependentUpon>FormSlike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Task\FormTaskMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Task\FormTaskMain.Designer.cs">
       <DependentUpon>FormTaskMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\Ostalo\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Ostalo\FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKolone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKolone.Designer.cs">
+      <DependentUpon>FormKolone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormOperaterGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Operateri\FormOperaterGraph.Designer.cs">
+      <DependentUpon>FormOperaterGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTest2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTest2.Designer.cs">
+      <DependentUpon>FormTest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Komentar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Label.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -117,28 +230,86 @@
     <Compile Include="Partneri.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Podesavanja.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Prioritet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sektor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Status.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Task.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormLogin.resx">
+    <Compile Include="VezaLT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WaitForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitForm1.Designer.cs">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forme\Komentar\FormDodajKomentar.resx">
+      <DependentUpon>FormDodajKomentar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Operateri\FormDodajOperatera.resx">
+      <DependentUpon>FormDodajOperatera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ostalo\FormArhiva.resx">
+      <DependentUpon>FormArhiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Partneri\FormDodajPartnera.resx">
+      <DependentUpon>FormDodajPartnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Komentar\FormKomentarDetalj.resx">
+      <DependentUpon>FormKomentarDetalj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Main\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddTask.resx">
+    <EmbeddedResource Include="Forme\Task\FormAddTask.resx">
       <DependentUpon>FormAddTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Forme\Main\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTaskMain.resx">
+    <EmbeddedResource Include="Forme\Operateri\FormOperater.resx">
+      <DependentUpon>FormOperater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Partneri\FormPartneri.resx">
+      <DependentUpon>FormPartneri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Task\FormPregledTaskova.resx">
+      <DependentUpon>FormPregledTaskova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ostalo\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ostalo\FormSlike.resx">
+      <DependentUpon>FormSlike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Task\FormTaskMain.resx">
       <DependentUpon>FormTaskMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Ostalo\FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKolone.resx">
+      <DependentUpon>FormKolone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Operateri\FormOperaterGraph.resx">
+      <DependentUpon>FormOperaterGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTest2.resx">
+      <DependentUpon>FormTest2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -150,6 +321,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WaitForm1.resx">
+      <DependentUpon>WaitForm1.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -159,8 +333,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Komentar.datasource" />
+    <None Include="Properties\DataSources\Label.datasource" />
+    <None Include="Properties\DataSources\Login.datasource" />
     <None Include="Properties\DataSources\Partneri.datasource" />
+    <None Include="Properties\DataSources\Podesavanja.datasource" />
     <None Include="Properties\DataSources\Prioritet.datasource" />
+    <None Include="Properties\DataSources\Sektor.datasource" />
     <None Include="Properties\DataSources\Status.datasource" />
     <None Include="Properties\DataSources\Task.datasource" />
     <None Include="Properties\Settings.settings">
@@ -188,9 +366,28 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Settings_default.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="zubcanik ico.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,22 +34,22 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             layoutView1 = layoutView;
 
             #region Da olaksa .rtf! brisanje styleova i sl
-            richEditControl1.Document.BeginUpdate();
-            try
-            {
-                for (int i = richEditControl1.Document.TableStyles.Count - 1; i >= 1; i--)
-                    richEditControl1.Document.TableStyles.Delete(richEditControl1.Document.TableStyles[i]);
+            //richEditControl1.Document.BeginUpdate();
+            //try
+            //{
+            //    for (int i = richEditControl1.Document.TableStyles.Count - 1; i >= 1; i--)
+            //        richEditControl1.Document.TableStyles.Delete(richEditControl1.Document.TableStyles[i]);
 
-                for (int i = richEditControl1.Document.ParagraphStyles.Count - 1; i >= 1; i--)
-                    richEditControl1.Document.ParagraphStyles.Delete(richEditControl1.Document.ParagraphStyles[i]);
+            //    for (int i = richEditControl1.Document.ParagraphStyles.Count - 1; i >= 1; i--)
+            //        richEditControl1.Document.ParagraphStyles.Delete(richEditControl1.Document.ParagraphStyles[i]);
 
-                for (int i = richEditControl1.Document.CharacterStyles.Count - 1; i >= 1; i--)
-                    richEditControl1.Document.CharacterStyles.Delete(richEditControl1.Document.CharacterStyles[i]);
-            }
-            finally
-            {
-                richEditControl1.Document.EndUpdate();
-            } 
+            //    for (int i = richEditControl1.Document.CharacterStyles.Count - 1; i >= 1; i--)
+            //        richEditControl1.Document.CharacterStyles.Delete(richEditControl1.Document.CharacterStyles[i]);
+            //}
+            //finally
+            //{
+            //    richEditControl1.Document.EndUpdate();
+            //} 
             #endregion
 
         }
@@ -74,11 +74,11 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             var db = new AbacusSUPEntities();
             db.Komentar.Add(kom);
             db.SaveChanges();
-            db.Entry(kom).Reload();
+            db.Entry(kom).Reload();            
             var db2 = new AbacusSUPEntities();
             gridControl1.DataSource = db2.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
-            //var x = kom.Login.username;
+            
             
             List<string> fajlovi = new List<string>();
             opet:
@@ -129,7 +129,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             #endregion
 
 
-
+            
 
             OperaterLogin.stara_kom_lista.Add(kom);
             this.Close();
@@ -164,7 +164,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
                 //Hyperlink hyperlink = richEditControl1.Document.CreateHyperlink(b);
                 //hyperlink.NavigateUri = uri;
 
-
+                
                 count++;
 
             }
