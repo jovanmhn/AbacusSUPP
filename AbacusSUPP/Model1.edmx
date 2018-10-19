@@ -54,6 +54,7 @@
           <Property Name="novitask_notif" Type="bit" Nullable="false" />
           <Property Name="novikom_notif" Type="bit" Nullable="false" />
           <Property Name="task_novi_prozor" Type="bit" Nullable="false" />
+          <Property Name="pixel_scr" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Prioritet">
           <Key>
@@ -102,7 +103,9 @@
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Komentar_Login">
-          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Komentar" Type="Self.Komentar" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Login">
@@ -506,6 +509,7 @@
           <Property Name="novikom_notif" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Podesavanja" ToRole="Login" />
           <Property Name="task_novi_prozor" Type="Boolean" Nullable="false" />
+          <Property Name="pixel_scr" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="VezaLT">
           <Key>
@@ -718,6 +722,7 @@
           <EntitySetMapping Name="Podesavanja">
             <EntityTypeMapping TypeName="AbacusSUPModel.Podesavanja">
               <MappingFragment StoreEntitySet="Podesavanja">
+                <ScalarProperty Name="pixel_scr" ColumnName="pixel_scr" />
                 <ScalarProperty Name="task_novi_prozor" ColumnName="task_novi_prozor" />
                 <ScalarProperty Name="novikom_notif" ColumnName="novikom_notif" />
                 <ScalarProperty Name="novitask_notif" ColumnName="novitask_notif" />

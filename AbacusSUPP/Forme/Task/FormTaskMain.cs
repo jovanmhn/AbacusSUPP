@@ -104,6 +104,7 @@ namespace AbacusSUPP
             richEditControl1.Options.Behavior.ShowPopupMenu = DocumentCapability.Disabled;
 
             #region Fora sa scroll controlom
+            //gridControl1.Location = xtraScrollableControl1.Location;
             LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
             layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
@@ -116,7 +117,7 @@ namespace AbacusSUPP
         {
             xtraScrollableControl1.Width = Program.MainForm.xtraTabControl1.Width;
             LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
-            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, Int32.MaxValue)));
+            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -357,10 +358,11 @@ namespace AbacusSUPP
                     var db = new AbacusSUPEntities();
                     gridControl1.DataSource = db.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(qq => qq.datum).ToList();
                     layoutView1.RefreshData();
+                koriguj_izgled();
 
-                    LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
-                    layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-                    gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
+                //    LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
+                //    layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+                //    gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
                 }
             
             
@@ -528,17 +530,11 @@ namespace AbacusSUPP
             }
             kraj:;
         }
-        //void ActiveEditor_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
-        //{
-        //    LayoutView view = sender as LayoutView;
-
-        //    MouseWheel -= ActiveEditor_MouseWheel;
-        //    view.CloseEditor();
-        //}
+        
         private void layoutView1_ShownEditor(object sender, EventArgs e)
         {
             ColumnView columnView = sender as ColumnView;
-            //koriguj_izgled();
+            
 
             if (columnView != null)
             {
@@ -648,6 +644,12 @@ namespace AbacusSUPP
         private void memoEdit2_Leave(object sender, EventArgs e)
         {
             memoEdit2.Height = memoEdit2.Height / 3;
+        }
+
+        private void FormTaskMain_Paint(object sender, PaintEventArgs e)
+        {
+            //Pen pen = new Pen(Color.PaleVioletRed,2);
+            //e.Graphics.DrawLine(pen, panel1.DisplayRectangle.Left, panel1.DisplayRectangle.Top, panel1.DisplayRectangle.Right, panel1.DisplayRectangle.Top);
         }
     }
 

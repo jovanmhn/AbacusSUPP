@@ -92,10 +92,17 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colid_task
             // 
+            this.colid_task.AppearanceCell.Options.UseTextOptions = true;
+            this.colid_task.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colid_task.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colid_task.AppearanceHeader.Options.UseFont = true;
+            this.colid_task.AppearanceHeader.Options.UseTextOptions = true;
+            this.colid_task.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colid_task.Caption = "ID";
             this.colid_task.FieldName = "id_task";
             this.colid_task.Name = "colid_task";
@@ -105,6 +112,8 @@
             // 
             // colnaslov
             // 
+            this.colnaslov.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colnaslov.AppearanceHeader.Options.UseFont = true;
             this.colnaslov.Caption = "Naslov";
             this.colnaslov.FieldName = "naslov";
             this.colnaslov.Name = "colnaslov";
@@ -114,6 +123,8 @@
             // 
             // coldatum
             // 
+            this.coldatum.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.coldatum.AppearanceHeader.Options.UseFont = true;
             this.coldatum.Caption = "Datum";
             this.coldatum.FieldName = "datum";
             this.coldatum.Name = "coldatum";
@@ -173,10 +184,17 @@
             this.gridView2.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView2.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.OptionsView.ShowIndicator = false;
             this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.Caption = "ID";
             this.gridColumn1.FieldName = "id_task";
             this.gridColumn1.Name = "gridColumn1";
@@ -186,6 +204,8 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.Caption = "Naslov";
             this.gridColumn2.FieldName = "naslov";
             this.gridColumn2.Name = "gridColumn2";
@@ -195,6 +215,8 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.Caption = "Datum";
             this.gridColumn3.FieldName = "datum";
             this.gridColumn3.Name = "gridColumn3";
@@ -234,10 +256,17 @@
             this.gridView3.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridView3.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.OptionsView.ShowIndicator = false;
             this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.Caption = "ID";
             this.gridColumn4.FieldName = "id_task";
             this.gridColumn4.Name = "gridColumn4";
@@ -247,6 +276,8 @@
             // 
             // gridColumn5
             // 
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.Caption = "Naslov";
             this.gridColumn5.FieldName = "naslov";
             this.gridColumn5.Name = "gridColumn5";
@@ -256,6 +287,8 @@
             // 
             // gridColumn6
             // 
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
             this.gridColumn6.Caption = "Datum";
             this.gridColumn6.FieldName = "datum";
             this.gridColumn6.Name = "gridColumn6";
@@ -270,6 +303,7 @@
             this.ClientSize = new System.Drawing.Size(660, 326);
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "FormPregledTaskova";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PregledTaskova";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();

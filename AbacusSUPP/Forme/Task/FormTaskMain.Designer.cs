@@ -71,6 +71,7 @@
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
@@ -98,8 +99,10 @@
             // gridControl1
             // 
             this.gridControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gridControl1.BackgroundImage")));
+            this.gridControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.gridControl1.DataSource = this.komentarBindingSource;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(3, 0);
+            this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl1.MainView = this.layoutView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -462,7 +465,7 @@
             // memoEdit2
             // 
             this.memoEdit2.EditValue = "";
-            this.memoEdit2.Location = new System.Drawing.Point(281, 42);
+            this.memoEdit2.Location = new System.Drawing.Point(294, 43);
             this.memoEdit2.Name = "memoEdit2";
             this.memoEdit2.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.memoEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -470,7 +473,7 @@
             this.memoEdit2.Properties.Appearance.Options.UseFont = true;
             this.memoEdit2.Properties.ReadOnly = true;
             this.memoEdit2.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.memoEdit2.Size = new System.Drawing.Size(417, 53);
+            this.memoEdit2.Size = new System.Drawing.Size(404, 52);
             this.memoEdit2.TabIndex = 5;
             this.memoEdit2.Enter += new System.EventHandler(this.memoEdit2_Enter);
             this.memoEdit2.Leave += new System.EventHandler(this.memoEdit2_Leave);
@@ -521,9 +524,10 @@
             // 
             this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
             this.simpleButton2.Location = new System.Drawing.Point(147, 43);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(123, 52);
+            this.simpleButton2.Size = new System.Drawing.Size(141, 52);
             this.simpleButton2.TabIndex = 9;
             this.simpleButton2.Text = "Zatvori task";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -591,17 +595,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 101);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 119);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1131, 442);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1132, 424);
             this.xtraScrollableControl1.TabIndex = 18;
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.xtraScrollableControl1);
             this.panel1.Controls.Add(this.simpleButton1);
             this.panel1.Controls.Add(this.groupControl1);
             this.panel1.Controls.Add(this.simpleButton3);
-            this.panel1.Controls.Add(this.xtraScrollableControl1);
             this.panel1.Controls.Add(this.richEditControl1);
             this.panel1.Controls.Add(this.memoEdit2);
             this.panel1.Controls.Add(this.labelControl6);
@@ -610,11 +618,20 @@
             this.panel1.Controls.Add(this.labelControl3);
             this.panel1.Controls.Add(this.simpleButton2);
             this.panel1.Controls.Add(this.labelControl4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1132, 546);
             this.panel1.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(12, 112);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1108, 2);
+            this.label1.TabIndex = 19;
             // 
             // FormTaskMain
             // 
@@ -631,6 +648,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTaskMain_FormClosing);
             this.Shown += new System.EventHandler(this.FormTaskMain_Shown);
             this.Click += new System.EventHandler(this.FormTaskMain_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormTaskMain_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
@@ -696,5 +714,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem item5;
         private DevExpress.XtraLayout.SimpleSeparator item2;
         private DevExpress.XtraLayout.SimpleSeparator item3;
+        private System.Windows.Forms.Label label1;
     }
 }

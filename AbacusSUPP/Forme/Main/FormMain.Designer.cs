@@ -116,7 +116,7 @@
             this.coldatum.Name = "coldatum";
             this.coldatum.Visible = true;
             this.coldatum.VisibleIndex = 3;
-            this.coldatum.Width = 151;
+            this.coldatum.Width = 124;
             // 
             // ribbonControl1
             // 
@@ -161,7 +161,7 @@
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbonControl1.ShowQatLocationSelector = false;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(957, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(1109, 143);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
@@ -414,7 +414,6 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.AllowMinimize = false;
             this.ribbonPageGroup1.AllowTextClipping = false;
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem6);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem15);
@@ -423,6 +422,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem14);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.ShowCaptionButton = false;
+            this.ribbonPageGroup1.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             // 
             // ribbonPageGroup2
             // 
@@ -452,10 +452,10 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem2);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem3);
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem19);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 411);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 564);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(957, 26);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1109, 26);
             // 
             // ribbonPage2
             // 
@@ -470,7 +470,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 143);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.Taskovi;
-            this.xtraTabControl1.Size = new System.Drawing.Size(957, 268);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1109, 421);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.Taskovi});
@@ -484,7 +484,7 @@
             this.Taskovi.Controls.Add(this.gridControl1);
             this.Taskovi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("Taskovi.ImageOptions.Image")));
             this.Taskovi.Name = "Taskovi";
-            this.Taskovi.Size = new System.Drawing.Size(955, 236);
+            this.Taskovi.Size = new System.Drawing.Size(1107, 389);
             this.Taskovi.Tag = "Taskovi";
             this.Taskovi.Text = "Taskovi";
             // 
@@ -499,7 +499,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbonControl1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(955, 236);
+            this.gridControl1.Size = new System.Drawing.Size(1107, 389);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -526,7 +526,7 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -542,6 +542,7 @@
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.gridView1.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView1_CustomUnboundColumnData);
+            this.gridView1.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView1_CustomColumnDisplayText);
             this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
@@ -555,13 +556,15 @@
             this.colid_task.Name = "colid_task";
             this.colid_task.Visible = true;
             this.colid_task.VisibleIndex = 0;
-            this.colid_task.Width = 59;
+            this.colid_task.Width = 68;
             // 
             // colpartner
             // 
-            this.colpartner.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.colpartner.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.colpartner.AppearanceCell.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colpartner.AppearanceCell.Options.UseFont = true;
+            this.colpartner.AppearanceCell.Options.UseTextOptions = true;
+            this.colpartner.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colpartner.AppearanceHeader.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.colpartner.AppearanceHeader.Options.UseFont = true;
             this.colpartner.Caption = "Partner";
@@ -570,7 +573,7 @@
             this.colpartner.Name = "colpartner";
             this.colpartner.Visible = true;
             this.colpartner.VisibleIndex = 2;
-            this.colpartner.Width = 151;
+            this.colpartner.Width = 150;
             // 
             // colopis
             // 
@@ -584,7 +587,7 @@
             this.colopis.Name = "colopis";
             this.colopis.Visible = true;
             this.colopis.VisibleIndex = 4;
-            this.colopis.Width = 263;
+            this.colopis.Width = 339;
             // 
             // colstatus
             // 
@@ -616,7 +619,7 @@
             this.colprioritet.Name = "colprioritet";
             this.colprioritet.Visible = true;
             this.colprioritet.VisibleIndex = 5;
-            this.colprioritet.Width = 91;
+            this.colprioritet.Width = 117;
             // 
             // collogin
             // 
@@ -631,7 +634,7 @@
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
             this.collogin.VisibleIndex = 6;
-            this.collogin.Width = 126;
+            this.collogin.Width = 162;
             // 
             // BrKomentara
             // 
@@ -648,7 +651,7 @@
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
             this.BrKomentara.VisibleIndex = 7;
-            this.BrKomentara.Width = 69;
+            this.BrKomentara.Width = 96;
             // 
             // Labela
             // 
@@ -665,7 +668,7 @@
             this.Labela.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.Labela.Visible = true;
             this.Labela.VisibleIndex = 1;
-            this.Labela.Width = 43;
+            this.Labela.Width = 49;
             // 
             // imageCollection1
             // 
@@ -681,6 +684,11 @@
             this.imageCollection1.Images.SetKeyName(8, "usergroup_16x16.png");
             this.imageCollection1.Images.SetKeyName(9, "user_16x16.png");
             this.imageCollection1.Images.SetKeyName(10, "task_16x16.png");
+            this.imageCollection1.Images.SetKeyName(11, "ERP16x16.ico");
+            this.imageCollection1.Images.SetKeyName(12, "ERP16x16png.png");
+            this.imageCollection1.Images.SetKeyName(13, "POSpng32x32.png");
+            this.imageCollection1.Images.SetKeyName(14, "RMSpng16x16.png");
+            this.imageCollection1.Images.SetKeyName(15, "ide_16x16.png");
             // 
             // popupMenu1
             // 
@@ -753,7 +761,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 437);
+            this.ClientSize = new System.Drawing.Size(1109, 590);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);

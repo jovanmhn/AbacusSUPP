@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -23,6 +24,7 @@ namespace AbacusSUPP
         //AbacusSUPEntities Baza { get; set; }
         List<Task> Main_lista = new List<Task>();
         AbacusSUPEntities Baza { get; set; }
+
 
         public FormMain(Login operater, ProgressBarControl progressBar)
         {
@@ -81,24 +83,14 @@ namespace AbacusSUPP
             OperaterLogin.seen_tasks = Baza.Task.Select(qq => qq.id_task).ToList();
 
             AbacusSUPP.Helper.load_settings(); //UCITAVANJE SETTINGS.XML
+            gridView1.OptionsBehavior.AllowPixelScrolling = OperaterLogin.operater.Podesavanja.pixel_scr ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
 
             progressBar.Position = 0;
             progressBar.Update();
 
             OperaterLogin.stara_kom_lista = Baza.Komentar.ToList();
 
-            //toastNotificationsTask.Activated += (ss, ee) =>         //NOVO**
-            //{
-            //    string guid = (string)ee.NotificationID;
-            //    if (Notifications.ContainsKey(guid))
-            //    {
-            //        Task task = Notifications[guid];
-            //        Notifications.Remove(guid);
 
-
-
-            //    }
-            //};
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -205,8 +197,9 @@ namespace AbacusSUPP
 
                             page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("task_16x16.png")];
                             page.Controls.Add(frmtm.MainPanel);
-                            frmtm.koriguj_izgled();
+                            //frmtm.koriguj_izgled();
                             xtraTabControl1.TabPages.Add(page);
+                            frmtm.koriguj_izgled(); //***
 
                         }
 
@@ -316,10 +309,10 @@ namespace AbacusSUPP
                         Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("newtask_16x16.png")];
                         e.Cache.DrawImage(image, e.Bounds.Left + 15, e.Bounds.Top + 15);
                     }
-
+                    
                 }
             }
-            if(e.Column.FieldName == "Label")
+            if(e.Column.FieldName == "Labela")
             {
                 Task task = (Task)gridView1.GetRow(e.RowHandle);
                 if (e.RowHandle >= 0)
@@ -328,10 +321,11 @@ namespace AbacusSUPP
                     {
                         switch (task.id_label)
                         {
-                            case (1): { e.Appearance.BackColor = Color.GreenYellow; e.Appearance.BackColor2 = Color.White; return; }
-                            case (2): { e.Appearance.BackColor = Color.Blue; e.Appearance.BackColor2 = Color.White; return; }
-                            case (3): { e.Appearance.BackColor = Color.Red; e.Appearance.BackColor2 = Color.White; return; }
-                            default: { e.Appearance.BackColor = Color.Gray; e.Appearance.BackColor2 = Color.White; return; }
+                            case (1): { Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("zubcanik 100ico.png")]; e.Cache.DrawImage(image, e.Bounds.Left + 5, e.Bounds.Top + 15); return; }
+                            case (2): { Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("ERP16x16png.png")]; e.Cache.DrawImage(image, e.Bounds.Left + 5, e.Bounds.Top + 15); return; }
+                            case (3): { Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("POSpng32x32.png")]; e.Cache.DrawImage(image, e.Bounds.Left + 5, e.Bounds.Top + 15);  return; }
+                            case (4): { Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("RMSpng16x16.png")]; e.Cache.DrawImage(image, e.Bounds.Left + 5, e.Bounds.Top + 15); return; }
+                            default: { Image image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("ide_16x16.png")]; e.Cache.DrawImage(image, e.Bounds.Left + 5, e.Bounds.Top + 15); return; }
                         }
 
 
@@ -777,7 +771,7 @@ namespace AbacusSUPP
             if(OperaterLogin.operater.id_podesavanja!=0 && OperaterLogin.operater.id_podesavanja != null)
             {
 
-                FormSettings frmsett = new FormSettings(OperaterLogin.operater.Podesavanja);
+                FormSettings frmsett = new FormSettings(OperaterLogin.operater.Podesavanja,gridView1);
                 var res = frmsett.ShowDialog();
                 if (res == DialogResult.OK)
                 {
@@ -794,6 +788,7 @@ namespace AbacusSUPP
                     novitask_notif = true,
                     novikom_notif = true,
                     task_novi_prozor = false,
+                    pixel_scr = false,
                     
                 };
                 var db = new AbacusSUPEntities();
@@ -1077,9 +1072,9 @@ namespace AbacusSUPP
                     {
                         switch (task.id_label)
                         {
-                            case (1): { e.Appearance.ForeColor = Color.GreenYellow; /*e.Appearance.BackColor2 = Color.White;*/ return; }
-                            case (2): { e.Appearance.ForeColor = Color.Blue; /*e.Appearance.BackColor2 = Color.White;*/ return; }
-                            case (3): { e.Appearance.ForeColor = Color.Red; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            //case (1): { e.Appearance.ForeColor = Color.GreenYellow; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            //case (2): { e.Appearance.ForeColor = Color.Blue; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            //case (3): { e.Appearance.ForeColor = Color.Red; /*e.Appearance.BackColor2 = Color.White;*/ return; }
                             default: { e.Appearance.ForeColor = Color.Gray;/* e.Appearance.BackColor2 = Color.White;*/ return; }
                         }
 
@@ -1093,6 +1088,40 @@ namespace AbacusSUPP
                     }
                     //e.Handled = true;
                 }
+            }
+            if (e.Column.FieldName == "Prioritet.opis")
+            {
+                Task task = (Task)gridView1.GetRow(e.RowHandle);
+                if (e.RowHandle >= 0)
+                {
+                    if (task.Prioritet.opis != null)
+                    {
+                        switch (task.Prioritet.opis)
+                        {
+                            case ("Low"): { e.Appearance.ForeColor = Color.Green; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            case ("Medium"): { e.Appearance.ForeColor = Color.Orange; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            case ("High"): { e.Appearance.ForeColor = Color.Red; /*e.Appearance.BackColor2 = Color.White;*/ return; }
+                            default: { e.Appearance.ForeColor = Color.Gray;/* e.Appearance.BackColor2 = Color.White;*/ return; }
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        e.Appearance.ForeColor = Color.Gray;
+                        //e.Appearance.BackColor2 = Color.White;
+                    }
+                    //e.Handled = true;
+                }
+            }
+        }
+
+        private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (/*e.GroupRowHandle != GridControl.InvalidRowHandle &&*/ e.Column.FieldName == "Labela")
+            {
+                //e.DisplayText = string.Empty;
             }
         }
     }

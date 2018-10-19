@@ -1,4 +1,5 @@
 ﻿using DevExpress.Skins;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,8 +19,9 @@ namespace AbacusSUPP
         AbacusSUPEntities Baza { get; set; }
         Podesavanja podesavanja { get; set; }
         string skinName_old;
+        GridView gridView1 = new GridView();
 
-        public FormSettings(Podesavanja _podesavanja)
+        public FormSettings(Podesavanja _podesavanja, GridView gridView)
         {
             InitializeComponent();
             #region staro xml
@@ -65,6 +67,7 @@ namespace AbacusSUPP
                 comboBoxEdit1.Properties.Items.AddRange(listaskinova);
             }
             skinName_old = DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName;
+            gridView1 = gridView;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -110,7 +113,7 @@ namespace AbacusSUPP
             */
             #endregion
             OperaterLogin.operater = Baza.Login.First(qq => qq.id == OperaterLogin.operater.id);
-            
+            gridView1.OptionsBehavior.AllowPixelScrolling = OperaterLogin.operater.Podesavanja.pixel_scr ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

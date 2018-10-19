@@ -73,9 +73,16 @@
             this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowIndicator = false;
             // 
             // colid_task
             // 
+            this.colid_task.AppearanceCell.Options.UseTextOptions = true;
+            this.colid_task.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colid_task.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colid_task.AppearanceHeader.Options.UseFont = true;
+            this.colid_task.AppearanceHeader.Options.UseTextOptions = true;
+            this.colid_task.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colid_task.Caption = "ID";
             this.colid_task.FieldName = "id_task";
             this.colid_task.Name = "colid_task";
@@ -85,6 +92,8 @@
             // 
             // coldatum
             // 
+            this.coldatum.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.coldatum.AppearanceHeader.Options.UseFont = true;
             this.coldatum.Caption = "Datum otv.";
             this.coldatum.FieldName = "datum";
             this.coldatum.Name = "coldatum";
@@ -94,6 +103,8 @@
             // 
             // coldatum_zatv
             // 
+            this.coldatum_zatv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.coldatum_zatv.AppearanceHeader.Options.UseFont = true;
             this.coldatum_zatv.Caption = "Datum zatv.";
             this.coldatum_zatv.FieldName = "datum_zatv";
             this.coldatum_zatv.Name = "coldatum_zatv";
@@ -103,6 +114,8 @@
             // 
             // partnerIme
             // 
+            this.partnerIme.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.partnerIme.AppearanceHeader.Options.UseFont = true;
             this.partnerIme.Caption = "Partner";
             this.partnerIme.FieldName = "Partneri.naziv";
             this.partnerIme.Name = "partnerIme";
@@ -112,6 +125,8 @@
             // 
             // Opis
             // 
+            this.Opis.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Opis.AppearanceHeader.Options.UseFont = true;
             this.Opis.Caption = "Opis";
             this.Opis.FieldName = "opis";
             this.Opis.Name = "Opis";
