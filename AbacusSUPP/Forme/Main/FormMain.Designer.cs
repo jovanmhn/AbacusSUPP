@@ -634,7 +634,7 @@
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
             this.collogin.VisibleIndex = 6;
-            this.collogin.Width = 162;
+            this.collogin.Width = 198;
             // 
             // BrKomentara
             // 
@@ -646,12 +646,14 @@
             this.BrKomentara.AppearanceHeader.Options.UseFont = true;
             this.BrKomentara.Caption = "Kom.";
             this.BrKomentara.FieldName = "BrKomentara";
+            this.BrKomentara.MaxWidth = 60;
             this.BrKomentara.MinWidth = 23;
             this.BrKomentara.Name = "BrKomentara";
+            this.BrKomentara.OptionsColumn.FixedWidth = true;
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
             this.BrKomentara.VisibleIndex = 7;
-            this.BrKomentara.Width = 96;
+            this.BrKomentara.Width = 60;
             // 
             // Labela
             // 

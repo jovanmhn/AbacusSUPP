@@ -13,6 +13,7 @@ using DevExpress.XtraRichEdit.API.Native;
 using System.IO;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
+using DevExpress.XtraGrid.Views.Layout.ViewInfo;
 
 namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
 {
@@ -24,9 +25,10 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
         DocumentImageCollection imageCollection;
         GridControl gridControl1;
         LayoutView layoutView1;
+        XtraScrollableControl xtraScrollableControl1;
         Komentar kom = new Komentar();
         int tempid;
-        public FormDodajKomentar(Task _task, GridControl gridcontrol, LayoutView layoutView)
+        public FormDodajKomentar(Task _task, GridControl gridcontrol, LayoutView layoutView, XtraScrollableControl xtraScrollableControl)
         {
             InitializeComponent();
             Baza = new AbacusSUPEntities();
@@ -34,6 +36,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             imageCollection = richEditControl1.Document.Images;
             gridControl1 = gridcontrol;
             layoutView1 = layoutView;
+            xtraScrollableControl1 = xtraScrollableControl;
 
             #region Da olaksa .rtf! brisanje styleova i sl
             //richEditControl1.Document.BeginUpdate();
@@ -83,13 +86,17 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             //var db2 = new AbacusSUPEntities();
             gridControl1.DataSource = db.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(ww => ww.datum).ToList();
             layoutView1.RefreshData();
-            
-            
+
+            LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
+            layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
+
+
             //List<string> fajlovi = new List<string>();
             //opet:
             //if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             //{
-                
+
             //    fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()).ToList();
             //    id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
             //    if (id != 0)
@@ -112,7 +119,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             //}
 
             #region Ovo sve je sranje, cijelu formu treba ispraviti, mozda GUID za link za sliku prije nego sto dobije ID...
-           
+
             //string uri = Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\";
             //int broj = 0;
             //foreach (DocumentImage image in richEditControl1.Document.Images)
@@ -136,7 +143,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             #endregion
 
 
-            
+
 
             OperaterLogin.stara_kom_lista.Add(kom);
             this.Close();

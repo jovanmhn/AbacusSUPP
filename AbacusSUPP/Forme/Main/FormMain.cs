@@ -197,9 +197,12 @@ namespace AbacusSUPP
 
                             page.ImageOptions.Image = imageCollection1.Images[imageCollection1.Images.Keys.IndexOf("task_16x16.png")];
                             page.Controls.Add(frmtm.MainPanel);
-                            //frmtm.koriguj_izgled();
+                            
                             xtraTabControl1.TabPages.Add(page);
-                            frmtm.koriguj_izgled(); //***
+                            if (!OperaterLogin.operater.Podesavanja.task_novi_prozor)
+                            {
+                                frmtm.koriguj_izgled(); 
+                            }
 
                         }
 

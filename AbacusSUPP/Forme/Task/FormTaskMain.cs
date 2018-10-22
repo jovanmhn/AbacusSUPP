@@ -83,17 +83,17 @@ namespace AbacusSUPP
             }
 
             string[] fajlovi = null;
-            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
-            {
-                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
-                if (fajlovi.Count() > 0)
-                {
-                    foreach (string file in fajlovi)
-                    {
-                        File.Delete(file); //ako postoje fajlovi od cancelovanih komentara
-                    }
-                }
-            }
+            //if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            //{
+            //    fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+            //    if (fajlovi.Count() > 0)
+            //    {
+            //        foreach (string file in fajlovi)
+            //        {
+            //            File.Delete(file); //ako postoje fajlovi od cancelovanih komentara
+            //        }
+            //    }
+            //}
 
             if (splashscreenmanager != null)
             {
@@ -351,14 +351,17 @@ namespace AbacusSUPP
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             
-                FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1);
+                FormDodajKomentar frmdkom = new FormDodajKomentar(task, gridControl1, layoutView1, xtraScrollableControl1);
                 //frmdkom.MdiParent = this;
                 if (frmdkom.ShowDialog() == DialogResult.OK)
                 {
                     var db = new AbacusSUPEntities();
                     gridControl1.DataSource = db.Komentar.Where(qq => qq.id_task == task.id_task).OrderBy(qq => qq.datum).ToList();
                     layoutView1.RefreshData();
-                koriguj_izgled();
+                if (!OperaterLogin.operater.Podesavanja.task_novi_prozor)
+                {
+                    koriguj_izgled(); 
+                }
 
                 //    LayoutViewInfo info = layoutView1.GetViewInfo() as LayoutViewInfo;
                 //    layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
