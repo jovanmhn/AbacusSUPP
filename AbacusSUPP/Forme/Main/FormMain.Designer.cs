@@ -116,7 +116,7 @@
             this.coldatum.Name = "coldatum";
             this.coldatum.Visible = true;
             this.coldatum.VisibleIndex = 3;
-            this.coldatum.Width = 124;
+            this.coldatum.Width = 126;
             // 
             // ribbonControl1
             // 
@@ -556,7 +556,7 @@
             this.colid_task.Name = "colid_task";
             this.colid_task.Visible = true;
             this.colid_task.VisibleIndex = 0;
-            this.colid_task.Width = 68;
+            this.colid_task.Width = 69;
             // 
             // colpartner
             // 
@@ -573,7 +573,7 @@
             this.colpartner.Name = "colpartner";
             this.colpartner.Visible = true;
             this.colpartner.VisibleIndex = 2;
-            this.colpartner.Width = 150;
+            this.colpartner.Width = 152;
             // 
             // colopis
             // 
@@ -587,7 +587,7 @@
             this.colopis.Name = "colopis";
             this.colopis.Visible = true;
             this.colopis.VisibleIndex = 4;
-            this.colopis.Width = 339;
+            this.colopis.Width = 344;
             // 
             // colstatus
             // 
@@ -619,7 +619,7 @@
             this.colprioritet.Name = "colprioritet";
             this.colprioritet.Visible = true;
             this.colprioritet.VisibleIndex = 5;
-            this.colprioritet.Width = 117;
+            this.colprioritet.Width = 119;
             // 
             // collogin
             // 
@@ -634,7 +634,7 @@
             this.collogin.Name = "collogin";
             this.collogin.Visible = true;
             this.collogin.VisibleIndex = 6;
-            this.collogin.Width = 198;
+            this.collogin.Width = 186;
             // 
             // BrKomentara
             // 
@@ -646,14 +646,14 @@
             this.BrKomentara.AppearanceHeader.Options.UseFont = true;
             this.BrKomentara.Caption = "Kom.";
             this.BrKomentara.FieldName = "BrKomentara";
-            this.BrKomentara.MaxWidth = 60;
+            this.BrKomentara.MaxWidth = 80;
             this.BrKomentara.MinWidth = 23;
             this.BrKomentara.Name = "BrKomentara";
             this.BrKomentara.OptionsColumn.FixedWidth = true;
             this.BrKomentara.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
             this.BrKomentara.Visible = true;
             this.BrKomentara.VisibleIndex = 7;
-            this.BrKomentara.Width = 60;
+            this.BrKomentara.Width = 80;
             // 
             // Labela
             // 

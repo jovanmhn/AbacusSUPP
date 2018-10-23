@@ -34,6 +34,7 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.customRichEditControl1 = new AbacusSUPP.CustomRichEditControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
@@ -64,11 +65,21 @@
             this.customRichEditControl1.TabIndex = 0;
             this.customRichEditControl1.Text = "customRichEditControl1";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(715, 47);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 2;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 539);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "FormTest";
             this.Text = "FormTest";
@@ -83,5 +94,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         public DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
         private CustomRichEditControl customRichEditControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
