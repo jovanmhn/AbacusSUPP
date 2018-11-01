@@ -41,6 +41,10 @@ public partial class Podesavanja
 
     public bool pixel_scr { get; set; }
 
+    public bool task_github_upload { get; set; }
+
+    public bool kom_github_upload { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

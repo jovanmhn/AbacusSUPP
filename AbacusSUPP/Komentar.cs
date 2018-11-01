@@ -28,11 +28,13 @@ public partial class Komentar
 
     public Nullable<int> id_login { get; set; }
 
+    public Nullable<int> git_id { get; set; }
 
 
-    public virtual Task Task { get; set; }
 
     public virtual Login Login { get; set; }
+
+    public virtual Task Task { get; set; }
 
 }
 

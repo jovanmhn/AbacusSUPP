@@ -28,9 +28,9 @@ public partial class VezaLT
 
 
 
-    public virtual Task Task { get; set; }
-
     public virtual Login Login { get; set; }
+
+    public virtual Task Task { get; set; }
 
 }
 

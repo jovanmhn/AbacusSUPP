@@ -96,5 +96,10 @@ namespace AbacusSUPP
             }
             return null;
         }
+
+        private void FormDodajOperatera_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

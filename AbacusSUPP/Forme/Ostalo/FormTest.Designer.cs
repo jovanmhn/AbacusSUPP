@@ -52,7 +52,7 @@
             // xtraScrollableControl1
             // 
             this.xtraScrollableControl1.Controls.Add(this.customRichEditControl1);
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(92, 78);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(12, 12);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
             this.xtraScrollableControl1.Size = new System.Drawing.Size(566, 267);
             this.xtraScrollableControl1.TabIndex = 1;
@@ -67,9 +67,9 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(715, 47);
+            this.simpleButton1.Location = new System.Drawing.Point(618, 12);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(127, 57);
             this.simpleButton1.TabIndex = 2;
             this.simpleButton1.Text = "simpleButton1";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -82,7 +82,7 @@
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "FormTest";
-            this.Text = "FormTest";
+            this.Text = "0";
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             this.xtraScrollableControl1.ResumeLayout(false);
             this.ResumeLayout(false);

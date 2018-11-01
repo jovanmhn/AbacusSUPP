@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Octokit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,6 +87,17 @@ namespace AbacusSUPP
                 
             }
             Baza.SaveChanges();
+            if (OperaterLogin.operater.Podesavanja.task_github_upload)
+            {
+                try
+                {
+                    napravigithubissue(task);
+                }
+                catch
+                {
+                    MessageBox.Show("Greska prilikom dodavanja na GitHub issues");
+                } 
+            }
 
             int[] handlelista = gridView1.GetSelectedRows();
             foreach (int handle in handlelista)
@@ -104,12 +116,49 @@ namespace AbacusSUPP
             }
             Baza.SaveChanges();
             sacuvano = true;
-            if (!Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            if (!Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
-                Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+        public async void napravigithubissue(Task task)
+        {
+            try
+            {
+                var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                var basicAuth = new Credentials("jovanmhn", "jovan123");
+                client.Credentials = basicAuth;
+
+                var noviIssue = new NewIssue(task.Partneri.naziv+" - "+task.naslov);
+                noviIssue.Body = task.opis;
+                noviIssue.Labels.Add("AbacusSUPP");
+                switch (task.prioritet_id)
+                {
+                    case 1: { noviIssue.Labels.Add("low prio"); break; }
+                    case 2: { noviIssue.Labels.Add("medium prio"); break; }
+                    case 3: { noviIssue.Labels.Add("high prio"); break; }
+                    default: { noviIssue.Labels.Add("medium prio"); break; }
+                }
+                noviIssue.Assignees.Add("jovanmhn");                
+                var issue = await client.Issue.Create("jovanmhn", "AbacusSUPP", noviIssue);
+                
+
+                //var update = issue.ToUpdate();
+                //update.AddLabel("AbacusSUPP");
+
+                var db = new AbacusSUPEntities();
+                db.Task.First(qq => qq.id_task == task.id_task).git_id = issue.Number;
+                db.SaveChanges();
+                
+                
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Greska prilikom dodavanja na GitHub issues");
+            }
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)

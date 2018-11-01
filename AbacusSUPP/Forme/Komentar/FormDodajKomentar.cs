@@ -14,6 +14,11 @@ using System.IO;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraGrid.Views.Layout.ViewInfo;
+using DevExpress.XtraRichEdit.Export;
+using Octokit;
+using Newtonsoft.Json.Linq;
+using System.Collections.Specialized;
+using System.Net;
 
 namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
 {
@@ -71,7 +76,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
         }
     
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private async void simpleButton1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
 
@@ -80,6 +85,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             var db = new AbacusSUPEntities();
 
             db.Komentar.First(qq => qq.id == tempid).sadrzaj = base64;
+            kom.sadrzaj = base64; //zbog uploada na imgur, moguce je da nije potrebno
             db.SaveChanges();
             int id = 0;
                         
@@ -91,32 +97,30 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             layoutView1.OptionsBehavior.ScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
 
+            if (OperaterLogin.operater.Podesavanja.kom_github_upload)
+            {
+                try
+                {
+                    //----------------------GitHub-----------------------------------------
+                    var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                    var basicAuth = new Credentials("jovanmhn", "jovan123");
+                    client.Credentials = basicAuth;
 
-            //List<string> fajlovi = new List<string>();
-            //opet:
-            //if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
-            //{
+                    string listal = getSveLinkove(kom);
 
-            //    fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()).ToList();
-            //    id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
-            //    if (id != 0)
-            //    {
-            //        Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString());
-            //    }
-            //    else
-            //    {
-            //        XtraMessageBox.Show("Komentar_id vratio 0! (folder ime)"); goto kraj;
-            //    }
-            //}
-            //else { Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()); goto opet; };
-            //if (fajlovi.Count>0)
-            //{
+                    
+                    var comment = await client.Issue.Comment.Create("jovanmhn", "AbacusSUPP", task.git_id.Value, vratiPlainText(richEditControl1) + Environment.NewLine + listal); //ovo radi, argumenti su owner/repo/issueNo/komentar 
+                    
+                    
 
-            //    foreach (string fajl in fajlovi)
-            //    {
-            //        System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
-            //    }
-            //}
+                    //var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", 3);
+                    //---------------------------------------------------------------------
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greska prilikom uploada komentara na GitHub"+Environment.NewLine + ex.Message);
+                } 
+            }
 
             #region Ovo sve je sranje, cijelu formu treba ispraviti, mozda GUID za link za sliku prije nego sto dobije ID...
 
@@ -150,6 +154,67 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             this.DialogResult = DialogResult.OK;
             kraj:;
         }
+        public string vratiPlainText(RichEditControl richEditControl1)
+        {
+            PlainTextDocumentExporterOptions options = new PlainTextDocumentExporterOptions();
+            options.ExportBulletsAndNumbering = false;
+            string plainText = richEditControl1.Document.GetText(richEditControl1.Document.Range, options);
+            return plainText;
+        }
+        public string getSveLinkove(Komentar komentar)
+        {
+            if (System.IO.Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + komentar.id.ToString()))
+            {
+                DirectoryInfo d = new DirectoryInfo(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + komentar.id.ToString());//Assuming Test is your Folder
+                FileInfo[] Files = d.GetFiles(); //Getting Text files
+                List<string> listafajlova = new List<string>();
+                List<string> listalinkova = new List<string>();
+                string linkovi = String.Empty;
+                foreach (FileInfo file in Files)
+                {
+                    listafajlova.Add(file.Name);
+                }
+                if (listafajlova.Count != 0)
+                {
+                    foreach (string str in listafajlova)
+                    {
+                        //listalinkova.Add(getImgurlink(str));
+                        linkovi += String.Format("![image-title]({0})" + Environment.NewLine, getImgurlink(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + komentar.id.ToString() + "\\" + str));
+                    }
+                    return linkovi;
+                }
+                else return String.Empty; 
+            }
+            else return String.Empty;
+        }
+        public string getImgurlink(string file)
+        {
+            try
+            {
+                using (var webclient = new WebClient())
+                {
+                    string clientID = "0f0d9a1643cbbef";
+                    webclient.Headers.Add("Authorization", "Client-ID " + clientID);
+                    var values = new NameValueCollection
+                    {
+                        { "image", Convert.ToBase64String(File.ReadAllBytes(file)) }
+                    };
+
+                    byte[] response = webclient.UploadValues("https://api.imgur.com/3/upload", values);
+                    var json = Encoding.UTF8.GetString(response);
+                    var parsedObject = JObject.Parse(json);
+                    var link = parsedObject["data"]["link"].ToString();
+                    return link;
+                }
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("Greska prilikom uploada slike na imgur!");
+                return "Greska prilikom uploada slike na imgur!";
+                
+            }
+        }
+        
 
 
     
@@ -163,12 +228,12 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
                 DocumentImage image = imageCollection[imageCollection.Count - 1];
                 var a = image.Image.NativeImage;
                 
-                if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()+"\\"+tempid.ToString()))
+                if (!System.IO.Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()+"\\"+tempid.ToString()))
                 {
-                    System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()+"\\"+tempid.ToString());
+                    System.IO.Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()+"\\"+tempid.ToString());
                 }
                 
-                string uri = Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString() +"\\"+ count.ToString() + ".bmp";
+                string uri = System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString() +"\\"+ count.ToString() + ".bmp";
                 a.Save(uri);
                 DocumentRange b = image.Range;
                 richEditControl1.Document.Delete(b);                
@@ -197,15 +262,15 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
             ofd.Multiselect = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                if (!Directory.Exists(Application.StartupPath + "\\Fajlovi"))
+                if (!Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Fajlovi"))
                 {
-                    Directory.CreateDirectory(Application.StartupPath + "\\Fajlovi");
+                    Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Fajlovi");
                 }
                 List<string> fajlovi = ofd.FileNames.ToList();
                 foreach (string file in fajlovi)
                 {
                     string ime = Guid.NewGuid().ToString();
-                    string uri = Application.StartupPath + "\\Fajlovi" + "\\" +ime + Path.GetExtension(file);
+                    string uri = System.Windows.Forms.Application.StartupPath + "\\Fajlovi" + "\\" +ime + Path.GetExtension(file);
                     File.Copy(file, uri);
                     string file1 = Path.GetFileName(file) + System.Environment.NewLine;
                     DocumentRange range = richEditControl1.Document.AppendText(file1);
@@ -226,7 +291,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
 
                 try                //Directory.Delete(path, true) vjerovatno moze da obrise sve u direktorijumu, ali directory info je korisna klasa za znat
                 {
-                    System.IO.DirectoryInfo direktorijum = new DirectoryInfo(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString());
+                    System.IO.DirectoryInfo direktorijum = new DirectoryInfo(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString());
 
                     foreach (FileInfo file in direktorijum.GetFiles())      //sve fajlove
                     {
@@ -236,7 +301,7 @@ namespace AbacusSUPP //cijela ova forma je govno, treba prepravit
                     {
                         dir.Delete(true);
                     }
-                    Directory.Delete(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString()); //sam direktorijum
+                    Directory.Delete(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + tempid.ToString()); //sam direktorijum
                 }
                 catch (Exception ex)
                 {

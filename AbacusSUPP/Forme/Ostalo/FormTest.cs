@@ -14,7 +14,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Octokit;
+using System.Collections.Specialized;
+using System.Xml.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using DevExpress.XtraEditors;
 
 namespace AbacusSUPP
 {
@@ -28,26 +33,52 @@ namespace AbacusSUPP
             
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private async void simpleButton1_Click(object sender, EventArgs e)
         {
-            string greska = "tekst greske";
+            //var client = new GitHubClient(new ProductHeaderValue("jovanmhn"));
+            //var basicAuth = new Credentials("jovanmhn", "jovan123");
+            //client.Credentials = basicAuth;
 
-            CreateBug(greska);
+            //var user = await client.User.Get("jovanmhn");
+            ////MessageBox.Show(String.Format("{0} has {1} public repositories - go check out their profile at {2}", user.Name, user.PublicRepos, user.Url));
+            //var issuesForOctokit = await client.Issue.GetAllForRepository("jovanmhn", "AbacusSUPP");
+            //var createIssue = new NewIssue("this thing doesn't work");
+            //var issue = await client.Issue.Create("jovanmhn", "AbacusSUPP", createIssue);
+
+
+            //var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", 3);
+
+            using (var webclient = new WebClient())
+            {
+                string clientID = "0f0d9a1643cbbef";
+                webclient.Headers.Add("Authorization", "Client-ID " + clientID);
+                var values = new NameValueCollection
+                {
+                    { "image", Convert.ToBase64String(File.ReadAllBytes(@"C:\Users\Jovan2\Pictures\test.jpg")) }
+                };
+
+                byte[] response = webclient.UploadValues("https://api.imgur.com/3/upload", values);
+                var json = Encoding.UTF8.GetString(response);
+                var parsedObject = JObject.Parse(json);
+                var popupJson = parsedObject["data"]["link"].ToString();
+
+            }
+
+
+
+
+
         }
-        public void CreateBug(string ex)
+
+
+    }
+    public class CustomRichTextEdit : RichTextEdit
+    {
+        protected override void OnMouseWheel(MouseEventArgs e)
         {
-            WebRequest request = WebRequest.Create("https://api.github.com/repos/jovanmhn/AbacusSUPP/issues ");
-            request.Method = "POST";
-            string postData = "{'title':'exception occured!', 'body':'{0}','assignee': 'yourUserName'}";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-            WebResponse response = request.GetResponse();
+            //base.OnMouseWheel(e);
         }
     }
-    
     public class CustomRichEditControl : RichEditControl
     {
         protected override void OnMouseWheel(MouseEventArgs e)

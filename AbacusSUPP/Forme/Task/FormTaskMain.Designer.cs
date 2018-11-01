@@ -71,6 +71,7 @@
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.simpleButtonGitHub = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.komentarBindingSource)).BeginInit();
@@ -426,7 +427,7 @@
             this.simpleButton1.Appearance.Options.UseBorderColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(1002, 58);
+            this.simpleButton1.Location = new System.Drawing.Point(1004, 58);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(104, 37);
             this.simpleButton1.TabIndex = 16;
@@ -568,7 +569,7 @@
             this.richEditControl1.Appearance.Text.Image = ((System.Drawing.Image)(resources.GetObject("richEditControl1.Appearance.Text.Image")));
             this.richEditControl1.Appearance.Text.Options.UseImage = true;
             this.richEditControl1.LayoutUnit = DevExpress.XtraRichEdit.DocumentLayoutUnit.Pixel;
-            this.richEditControl1.Location = new System.Drawing.Point(1002, 5);
+            this.richEditControl1.Location = new System.Drawing.Point(1004, 5);
             this.richEditControl1.Name = "richEditControl1";
             this.richEditControl1.Size = new System.Drawing.Size(65, 31);
             this.richEditControl1.TabIndex = 17;
@@ -581,7 +582,7 @@
             // simpleButton3
             // 
             this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton3.Location = new System.Drawing.Point(1073, 6);
+            this.simpleButton3.Location = new System.Drawing.Point(1075, 6);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(47, 30);
             this.simpleButton3.TabIndex = 12;
@@ -597,7 +598,7 @@
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 119);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1132, 424);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1134, 690);
             this.xtraScrollableControl1.TabIndex = 18;
             // 
             // panel1
@@ -605,6 +606,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.simpleButtonGitHub);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.xtraScrollableControl1);
             this.panel1.Controls.Add(this.simpleButton1);
@@ -620,8 +622,17 @@
             this.panel1.Controls.Add(this.labelControl4);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1132, 546);
+            this.panel1.Size = new System.Drawing.Size(1134, 812);
             this.panel1.TabIndex = 19;
+            // 
+            // simpleButtonGitHub
+            // 
+            this.simpleButtonGitHub.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonGitHub.ImageOptions.Image")));
+            this.simpleButtonGitHub.Location = new System.Drawing.Point(958, 58);
+            this.simpleButtonGitHub.Name = "simpleButtonGitHub";
+            this.simpleButtonGitHub.Size = new System.Drawing.Size(38, 37);
+            this.simpleButtonGitHub.TabIndex = 20;
+            this.simpleButtonGitHub.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // label1
             // 
@@ -630,14 +641,14 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Location = new System.Drawing.Point(12, 112);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1108, 2);
+            this.label1.Size = new System.Drawing.Size(1110, 2);
             this.label1.TabIndex = 19;
             // 
             // FormTaskMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1132, 546);
+            this.ClientSize = new System.Drawing.Size(1134, 812);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -715,5 +726,6 @@
         private DevExpress.XtraLayout.SimpleSeparator item2;
         private DevExpress.XtraLayout.SimpleSeparator item3;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonGitHub;
     }
 }

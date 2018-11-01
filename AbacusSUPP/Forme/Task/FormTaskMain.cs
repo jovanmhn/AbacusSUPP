@@ -9,6 +9,7 @@ using DevExpress.XtraGrid.Views.Layout;
 using DevExpress.XtraGrid.Views.Layout.ViewInfo;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,9 +38,12 @@ namespace AbacusSUPP
         public string rtfprezip;
         public string rtfpostunzip;
 
+        XtraScrollableControl scrollableControl = new XtraScrollableControl();
+
         public FormTaskMain(Task _task, [Optional] DevExpress.XtraSplashScreen.SplashScreenManager splashscreenmanager)
         {
             InitializeComponent();
+            scrollableControl = xtraScrollableControl1;
             Baza = new AbacusSUPEntities();
             //this.IsMdiContainer = true;
             task = Baza.Task.First(qq => qq.id_task == _task.id_task);
@@ -110,7 +114,14 @@ namespace AbacusSUPP
             gridControl1.Size = new Size(xtraScrollableControl1.Width - SystemInformation.VerticalScrollBarWidth, info.CalcRealViewHeight(new Rectangle(0, 0, 300, Int32.MaxValue)));
             #endregion
 
+            simpleButtonGitHub.Visible = task.git_id == null ? true : false;
             gridControl1.MouseWheel += GridControl1_MouseWheel;
+
+
+            //CustomRepRichTextEdit testeditor = new CustomRepRichTextEdit();
+            //testeditor.AllowMouseWheel = false;
+            //gridControl1.RepositoryItems.Add(testeditor);
+            //layoutView1.Columns["UnboundKomentar"].ColumnEdit = testeditor;
         }
 
         public void koriguj_izgled()
@@ -143,6 +154,10 @@ namespace AbacusSUPP
                 labelControl6.Visible = true;
                 labelControl6.Text = "Task zatvorio " + db2.Task.FirstOrDefault(qq=>qq.id_task==task.id_task).Login1.username.ToString() + ", " + db2.Task.FirstOrDefault(qq => qq.id_task == task.id_task).datum_zatv.ToString();
                 simpleButton1.Enabled = false;
+                if (OperaterLogin.operater.Podesavanja.task_github_upload)
+                {
+                    zatvorigittask(task); 
+                }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -164,11 +179,53 @@ namespace AbacusSUPP
                     db.SaveChanges();
                     simpleButton3.Enabled = true;
                     labelControl6.Visible = false;
+                    if (OperaterLogin.operater.Podesavanja.task_github_upload)
+                    {
+                        otvorigittask(task); 
+                    }
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
 
+        }
+        public async void zatvorigittask(Task task)
+        {
+            try
+            {
+                var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                var basicAuth = new Credentials("jovanmhn", "jovan123");
+                client.Credentials = basicAuth;
+
+                var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", task.git_id.Value);
+                var update = issueupitanju.ToUpdate();
+                update.State = ItemState.Closed;
+
+                var updatetest = await client.Issue.Update("jovanmhn", "AbacusSUPP", task.git_id.Value, update);
+            }
+            catch (Exception)
+            {
+  
+            }
+        }
+        public async void otvorigittask(Task task)
+        {
+            try
+            {
+                var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                var basicAuth = new Credentials("jovanmhn", "jovan123");
+                client.Credentials = basicAuth;
+
+                var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", task.git_id.Value);
+                var update = issueupitanju.ToUpdate();
+                update.State = ItemState.Open;
+
+                var updatetest = await client.Issue.Update("jovanmhn", "AbacusSUPP", task.git_id.Value, update);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void labelControl1_Click(object sender, EventArgs e)
@@ -198,13 +255,13 @@ namespace AbacusSUPP
             layoutView1.RefreshData();
             richEditControl1.Document.Delete(richEditControl1.Document.Range);
             string[] fajlovi = null;
-            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            if (Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
-                fajlovi = System.IO.Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                fajlovi = System.IO.Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                 id = Baza.Komentar.OrderByDescending(qq => qq.datum).ToList()[0].id;
                 if (id != 0)
                 {
-                    Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString());
+                    Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString());
                 }
                 else
                 {
@@ -214,7 +271,7 @@ namespace AbacusSUPP
             else { XtraMessageBox.Show("Nema task foldera!"); goto kraj; }
             foreach (string fajl in fajlovi)
             {
-                System.IO.File.Move(fajl, Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
+                System.IO.File.Move(fajl, System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString() + "\\" + Path.GetFileName(fajl));
             }
             broj_slike = 0;
 
@@ -314,9 +371,9 @@ namespace AbacusSUPP
             //Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + id.ToString()
             Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
             string[] fajlovi = null;
-            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+            if (Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
             {
-                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+                fajlovi = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
             }
             else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
 
@@ -402,11 +459,11 @@ namespace AbacusSUPP
                     richEditControl1.Document.Delete(range);
                     collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
 
-                    if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+                    if (!System.IO.Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
                     {
-                        System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                        System.IO.Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                     }
-                    c.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
+                    c.Save(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
                     broj_slike++;
                 }
                 if (b != null)
@@ -422,11 +479,11 @@ namespace AbacusSUPP
                     System.Drawing.Bitmap mala_slika = AbacusSUPP.Helper.ResizeImage(slika, w, h);
                     //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
                     collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
-                    if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+                    if (!System.IO.Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
                     {
-                        System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                        System.IO.Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
                     }
-                    slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
+                    slika.Save(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
                     broj_slike++;
                 }
 
@@ -450,11 +507,11 @@ namespace AbacusSUPP
             //richEditControl1.Document.InsertImage(richEditControl1.Document.CaretPosition, mala_slika);
             collection.Insert(richEditControl1.Document.CaretPosition, mala_slika);
 
-            if (!System.IO.Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
+            if (!System.IO.Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString()))
             {
-                System.IO.Directory.CreateDirectory(Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
+                System.IO.Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString());
             }
-            slika.Save(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
+            slika.Save(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + broj_slike.ToString() + ".bmp");
             broj_slike++;
         }
 
@@ -519,9 +576,9 @@ namespace AbacusSUPP
         {
             Komentar kom = (Komentar)layoutView1.GetRow(layoutView1.FocusedRowHandle);
             string[] fajlovi = null;
-            if (Directory.Exists(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
+            if (Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString()))
             {
-                fajlovi = Directory.GetFiles(Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
+                fajlovi = Directory.GetFiles(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + task.id_task.ToString() + "\\" + kom.id.ToString());
             }
             else { XtraMessageBox.Show("Nedostaju full res slike!"); goto kraj; }
 
@@ -538,7 +595,7 @@ namespace AbacusSUPP
         {
             ColumnView columnView = sender as ColumnView;
             
-
+            
             if (columnView != null)
             {
                 RichTextEdit activeEditor = columnView.ActiveEditor as RichTextEdit;
@@ -555,6 +612,9 @@ namespace AbacusSUPP
                     Komentar a = (Komentar)view.GetFocusedRow();
                     richEditControl.Options.Hyperlinks.ModifierKeys = Keys.None;
                     richEditControl.Options.Hyperlinks.ShowToolTip = false;
+
+                    richEditControl.MouseWheel += OnMouseWheel;
+                    richEditControl.Disposed += Control_Disposed;
 
                     if (a.Login.outline_kom == true)
                     {
@@ -575,8 +635,26 @@ namespace AbacusSUPP
                 }
             }
         }
-      
 
+        void OnMouseWheel(object sender, MouseEventArgs e)
+        {
+            DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = true;
+            int scrollValue = scrollableControl.VerticalScroll.Value;
+            int largeChange = scrollableControl.VerticalScroll.LargeChange;
+            if (e.Delta < 0)
+                scrollableControl.VerticalScroll.Value += scrollableControl.VerticalScroll.LargeChange;
+            else
+                if (scrollValue < largeChange)
+                scrollableControl.VerticalScroll.Value = 0;
+            else
+                scrollableControl.VerticalScroll.Value -= largeChange;
+        }
+        private void Control_Disposed(object sender, EventArgs e)
+        {
+            RichEditControl richEdit = (RichEditControl)sender;
+            richEdit.MouseWheel -= OnMouseWheel;
+            richEdit.Disposed -= Control_Disposed;
+        }
 
         private void richEditControl_CustomDrawActiveView(object sender, DevExpress.XtraRichEdit.RichEditViewCustomDrawEventArgs e)
         {
@@ -654,6 +732,55 @@ namespace AbacusSUPP
             //Pen pen = new Pen(Color.PaleVioletRed,2);
             //e.Graphics.DrawLine(pen, panel1.DisplayRectangle.Left, panel1.DisplayRectangle.Top, panel1.DisplayRectangle.Right, panel1.DisplayRectangle.Top);
         }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            var result = XtraMessageBox.Show("Upload na GitHub?", "GitHub", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                napravigithubissue(task);
+            }
+        }
+        public async void napravigithubissue(Task task)
+        {
+            try
+            {
+                var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                var basicAuth = new Credentials("jovanmhn", "jovan123");
+                client.Credentials = basicAuth;
+
+                var noviIssue = new NewIssue(task.naslov);
+                noviIssue.Body = task.opis;
+
+                var issue = await client.Issue.Create("jovanmhn", "AbacusSUPP", noviIssue);
+                var db = new AbacusSUPEntities();
+                db.Task.First(qq => qq.id_task == task.id_task).git_id = issue.Number;
+                db.SaveChanges();
+
+                //var comment = client.Issue.Comment.Create("jovanmhn", "AbacusSUPP", 5, "test KOmentar 123"); //ovo radi, argumenti su owner/repo/issueNo/komentar
+
+                //var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", 3);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Greska prilikom dodavanja na GitHub issues");
+            }
+        }
+        public class CustomRepRichTextEdit : DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit
+        {
+            public override bool AllowMouseWheel { get => base.AllowMouseWheel; set => base.AllowMouseWheel = value; }
+            
+        }
+        public class CustomRichTextEdit : RichTextEdit
+        {
+            protected override void OnMouseWheel(MouseEventArgs e)
+            {
+                //base.OnMouseWheel(e);
+            }
+
+        }
+        
     }
 
 

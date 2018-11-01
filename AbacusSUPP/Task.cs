@@ -51,11 +51,19 @@ public partial class Task
 
     public Nullable<int> id_label { get; set; }
 
+    public Nullable<int> git_id { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Komentar> Komentar { get; set; }
+
+    public virtual Label Label { get; set; }
+
+    public virtual Login Login { get; set; }
+
+    public virtual Login Login1 { get; set; }
 
     public virtual Partneri Partneri { get; set; }
 
@@ -66,12 +74,6 @@ public partial class Task
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<VezaLT> VezaLT { get; set; }
-
-    public virtual Login Login { get; set; }
-
-    public virtual Login Login1 { get; set; }
-
-    public virtual Label Label { get; set; }
 
 }
 

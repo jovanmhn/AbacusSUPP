@@ -5,6 +5,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using DevExpress.XtraTab.ViewInfo;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -97,7 +98,7 @@ namespace AbacusSUPP
         {
             notifyIcon1.Visible = false;
             notifyIconNotifikacija.Visible = false;
-            if(OperaterLogin.NE_IZLAZI_AOAO==false) Application.Exit();
+            if(OperaterLogin.NE_IZLAZI_AOAO==false) System.Windows.Forms.Application.Exit();
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -468,7 +469,7 @@ namespace AbacusSUPP
 
             try
             {
-                Directory.Delete(Application.StartupPath + "\\Slike\\" + zaDel.id_task.ToString());
+                Directory.Delete(System.Windows.Forms.Application.StartupPath + "\\Slike\\" + zaDel.id_task.ToString());
             }
             catch (Exception ex)
             {
@@ -571,7 +572,6 @@ namespace AbacusSUPP
         {
             timer1.Stop();
             var Baza = new AbacusSUPEntities();
-            
 
             List<Task> stara_lista = Main_lista.OrderByDescending(qq => qq.datum).ToList();
             List<Task> nova_lista = Baza.Task.OrderByDescending(qq => qq.datum).ToList();
@@ -792,7 +792,8 @@ namespace AbacusSUPP
                     novikom_notif = true,
                     task_novi_prozor = false,
                     pixel_scr = false,
-                    
+                    task_github_upload = false,
+                    kom_github_upload = false,
                 };
                 var db = new AbacusSUPEntities();
                 db.Podesavanja.Add(pod);
@@ -918,7 +919,7 @@ namespace AbacusSUPP
             gridView1.RefreshData();
         }
 
-        private void barButtonItem17_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void barButtonItem17_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Task task = (Task)gridView1.GetRow(gridView1.FocusedRowHandle);
             Main_lista.Remove(task);
@@ -933,6 +934,26 @@ namespace AbacusSUPP
             Main_lista.Add(db2.Task.First(qq => qq.id_task == task.id_task));
             taskBindingSource.DataSource = Main_lista.OrderByDescending(qq => qq.datum);
             gridView1.RefreshData();
+
+            if (task.git_id.HasValue)
+            {
+                try
+                {
+                    var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+                    var basicAuth = new Credentials("jovanmhn", "jovan123");
+                    client.Credentials = basicAuth;
+
+                    var issueupitanju = await client.Issue.Get("jovanmhn", "AbacusSUPP", task.git_id.Value);
+                    var update = issueupitanju.ToUpdate();
+                    update.State = ItemState.Closed;
+
+                    var updatetest = await client.Issue.Update("jovanmhn", "AbacusSUPP", task.git_id.Value, update);
+                }
+                catch
+                {
+                    
+                }
+            }
         }
 
        
@@ -1052,7 +1073,7 @@ namespace AbacusSUPP
         private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            foreach (Form form in Application.OpenForms)        //da ne prikazuje duple forme
+            foreach (Form form in System.Windows.Forms.Application.OpenForms)        //da ne prikazuje duple forme
             {
                 if (form.GetType() == typeof(AbacusSUPP.Forme.Ostalo.FormArhiva))
                 {
@@ -1126,6 +1147,49 @@ namespace AbacusSUPP
             {
                 //e.DisplayText = string.Empty;
             }
+        }
+
+        private async void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //-------------GitHub test sync----------------
+
+            var client = new GitHubClient(new ProductHeaderValue("AbacusSUPP"));
+            var basicAuth = new Credentials("jovanmhn", "jovan123");
+            client.Credentials = basicAuth;
+
+            var pomocniFiltar = new RepositoryIssueRequest
+            {
+                //Assignee = "none",
+                //Milestone = "none",
+                //Filter = IssueFilter.All,
+                State = ItemStateFilter.Closed
+                
+            };
+
+            var issues = await client.Issue.GetAllForRepository("jovanmhn", "AbacusSUPP");//ovdje treci parametar moze da ide tipa RepositoryIssueRequest
+            List<int> otvoreni= new List<int>();
+
+            var db = new AbacusSUPEntities();
+            foreach (Issue iss in issues) otvoreni.Add(iss.Number);
+            foreach(Task task in Main_lista.Where(qq=>qq.status_id==1))
+            {
+                if (task.git_id.HasValue)
+                {
+                    if (!otvoreni.Contains(task.git_id.Value))
+                    {
+                        db.Task.First(qq => qq.id_task == task.id_task).status_id = 2;
+                        db.Task.First(qq => qq.id_task == task.id_task).login_id_zatv = OperaterLogin.operater.id;
+                        db.Task.First(qq => qq.id_task == task.id_task).datum_zatv = DateTime.Now;
+                    }
+
+                }
+            }
+            db.SaveChanges();
+            Main_lista = db.Task.ToList();
+            gridControl1.DataSource = Main_lista;
+            gridView1.RefreshData();
+            
+            //---------------------------------------------
         }
     }
 

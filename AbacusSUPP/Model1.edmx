@@ -14,6 +14,7 @@
           <Property Name="sadrzaj" Type="text" />
           <Property Name="id_task" Type="int" Nullable="false" />
           <Property Name="id_login" Type="int" />
+          <Property Name="git_id" Type="int" />
         </EntityType>
         <EntityType Name="Label">
           <Key>
@@ -36,6 +37,8 @@
           <Property Name="outline_kom" Type="bit" />
           <Property Name="avatar" Type="image" />
           <Property Name="id_podesavanja" Type="int" />
+          <Property Name="gituser" Type="nvarchar" MaxLength="20" />
+          <Property Name="gitpass" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Partneri">
           <Key>
@@ -55,6 +58,8 @@
           <Property Name="novikom_notif" Type="bit" Nullable="false" />
           <Property Name="task_novi_prozor" Type="bit" Nullable="false" />
           <Property Name="pixel_scr" Type="bit" Nullable="false" />
+          <Property Name="task_github_upload" Type="bit" Nullable="false" />
+          <Property Name="kom_github_upload" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Prioritet">
           <Key>
@@ -92,6 +97,7 @@
           <Property Name="datum_zatv" Type="datetime" />
           <Property Name="login_id_zatv" Type="int" />
           <Property Name="id_label" Type="int" />
+          <Property Name="git_id" Type="int" />
         </EntityType>
         <EntityType Name="VezaLT">
           <Key>
@@ -324,12 +330,39 @@
           <EntitySet Name="Partneri" EntityType="AbacusSUPModel.Partneri" />
           <EntitySet Name="Prioritet" EntityType="AbacusSUPModel.Prioritet" />
           <EntitySet Name="Status" EntityType="AbacusSUPModel.Status" />
-          <EntitySet Name="Komentar" EntityType="AbacusSUPModel.Komentar" />
           <EntitySet Name="Sektor" EntityType="AbacusSUPModel.Sektor" />
+          <EntitySet Name="VezaLT" EntityType="AbacusSUPModel.VezaLT" />
+          <EntitySet Name="Label" EntityType="AbacusSUPModel.Label" />
+          <EntitySet Name="Login" EntityType="AbacusSUPModel.Login" />
+          <AssociationSet Name="FK_Login_Sektor" Association="AbacusSUPModel.FK_Login_Sektor">
+            <End Role="Sektor" EntitySet="Sektor" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VezaLT_Login" Association="AbacusSUPModel.FK_VezaLT_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="VezaLT" EntitySet="VezaLT" />
+          </AssociationSet>
+          <EntitySet Name="Komentar" EntityType="AbacusSUPModel.Komentar" />
           <EntitySet Name="Task" EntityType="AbacusSUPModel.Task" />
+          <AssociationSet Name="FK_Komentar_Login" Association="AbacusSUPModel.FK_Komentar_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Komentar" EntitySet="Komentar" />
+          </AssociationSet>
           <AssociationSet Name="FK_Komentar_Task" Association="AbacusSUPModel.FK_Komentar_Task">
             <End Role="Task" EntitySet="Task" />
             <End Role="Komentar" EntitySet="Komentar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Label" Association="AbacusSUPModel.FK_Task_Label">
+            <End Role="Label" EntitySet="Label" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Login" Association="AbacusSUPModel.FK_Task_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Login1" Association="AbacusSUPModel.FK_Task_Login1">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Task" EntitySet="Task" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_Partneri" Association="AbacusSUPModel.FK_Task_Partneri">
             <End Role="Partneri" EntitySet="Partneri" />
@@ -343,41 +376,14 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
-          <EntitySet Name="Podesavanja" EntityType="AbacusSUPModel.Podesavanja" />
-          <EntitySet Name="VezaLT" EntityType="AbacusSUPModel.VezaLT" />
           <AssociationSet Name="FK_VezaLT_Task" Association="AbacusSUPModel.FK_VezaLT_Task">
             <End Role="Task" EntitySet="Task" />
             <End Role="VezaLT" EntitySet="VezaLT" />
           </AssociationSet>
-          <EntitySet Name="Login" EntityType="AbacusSUPModel.Login" />
-          <AssociationSet Name="FK_Komentar_Login" Association="AbacusSUPModel.FK_Komentar_Login">
-            <End Role="Login" EntitySet="Login" />
-            <End Role="Komentar" EntitySet="Komentar" />
-          </AssociationSet>
+          <EntitySet Name="Podesavanja" EntityType="AbacusSUPModel.Podesavanja" />
           <AssociationSet Name="FK_Login_Podesavanja" Association="AbacusSUPModel.FK_Login_Podesavanja">
             <End Role="Podesavanja" EntitySet="Podesavanja" />
             <End Role="Login" EntitySet="Login" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Login_Sektor" Association="AbacusSUPModel.FK_Login_Sektor">
-            <End Role="Sektor" EntitySet="Sektor" />
-            <End Role="Login" EntitySet="Login" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Task_Login" Association="AbacusSUPModel.FK_Task_Login">
-            <End Role="Login" EntitySet="Login" />
-            <End Role="Task" EntitySet="Task" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Task_Login1" Association="AbacusSUPModel.FK_Task_Login1">
-            <End Role="Login" EntitySet="Login" />
-            <End Role="Task" EntitySet="Task" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VezaLT_Login" Association="AbacusSUPModel.FK_VezaLT_Login">
-            <End Role="Login" EntitySet="Login" />
-            <End Role="VezaLT" EntitySet="VezaLT" />
-          </AssociationSet>
-          <EntitySet Name="Label" EntityType="AbacusSUPModel.Label" />
-          <AssociationSet Name="FK_Task_Label" Association="AbacusSUPModel.FK_Task_Label">
-            <End Role="Label" EntitySet="Label" />
-            <End Role="Task" EntitySet="Task" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Partneri">
@@ -404,6 +410,82 @@
           <Property Name="opis" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Status" FromRole="Status" ToRole="Task" />
         </EntityType>
+        <EntityType Name="Sektor">
+          <Key>
+            <PropertyRef Name="id_sektor" />
+          </Key>
+          <Property Name="id_sektor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Sektor" FromRole="Sektor" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="VezaLT">
+          <Key>
+            <PropertyRef Name="id_veza" />
+          </Key>
+          <Property Name="id_veza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_task" Type="Int32" Nullable="false" />
+          <Property Name="id_login" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_VezaLT_Login" FromRole="VezaLT" ToRole="Login" />
+          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_VezaLT_Task" FromRole="VezaLT" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="id_label" />
+          </Key>
+          <Property Name="id_label" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="label1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Label" FromRole="Label" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="id_sektor" Type="Int32" />
+          <Property Name="outline_kom" Type="Boolean" />
+          <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="id_podesavanja" Type="Int32" />
+          <Property Name="gituser" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="gitpass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sektor" Relationship="AbacusSUPModel.FK_Login_Sektor" FromRole="Login" ToRole="Sektor" />
+          <NavigationProperty Name="VezaLT" Relationship="AbacusSUPModel.FK_VezaLT_Login" FromRole="Login" ToRole="VezaLT" />
+          <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Login" FromRole="Login" ToRole="Komentar" />
+          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Login" ToRole="Task" />
+          <NavigationProperty Name="Task1" Relationship="AbacusSUPModel.FK_Task_Login1" FromRole="Login" ToRole="Task" />
+          <NavigationProperty Name="Podesavanja" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Login" ToRole="Podesavanja" />
+        </EntityType>
+        <Association Name="FK_Login_Sektor">
+          <End Type="AbacusSUPModel.Sektor" Role="Sektor" Multiplicity="0..1" />
+          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sektor">
+              <PropertyRef Name="id_sektor" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="id_sektor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VezaLT_Login">
+          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AbacusSUPModel.VezaLT" Role="VezaLT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="VezaLT">
+              <PropertyRef Name="id_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Komentar">
           <Key>
             <PropertyRef Name="id" />
@@ -413,16 +495,9 @@
           <Property Name="sadrzaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="id_task" Type="Int32" Nullable="false" />
           <Property Name="id_login" Type="Int32" />
-          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Komentar_Task" FromRole="Komentar" ToRole="Task" />
+          <Property Name="git_id" Type="Int32" />
           <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Komentar_Login" FromRole="Komentar" ToRole="Login" />
-        </EntityType>
-        <EntityType Name="Sektor">
-          <Key>
-            <PropertyRef Name="id_sektor" />
-          </Key>
-          <Property Name="id_sektor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Sektor" FromRole="Sektor" ToRole="Login" />
+          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Komentar_Task" FromRole="Komentar" ToRole="Task" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -438,16 +513,31 @@
           <Property Name="naslov" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="datum_zatv" Type="DateTime" Precision="3" />
           <Property Name="login_id_zatv" Type="Int32" />
+          <Property Name="id_label" Type="Int32" />
+          <Property Name="git_id" Type="Int32" />
           <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Task" FromRole="Task" ToRole="Komentar" />
+          <NavigationProperty Name="Label" Relationship="AbacusSUPModel.FK_Task_Label" FromRole="Task" ToRole="Label" />
+          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Task" ToRole="Login" />
+          <NavigationProperty Name="Login1" Relationship="AbacusSUPModel.FK_Task_Login1" FromRole="Task" ToRole="Login" />
           <NavigationProperty Name="Partneri" Relationship="AbacusSUPModel.FK_Task_Partneri" FromRole="Task" ToRole="Partneri" />
           <NavigationProperty Name="Prioritet" Relationship="AbacusSUPModel.FK_Task_Prioritet" FromRole="Task" ToRole="Prioritet" />
           <NavigationProperty Name="Status" Relationship="AbacusSUPModel.FK_Task_Status" FromRole="Task" ToRole="Status" />
           <NavigationProperty Name="VezaLT" Relationship="AbacusSUPModel.FK_VezaLT_Task" FromRole="Task" ToRole="VezaLT" />
-          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Task" ToRole="Login" />
-          <NavigationProperty Name="Login1" Relationship="AbacusSUPModel.FK_Task_Login1" FromRole="Task" ToRole="Login" />
-          <Property Name="id_label" Type="Int32" />
-          <NavigationProperty Name="Label" Relationship="AbacusSUPModel.FK_Task_Label" FromRole="Task" ToRole="Label" />
         </EntityType>
+        <Association Name="FK_Komentar_Login">
+          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AbacusSUPModel.Komentar" Role="Komentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Komentar">
+              <PropertyRef Name="id_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Komentar_Task">
           <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -459,6 +549,42 @@
             </Principal>
             <Dependent Role="Komentar">
               <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Label">
+          <End Type="AbacusSUPModel.Label" Role="Label" Multiplicity="0..1" />
+          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Label">
+              <PropertyRef Name="id_label" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_label" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Login">
+          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="login_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Login1">
+          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="login_id_zatv" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -498,30 +624,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Podesavanja">
-          <Key>
-            <PropertyRef Name="id_podesavanja" />
-          </Key>
-          <Property Name="id_podesavanja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="minimize_notif" Type="Boolean" Nullable="false" />
-          <Property Name="minimize_tray" Type="Boolean" Nullable="false" />
-          <Property Name="novitask_notif" Type="Boolean" Nullable="false" />
-          <Property Name="novikom_notif" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Podesavanja" ToRole="Login" />
-          <Property Name="task_novi_prozor" Type="Boolean" Nullable="false" />
-          <Property Name="pixel_scr" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="VezaLT">
-          <Key>
-            <PropertyRef Name="id_veza" />
-          </Key>
-          <Property Name="id_veza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_task" Type="Int32" Nullable="false" />
-          <Property Name="id_login" Type="Int32" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_VezaLT_Task" FromRole="VezaLT" ToRole="Task" />
-          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_VezaLT_Login" FromRole="VezaLT" ToRole="Login" />
-        </EntityType>
         <Association Name="FK_VezaLT_Task">
           <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -536,39 +638,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Login">
+        <EntityType Name="Podesavanja">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_podesavanja" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
-          <Property Name="ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="id_sektor" Type="Int32" />
-          <Property Name="outline_kom" Type="Boolean" />
-          <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="id_podesavanja" Type="Int32" />
-          <NavigationProperty Name="Komentar" Relationship="AbacusSUPModel.FK_Komentar_Login" FromRole="Login" ToRole="Komentar" />
-          <NavigationProperty Name="Podesavanja" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Login" ToRole="Podesavanja" />
-          <NavigationProperty Name="Sektor" Relationship="AbacusSUPModel.FK_Login_Sektor" FromRole="Login" ToRole="Sektor" />
-          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Login" FromRole="Login" ToRole="Task" />
-          <NavigationProperty Name="Task1" Relationship="AbacusSUPModel.FK_Task_Login1" FromRole="Login" ToRole="Task" />
-          <NavigationProperty Name="VezaLT" Relationship="AbacusSUPModel.FK_VezaLT_Login" FromRole="Login" ToRole="VezaLT" />
+          <Property Name="id_podesavanja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="minimize_notif" Type="Boolean" Nullable="false" />
+          <Property Name="minimize_tray" Type="Boolean" Nullable="false" />
+          <Property Name="novitask_notif" Type="Boolean" Nullable="false" />
+          <Property Name="novikom_notif" Type="Boolean" Nullable="false" />
+          <Property Name="task_novi_prozor" Type="Boolean" Nullable="false" />
+          <Property Name="pixel_scr" Type="Boolean" Nullable="false" />
+          <Property Name="task_github_upload" Type="Boolean" Nullable="false" />
+          <Property Name="kom_github_upload" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="AbacusSUPModel.FK_Login_Podesavanja" FromRole="Podesavanja" ToRole="Login" />
         </EntityType>
-        <Association Name="FK_Komentar_Login">
-          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1" />
-          <End Type="AbacusSUPModel.Komentar" Role="Komentar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Komentar">
-              <PropertyRef Name="id_login" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Login_Podesavanja">
           <End Type="AbacusSUPModel.Podesavanja" Role="Podesavanja" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -580,76 +664,6 @@
             </Principal>
             <Dependent Role="Login">
               <PropertyRef Name="id_podesavanja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Login_Sektor">
-          <End Type="AbacusSUPModel.Sektor" Role="Sektor" Multiplicity="0..1" />
-          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sektor">
-              <PropertyRef Name="id_sektor" />
-            </Principal>
-            <Dependent Role="Login">
-              <PropertyRef Name="id_sektor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Task_Login">
-          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1" />
-          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="login_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Task_Login1">
-          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="0..1" />
-          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="login_id_zatv" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VezaLT_Login">
-          <End Type="AbacusSUPModel.Login" Role="Login" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="AbacusSUPModel.VezaLT" Role="VezaLT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Login">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="VezaLT">
-              <PropertyRef Name="id_login" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Label">
-          <Key>
-            <PropertyRef Name="id_label" />
-          </Key>
-          <Property Name="id_label" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="label1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Task" Relationship="AbacusSUPModel.FK_Task_Label" FromRole="Label" ToRole="Task" />
-        </EntityType>
-        <Association Name="FK_Task_Label">
-          <End Type="AbacusSUPModel.Label" Role="Label" Multiplicity="0..1" />
-          <End Type="AbacusSUPModel.Task" Role="Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Label">
-              <PropertyRef Name="id_label" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="id_label" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -683,17 +697,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Komentar">
-            <EntityTypeMapping TypeName="AbacusSUPModel.Komentar">
-              <MappingFragment StoreEntitySet="Komentar">
-                <ScalarProperty Name="id_login" ColumnName="id_login" />
-                <ScalarProperty Name="id_task" ColumnName="id_task" />
-                <ScalarProperty Name="sadrzaj" ColumnName="sadrzaj" />
-                <ScalarProperty Name="datum" ColumnName="datum" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sektor">
             <EntityTypeMapping TypeName="AbacusSUPModel.Sektor">
               <MappingFragment StoreEntitySet="Sektor">
@@ -702,9 +705,58 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VezaLT">
+            <EntityTypeMapping TypeName="AbacusSUPModel.VezaLT">
+              <MappingFragment StoreEntitySet="VezaLT">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="id_login" ColumnName="id_login" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="id_veza" ColumnName="id_veza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Label">
+            <EntityTypeMapping TypeName="AbacusSUPModel.Label">
+              <MappingFragment StoreEntitySet="Label">
+                <ScalarProperty Name="label1" ColumnName="label" />
+                <ScalarProperty Name="id_label" ColumnName="id_label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="AbacusSUPModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="gitpass" ColumnName="gitpass" />
+                <ScalarProperty Name="gituser" ColumnName="gituser" />
+                <ScalarProperty Name="id_podesavanja" ColumnName="id_podesavanja" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="outline_kom" ColumnName="outline_kom" />
+                <ScalarProperty Name="id_sektor" ColumnName="id_sektor" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komentar">
+            <EntityTypeMapping TypeName="AbacusSUPModel.Komentar">
+              <MappingFragment StoreEntitySet="Komentar">
+                <ScalarProperty Name="git_id" ColumnName="git_id" />
+                <ScalarProperty Name="id_login" ColumnName="id_login" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="sadrzaj" ColumnName="sadrzaj" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Task">
             <EntityTypeMapping TypeName="AbacusSUPModel.Task">
               <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="git_id" ColumnName="git_id" />
                 <ScalarProperty Name="id_label" ColumnName="id_label" />
                 <ScalarProperty Name="login_id_zatv" ColumnName="login_id_zatv" />
                 <ScalarProperty Name="datum_zatv" ColumnName="datum_zatv" />
@@ -722,6 +774,8 @@
           <EntitySetMapping Name="Podesavanja">
             <EntityTypeMapping TypeName="AbacusSUPModel.Podesavanja">
               <MappingFragment StoreEntitySet="Podesavanja">
+                <ScalarProperty Name="kom_github_upload" ColumnName="kom_github_upload" />
+                <ScalarProperty Name="task_github_upload" ColumnName="task_github_upload" />
                 <ScalarProperty Name="pixel_scr" ColumnName="pixel_scr" />
                 <ScalarProperty Name="task_novi_prozor" ColumnName="task_novi_prozor" />
                 <ScalarProperty Name="novikom_notif" ColumnName="novikom_notif" />
@@ -729,40 +783,6 @@
                 <ScalarProperty Name="minimize_tray" ColumnName="minimize_tray" />
                 <ScalarProperty Name="minimize_notif" ColumnName="minimize_notif" />
                 <ScalarProperty Name="id_podesavanja" ColumnName="id_podesavanja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VezaLT">
-            <EntityTypeMapping TypeName="AbacusSUPModel.VezaLT">
-              <MappingFragment StoreEntitySet="VezaLT">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="id_login" ColumnName="id_login" />
-                <ScalarProperty Name="id_task" ColumnName="id_task" />
-                <ScalarProperty Name="id_veza" ColumnName="id_veza" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Login">
-            <EntityTypeMapping TypeName="AbacusSUPModel.Login">
-              <MappingFragment StoreEntitySet="Login">
-                <ScalarProperty Name="id_podesavanja" ColumnName="id_podesavanja" />
-                <ScalarProperty Name="avatar" ColumnName="avatar" />
-                <ScalarProperty Name="outline_kom" ColumnName="outline_kom" />
-                <ScalarProperty Name="id_sektor" ColumnName="id_sektor" />
-                <ScalarProperty Name="prezime" ColumnName="prezime" />
-                <ScalarProperty Name="ime" ColumnName="ime" />
-                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Label">
-            <EntityTypeMapping TypeName="AbacusSUPModel.Label">
-              <MappingFragment StoreEntitySet="Label">
-                <ScalarProperty Name="label1" ColumnName="label" />
-                <ScalarProperty Name="id_label" ColumnName="id_label" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

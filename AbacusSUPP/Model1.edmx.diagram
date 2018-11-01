@@ -8,25 +8,25 @@
         <EntityTypeShape EntityType="AbacusSUPModel.Partneri" Width="1.5" PointX="0.75" PointY="3.5" />
         <EntityTypeShape EntityType="AbacusSUPModel.Prioritet" Width="1.5" PointX="9.875" PointY="2.25" />
         <EntityTypeShape EntityType="AbacusSUPModel.Status" Width="1.5" PointX="0.75" PointY="1.75" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Komentar" Width="1.5" PointX="7.875" PointY="2.25" />
         <EntityTypeShape EntityType="AbacusSUPModel.Sektor" Width="1.5" PointX="7.875" PointY="4.875" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Task" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="AbacusSUPModel.VezaLT" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Label" Width="1.5" PointX="7.875" PointY="7" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Login" Width="1.5" PointX="5.375" PointY="2.5" />
+        <AssociationConnector Association="AbacusSUPModel.FK_Login_Sektor" />
+        <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Login" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Komentar" Width="1.5" PointX="7.625" PointY="1.5" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Task" Width="1.5" PointX="3.125" PointY="2.25" />
+        <AssociationConnector Association="AbacusSUPModel.FK_Komentar_Login" />
         <AssociationConnector Association="AbacusSUPModel.FK_Komentar_Task" />
+        <AssociationConnector Association="AbacusSUPModel.FK_Task_Label" />
+        <AssociationConnector Association="AbacusSUPModel.FK_Task_Login" />
+        <AssociationConnector Association="AbacusSUPModel.FK_Task_Login1" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Partneri" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Prioritet" />
         <AssociationConnector Association="AbacusSUPModel.FK_Task_Status" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Podesavanja" Width="1.5" PointX="9.875" PointY="4.375" />
-        <EntityTypeShape EntityType="AbacusSUPModel.VezaLT" Width="1.5" PointX="0.75" PointY="5.25" />
         <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Task" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Login" Width="1.5" PointX="5" PointY="2.5" />
-        <AssociationConnector Association="AbacusSUPModel.FK_Komentar_Login" />
+        <EntityTypeShape EntityType="AbacusSUPModel.Podesavanja" Width="1.5" PointX="10" PointY="4.25" />
         <AssociationConnector Association="AbacusSUPModel.FK_Login_Podesavanja" />
-        <AssociationConnector Association="AbacusSUPModel.FK_Login_Sektor" />
-        <AssociationConnector Association="AbacusSUPModel.FK_Task_Login" />
-        <AssociationConnector Association="AbacusSUPModel.FK_Task_Login1" />
-        <AssociationConnector Association="AbacusSUPModel.FK_VezaLT_Login" />
-        <EntityTypeShape EntityType="AbacusSUPModel.Label" Width="1.5" PointX="3.375" PointY="7.875" />
-        <AssociationConnector Association="AbacusSUPModel.FK_Task_Label" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
